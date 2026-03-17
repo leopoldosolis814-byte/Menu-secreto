@@ -1,100 +1,105 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Promo El Puis</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#000;
-  font-family:Arial, Helvetica, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-}
-.container{
-  width:100vw;
-  max-width:500px;
-  aspect-ratio:1/1;
-  background:#000;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  border-radius:16px;
-}
-.bg-img{
-  width:100%;
-  height:45%;
-  object-fit:cover;
-}
-.badge{
-  background:#e63946;
-  color:#fff;
-  padding:6px 14px;
-  border-radius:20px;
-  font-weight:bold;
-  font-size:12px;
-  align-self:center;
-  margin-top:-14px;
-}
-.content{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  gap:10px;
-  padding:10px;
-}
-.logo{
-  color:#ffcc00;
-  font-size:22px;
-}
-.title{
-  font-size:22px;
-  font-weight:bold;
-}
-.price{
-  color:#ffcc00;
-  font-size:48px;
-  font-weight:bold;
-}
-.old-price{
-  color:#888;
-  text-decoration:line-through;
-  font-size:16px;
-}
-.btn{
-  background:#25d366;
-  color:#fff;
-  text-decoration:none;
-  padding:14px;
-  width:90%;
-  border-radius:12px;
-  font-weight:bold;
-  font-size:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.5);
-}
-.extra{
-  font-size:12px;
-  color:#aaa;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #000;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    /* Quitamos el align-items: center para que en móviles no se corte arriba */
+  }
+
+  .container {
+    width: 100vw;
+    max-width: 500px;
+    min-height: 100vh; /* Ocupa todo el alto de la pantalla */
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+
+  .bg-img {
+    width: 100%;
+    height: 40vh; /* Altura relativa a la pantalla */
+    object-fit: cover;
+  }
+
+  .badge {
+    background: #e63946;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    align-self: center;
+    margin-top: -15px; /* Efecto solapado sobre la imagen */
+    z-index: 10;
+  }
+
+  .content {
+    flex: 1; /* Esto hace que el contenido use todo el espacio restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Distribuye el texto uniformemente */
+    align-items: center;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  .logo { color: #ffcc00; font-size: 24px; margin-bottom: 5px; }
+  .title { font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+  .old-price { color: #888; text-decoration: line-through; font-size: 20px; }
+  .price { color: #ffcc00; font-size: 60px; font-weight: bold; margin: 10px 0; }
+
+  .btn {
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    padding: 18px;
+    width: 90%;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px; /* Espacio al final */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn:active { transform: scale(0.95); }
+
 </style>
 </head>
 <body>
+
 <div class="container">
-  <!-- IMPORTANTE: ESTA RUTA FUNCIONA EN GITHUB -->
-  <img src="./Burgerr.png" class="bg-img">  <div class="badge">DOBLE CARNE + CHEDDAR + PAPAS 🔥</div>  <div class="content">
-    <div class="logo">🍔 El Puis</div>
-    <div class="title">PROMO DEL DÍA</div>
-    <div class="old-price">$8.000</div>
-    <div class="price">$6.000</div><a href="https://wa.me/5493794657659?text=Hola!%20Quiero%20la%20promo" class="btn">PEDIR AHORA 🍔</a>
+  <img src="./Burgerr.png" class="bg-img">
+  
+  <div class="badge">DOBLE CARNE + CHEDDAR + PAPAS 🔥</div>
+  
+  <div class="content">
+    <div>
+      <div class="logo">🍔 El Puis</div>
+      <div class="title">PROMO DEL DÍA</div>
+    </div>
 
-<div class="extra">Entrega rápida ⚡</div>
+    <div>
+      <div class="old-price">$8.000</div>
+      <div class="price">$6.000</div>
+    </div>
 
+    <a href="https://wa.me/5493794657659?text=Hola!%20Quiero%20la%20promo" class="btn">
+      PEDIR AHORA 🍔
+    </a>
   </div>
 </div>
+
 </body>
-</html>    
+</html>
