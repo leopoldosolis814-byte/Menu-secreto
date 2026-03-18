@@ -11,7 +11,7 @@
     background: #000;
     font-family: 'Segoe UI', sans-serif;
     color: white;
-    overflow: hidden; /* Volvemos a bloquear el scroll porque ahora sí debería entrar */
+    overflow: hidden;
   }
 
   .container {
@@ -19,29 +19,29 @@
     height: 100dvh; 
     display: flex;
     flex-direction: column;
-    position: relative; /* Necesario para posicionar cosas encima */
+    position: relative;
   }
 
-  /* EL LOGO SOBRE LA IMAGEN */
   .logo-overlay {
     position: absolute;
     top: 20px;
     left: 20px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para que se lea bien */
+    background: rgba(0, 0, 0, 0.6);
     padding: 8px 15px;
     border-radius: 50px;
     font-size: 18px;
     font-weight: bold;
     color: #ffcc00;
     z-index: 20;
-    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 204, 0, 0.3);
   }
 
-  .bg-img {
+  .bg-video {
     width: 100%;
-    height: 45vh; /* Altura generosa para que la hamburguesa luzca */
+    height: 45vh;
     object-fit: cover;
+    display: block;
   }
 
   .badge {
@@ -96,18 +96,31 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); transform: scale(1); }
+    50% { box-shadow: 0 4px 35px rgba(37,211,102,0.7); transform: scale(1.02); }
   }
 
   .extra { font-size: 12px; color: #666; }
-
 </style>
 </head>
 <body>
 
 <div class="container">
+
   <div class="logo-overlay">🍔 El Puis</div>
 
-  <img src="./Burgerr.png" class="bg-img" alt="Hamburguesa El Puis">
+  <video
+    class="bg-video"
+    src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1773845217/20260318_103434909_2_vsa1hx.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+  ></video>
   
   <div class="badge">DOBLE CARNE + CHEDDAR + PAPAS 🔥</div>
   
@@ -119,13 +132,15 @@
       <div class="price">$6.000</div>
     </div>
 
-    <a href="https://wa.me/5493794657659?text=Hola!%20Quiero%20la%20promo" class="btn">
+    <a href="https://wa.me/5493794655679?text=Hola!%20Quiero%20la%20promo%20inc%C3%B3gnita!%0AEnviar%20a%2C%20Direcci%C3%B3n%3A%0AModo%20de%20pago%20(efectivo%2C%20transferencia)%3A%0AComentarios%20adicionales%3A" class="btn">
       PEDIR AHORA 🍔
     </a>
     
     <div class="extra">Entrega rápida ⚡</div>
   </div>
+
 </div>
 
 </body>
 </html>
+```
