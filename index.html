@@ -22,20 +22,25 @@
     position: relative;
   }
 
+  /* --- CAMBIOS EN EL LOGO --- */
   .logo-overlay {
     position: absolute;
     top: 20px;
     left: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 8px 15px;
-    border-radius: 50px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffcc00;
+    /* Eliminamos el fondo y borde anterior para que destaque la imagen */
+    padding: 0; 
+    background: none; 
     z-index: 20;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 204, 0, 0.3);
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)); /* Sombra para que se lea bien sobre el video */
   }
+
+  /* Estilos para la imagen del logo */
+  .logo-overlay img {
+    height: 60px; /* Ajusta este valor si quieres el logo más grande o pequeño */
+    width: auto;
+    display: block;
+  }
+  /* -------------------------- */
 
   .bg-video {
     width: 100%;
@@ -111,8 +116,9 @@
 
 <div class="container">
 
-  <div class="logo-overlay">🍔 El Puis</div>
-
+  <div class="logo-overlay">
+    <img src="Copilot_20260331_220454.png" alt="Logo El Puis">
+  </div>
   <video
     class="bg-video"
     src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1773845217/20260318_103434909_2_vsa1hx.mp4"
@@ -143,4 +149,3 @@
 
 </body>
 </html>
-```
