@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Promo El Puis</title>
-<style>
+<title>Promo Elenos</title> <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
@@ -22,30 +21,38 @@
     position: relative;
   }
 
-  /* --- CAMBIOS EN EL LOGO --- */
+  /* --- LOGO: MÁS GRANDE --- */
   .logo-overlay {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    /* Eliminamos el fondo y borde anterior para que destaque la imagen */
+    top: 25px; /* Un poco más abajo */
+    left: 25px; /* Un poco más a la derecha */
     padding: 0; 
     background: none; 
     z-index: 20;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)); /* Sombra para que se lea bien sobre el video */
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8)); /* Sombra más fuerte */
   }
 
   /* Estilos para la imagen del logo */
   .logo-overlay img {
-    height: 60px; /* Ajusta este valor si quieres el logo más grande o pequeño */
+    height: 90px; /* --- LOGO MÁS GRANDE (Antes 60px) --- */
     width: auto;
     display: block;
   }
   /* -------------------------- */
 
-  .bg-video {
+  /* --- VÍDEO: CENTRADO --- */
+  .bg-video-container {
     width: 100%;
     height: 45vh;
-    object-fit: cover;
+    overflow: hidden; /* Para recortar lo sobrante */
+    position: relative;
+  }
+
+  .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre el área */
+    object-position: center; /* --- CENTRA EL VÍDEO (Antes predeterminado) --- */
     display: block;
   }
 
@@ -117,28 +124,28 @@
 <div class="container">
 
   <div class="logo-overlay">
-    <img src="Copilot_20260331_220454.png" alt="Logo El Puis">
+    <img src="Copilot_20260331_220454.png" alt="Logo Elenos">
   </div>
-  <video
-    class="bg-video"
-    src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1773845217/20260318_103434909_2_vsa1hx.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-  ></video>
+  <div class="bg-video-container">
+    <video
+      class="bg-video"
+      src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1773845217/20260318_103434909_2_vsa1hx.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+  </div>
   
   <div class="badge">DOBLE CARNE + CHEDDAR + PAPAS 🔥</div>
   
   <div class="content">
-    <div class="title">PROMO DEL DÍA</div>
-
-    <div class="price-box">
+    <div class="title">PROMO ELENOS</div> <div class="price-box">
       <div class="old-price">$8.000</div>
       <div class="price">$6.000</div>
     </div>
 
-    <a href="https://wa.me/5493794655679?text=Hola!%20Quiero%20la%20promo%20inc%C3%B3gnita!%0AEnviar%20a%2C%20Direcci%C3%B3n%3A%0AModo%20de%20pago%20(efectivo%2C%20transferencia)%3A%0AComentarios%20adicionales%3A" class="btn">
+    <a href="https://wa.me/5493794655679?text=Hola!%20Quiero%20la%20promo%20Elenos!%0AEnviar%20a%2C%20Direcci%C3%B3n%3A%0AModo%20de%20pago%20(efectivo%2C%20transferencia)%3A%0AComentarios%20adicionales%3A" class="btn">
       PEDIR AHORA 🍔
     </a>
     
