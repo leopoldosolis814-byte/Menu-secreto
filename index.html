@@ -2,47 +2,195 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fórmula del Sabor - Einstein</title>
+<meta name="viewport" content="width=1080">
+<title>Story Barbería</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        background: #000; /* Fondo negro para el contraste */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden; /* Evita barras de desplazamiento */
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* CONTENEDOR PRINCIPAL */
-    .advert-container {
-        position: relative;
-        width: 100vw;
-        max-width: 500px; /* Ajusta este valor si necesitas un tamaño diferente */
-        height: 100vh; /* Ocupa todo el alto */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #000;
+  }
 
-    /* LA IMAGEN FINAL (CON EL PORTAL YA INTEGRADO) */
-    .final-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Asegura que la imagen completa sea visible sin cortarse */
-        display: block;
-        
-        /* OPCIONAL: Un ligero drop-shadow para dar volumen */
-        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+  .scene {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+  }
+
+  /* VIDEO FONDO */
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* OVERLAY sutil para que el texto respire */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.0) 35%,
+      rgba(0,0,0,0.0) 70%,
+      rgba(0,0,0,0.65) 100%
+    );
+  }
+
+  /* ── TEXTO SUPERIOR ── */
+  .top-text {
+    position: absolute;
+    top: 80px;
+    left: 60px;
+    z-index: 10;
+    max-width: 780px;
+  }
+
+  .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 128px;
+    line-height: 1.0;
+    color: #fff;
+    text-shadow:
+      3px 3px 0px rgba(0,0,0,0.8),
+      0 0 40px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: slideDown 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+  }
+
+  .subheadline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 46px;
+    color: rgba(255,255,255,0.92);
+    margin-top: 12px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+  }
+
+  /* ── LOGO BARBERÍA ── */
+  .logo-badge {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    z-index: 10;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #111;
+    border: 4px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.1s forwards;
+  }
+
+  .logo-badge span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+
+  /* ── CTA INFERIOR ── */
+  .cta-wrap {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.4s forwards;
+  }
+
+  .cta {
+    background: #111;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    padding: 28px 64px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    animation: pulse 2.2s ease-in-out 2s infinite;
+  }
+
+  .cta-arrow {
+    font-size: 48px;
+    color: #fff;
+  }
+
+  .cta-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  /* ── KEYFRAMES ── */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.04); }
+  }
 </style>
 </head>
 <body>
+<div class="scene">
 
-<div class="advert-container">
-    <img src="fondo-final.png" alt="Fórmula del Sabor" class="final-image">
+  <video autoplay muted loop playsinline>
+    <source src="https://raw.githubusercontent.com/leopoldosolis814-byte/Menu-secreto/main/the_french_bulldog_slowly_tilts_its_head_slightly_to_one_side_the_man_takes_a_slow_natural_breath_c_mdzgpz24x384yg7zluig_1.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="top-text">
+    <div class="headline">Un corte<br>lo cambia todo</div>
+    <div class="subheadline">Hasta tu perro lo nota.</div>
+  </div>
+
+  <div class="logo-badge">
+    <span>TU<br>BARBERÍA</span>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta">
+      <span class="cta-arrow">▼</span>
+      <span class="cta-text">Reservá tu turno</span>
+      <span class="cta-arrow">▼</span>
+    </div>
+  </div>
+
 </div>
-
 </body>
 </html>
