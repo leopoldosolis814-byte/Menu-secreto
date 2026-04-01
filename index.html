@@ -3,65 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einstein Portal - GitHub Edition</title>
+    <title>Einstein Portal Test</title>
     <style>
-        /* Eliminamos margenes y centramos todo */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #050505;
+            background-color: #111; /* Fondo gris oscuro para ver si algo falla */
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
 
-        /* Contenedor principal responsivo */
         .canvas-container {
             position: relative;
-            height: 95vh; /* Se ajusta al alto de la pantalla */
-            aspect-ratio: 2/3; /* Mantiene la proporción de la imagen original */
-            max-width: 100%;
+            width: 90vw; 
+            height: 90vh;
+            max-width: 600px; /* Limitamos el ancho para que no se deforme */
+            border: 1px solid #333; /* Guía visual */
         }
 
-        /* La imagen de Einstein */
         .background-img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            display: block;
             position: relative;
-            z-index: 2; /* Por encima del portal */
-            pointer-events: none; /* Permite clicks a través de ella si es necesario */
+            z-index: 2;
         }
 
-        /* El Portal Animado */
         .portal-fx {
             position: absolute;
             z-index: 1;
-            
-            /* Coordenadas precisas para el hueco de la pared */
-            top: 19.5%; 
-            left: 23.5%;
-            width: 30.5%;
-            height: 25.5%;
-            
+            /* Estos valores deberían ubicarlo en el hueco */
+            top: 20%; 
+            left: 23%;
+            width: 31%;
+            height: 26%;
             border-radius: 50%;
-            background: radial-gradient(circle, #affd1a 20%, #27ae60 70%, #0d3b1e 100%);
-            
-            /* Efecto de distorsión y brillo */
-            filter: url(#portal-noise) blur(4px);
-            box-shadow: 0 0 40px #affd1a, inset 0 0 20px #000;
-            
-            animation: rotatePortal 5s linear infinite;
+            background: radial-gradient(circle, #affd1a, #27ae60);
+            filter: blur(5px);
+            box-shadow: 0 0 30px #affd1a;
+            animation: girar 4s linear infinite;
         }
 
-        @keyframes rotatePortal {
-            from { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.05); }
-            to { transform: rotate(360deg) scale(1); }
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -69,18 +57,11 @@
 
     <div class="canvas-container">
         <div class="portal-fx"></div>
-        
-        <img src="Gemini_Generated_Image_nhjh4lnhjh4lnhjh.png" class="background-img">
+        <img src="Gemini_Generated_Image_nhjh4lnhjh4lnhjh.png" 
+             alt="Error: No se encuentra la imagen" 
+             class="background-img"
+             onerror="this.style.border='5px solid red'">
     </div>
-
-    <svg style="display: none;">
-        <filter id="portal-noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="5">
-                <animate attributeName="baseFrequency" dur="15s" values="0.015;0.025;0.015" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" scale="30" />
-        </filter>
-    </svg>
 
 </body>
 </html>
