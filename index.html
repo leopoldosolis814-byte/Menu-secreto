@@ -45,13 +45,13 @@
     );
   }
 
-  /* ── TEXTO SUPERIOR ── */
+  /* ── TEXTO MEDIO ── */
   .top-text {
     position: absolute;
-    top: 80px;
+    top: 620px;
     left: 60px;
     z-index: 10;
-    max-width: 780px;
+    max-width: 680px;
   }
 
   .headline {
@@ -62,9 +62,19 @@
     text-shadow:
       3px 3px 0px rgba(0,0,0,0.8),
       0 0 40px rgba(0,0,0,0.6);
-    opacity: 0;
-    transform: translateY(-30px);
-    animation: slideDown 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+    min-height: 260px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 6px;
+    background: #fff;
+    margin-left: 4px;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: baseline;
+    height: 100px;
+    position: relative;
+    top: 10px;
   }
 
   .subheadline {
@@ -75,8 +85,32 @@
     margin-top: 12px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
     opacity: 0;
-    transform: translateY(-20px);
-    animation: slideDown 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+    animation: fadeIn 0.6s ease 2.4s forwards;
+  }
+
+  /* ── FLECHA + EMOJI ── */
+  .dog-pointer {
+    position: absolute;
+    bottom: 280px;
+    right: 80px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 3.2s forwards;
+  }
+
+  .dog-emoji {
+    font-size: 90px;
+    animation: wiggle 0.6s ease-in-out 3.7s infinite alternate;
+  }
+
+  .dog-arrow {
+    font-size: 80px;
+    color: #fff;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8));
+    animation: bounce 0.5s ease-in-out 3.7s infinite alternate;
   }
 
   /* ── LOGO BARBERÍA ── */
@@ -143,17 +177,6 @@
   }
 
   /* ── KEYFRAMES ── */
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -162,6 +185,21 @@
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50%       { transform: scale(1.04); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  @keyframes wiggle {
+    from { transform: rotate(-15deg) scale(1); }
+    to   { transform: rotate(15deg) scale(1.15); }
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0px); }
+    to   { transform: translateY(14px); }
   }
 </style>
 </head>
@@ -175,12 +213,17 @@
   <div class="overlay"></div>
 
   <div class="top-text">
-    <div class="headline">Un corte<br>lo cambia todo</div>
+    <div class="headline"><span id="typewriter"></span><span class="cursor"></span></div>
     <div class="subheadline">Hasta tu perro lo nota.</div>
   </div>
 
   <div class="logo-badge">
     <span>TU<br>BARBERÍA</span>
+  </div>
+
+  <div class="dog-pointer">
+    <div class="dog-emoji">😂</div>
+    <div class="dog-arrow">↓</div>
   </div>
 
   <div class="cta-wrap">
@@ -190,6 +233,28 @@
       <span class="cta-arrow">▼</span>
     </div>
   </div>
+
+<script>
+  const text = "UN CORTE\nLO CAMBIA TODO";
+  const el = document.getElementById("typewriter");
+  let i = 0;
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        if (text[i] === "\n") {
+          el.innerHTML += "<br>";
+        } else {
+          el.innerHTML += text[i];
+        }
+        i++;
+      } else {
+        clearInterval(interval);
+        document.querySelector(".cursor").style.animation = "none";
+        document.querySelector(".cursor").style.opacity = "0";
+      }
+    }, 60);
+  }, 400);
+</script>
 
 </div>
 </body>
