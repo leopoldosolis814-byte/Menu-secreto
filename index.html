@@ -1,67 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einstein Portal Test</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #111; /* Fondo gris oscuro para ver si algo falla */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .canvas-container {
-            position: relative;
-            width: 90vw; 
-            height: 90vh;
-            max-width: 600px; /* Limitamos el ancho para que no se deforme */
-            border: 1px solid #333; /* Guía visual */
-        }
+<style>
+body {
+    margin: 0;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .background-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: relative;
-            z-index: 2;
-        }
+/* CONTENEDOR */
+.container {
+    position: relative;
+    width: 90vw;
+    max-width: 500px;
+}
 
-        .portal-fx {
-            position: absolute;
-            z-index: 1;
-            /* Estos valores deberían ubicarlo en el hueco */
-            top: 20%; 
-            left: 23%;
-            width: 31%;
-            height: 26%;
-            border-radius: 50%;
-            background: radial-gradient(circle, #affd1a, #27ae60);
-            filter: blur(5px);
-            box-shadow: 0 0 30px #affd1a;
-            animation: girar 4s linear infinite;
-        }
+/* IMAGEN */
+img {
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
 
-        @keyframes girar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
+/* PORTAL */
+.portal {
+    position: absolute;
+    top: 26%;
+    left: 18%;
+    width: 36%;
+    height: 34%;
+    border-radius: 50%;
+    z-index: 3;
+
+    /* EFECTO */
+    background: radial-gradient(circle at center, #b6ff2e, #00ff88 60%, transparent 70%);
+    box-shadow: 
+        0 0 20px #00ff88,
+        0 0 40px #00ff88,
+        0 0 80px #00ff88;
+
+    animation: spin 3s linear infinite;
+}
+
+/* ANIMACIÓN */
+@keyframes spin {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(360deg) scale(1.05); }
+}
+
+/* EFECTO INTERNO (ondas) */
+.portal::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle,
+        rgba(0,255,120,0.8) 0px,
+        rgba(0,255,120,0.8) 4px,
+        transparent 6px,
+        transparent 12px
+    );
+    animation: spinReverse 4s linear infinite;
+}
+
+/* GIRO INVERSO */
+@keyframes spinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="canvas-container">
-        <div class="portal-fx"></div>
-        <img src="Gemini_Generated_Image_nhjh4lnhjh4lnhjh.png" 
-             alt="Error: No se encuentra la imagen" 
-             class="background-img"
-             onerror="this.style.border='5px solid red'">
-    </div>
+<div class="container">
+    <div class="portal"></div>
+    <img src="fondo.png">
+</div>
 
 </body>
 </html>
