@@ -187,6 +187,11 @@
     font-weight: 900;
     margin-bottom: 5px;
     word-break: break-all;
+    cursor: pointer;
+    padding: 4px;
+    background: rgba(255, 45, 120, 0.05);
+    border-radius: 4px;
+    transition: all 0.2s;
   }
 
   .img-sticker {
@@ -209,10 +214,7 @@
     padding: 10px;
     border-radius: 8px;
     text-decoration: none;
-    transition: background 0.15s ease;
   }
-
-  .btn-download:active { background: #cc1f5e; }
 
   .btn-disabled {
     display: block;
@@ -289,8 +291,6 @@
     line-height: 1.5;
   }
 
-  .flujo-aviso strong { color: #443d00; }
-
   .flujo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -363,8 +363,6 @@
     box-shadow: 0 4px 20px rgba(37,211,102,0.25);
   }
 
-  .btn-wa:active { opacity: 0.9; }
-
   /* ── FOOTER ── */
   footer {
     background: var(--negro);
@@ -380,33 +378,30 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">Story<span>2</span>Action</div>
   <div class="tagline">Tu pack del mes está listo</div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">PACK DEL MES</div>
   <div class="hero-title">Tus <span>4 historias</span><br>están listas</div>
   <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
 </div>
 
-<!-- IMÁGENES -->
 <div class="card">
   <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Tocá "Descargar" en cada una y seguí los pasos de abajo</div>
+  <div class="card-sub">Tocá el enlace para copiarlo y "Descargar" para guardar la imagen</div>
   <div class="images-grid">
 
     <div class="img-card">
       <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Imagen 1">
       <div class="img-info">
         <div class="img-numero">IMAGEN 01</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-enlace-label">Toca para copiar link:</div>
+        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
         <div class="img-sticker">Sticker: <strong>"Ver oferta 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download>⬇ Descargar</a>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download="Historia_01.png">⬇ Descargar</a>
       </div>
     </div>
 
@@ -414,18 +409,15 @@
       <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Imagen 2">
       <div class="img-info">
         <div class="img-numero">IMAGEN 02</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-enlace-label">Toca para copiar link:</div>
+        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
         <div class="img-sticker">Sticker: <strong>"Pedí ahora 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download>⬇ Descargar</a>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download="Historia_02.png">⬇ Descargar</a>
       </div>
     </div>
 
     <div class="img-card">
-      <div class="img-placeholder">
-        <div class="icon">🖼</div>
-        Próximo
-      </div>
+      <div class="img-placeholder"><div class="icon">🖼</div>Próximo</div>
       <div class="img-info">
         <div class="img-numero">IMAGEN 03</div>
         <div class="img-enlace-label">Tu enlace</div>
@@ -436,10 +428,7 @@
     </div>
 
     <div class="img-card">
-      <div class="img-placeholder">
-        <div class="icon">🖼</div>
-        Próximo
-      </div>
+      <div class="img-placeholder"><div class="icon">🖼</div>Próximo</div>
       <div class="img-info">
         <div class="img-numero">IMAGEN 04</div>
         <div class="img-enlace-label">Tu enlace</div>
@@ -452,97 +441,95 @@
   </div>
 </div>
 
-<!-- CÓMO PUBLICAR -->
 <div class="card">
   <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
-  <div class="card-sub">5 pasos, menos de 2 minutos</div>
+  <div class="card-sub">5 pasos rápidos</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div>
         <div class="step-title">Guardá la imagen</div>
-        <div class="step-desc">Tocá "Guardar imagen" — se abre en el navegador. Mantené presionada la imagen y elegí "Guardar imagen" o "Descargar".</div>
+        <div class="step-desc">Tocá "Descargar". Si se abre en el navegador, mantené presionado y elegí "Guardar imagen".</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <div>
         <div class="step-title">Abrí Instagram</div>
-        <div class="step-desc">Tocá el "+" de story y seleccioná la imagen guardada.</div>
+        <div class="step-desc">Subí la imagen a tus Stories.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">3</div>
       <div>
-        <div class="step-title">Agregá el enlace</div>
-        <div class="step-desc">Tocá el sticker 🔗 y pegá el enlace que aparece debajo de tu imagen.</div>
-        <span class="step-tag">Copiá el enlace de arriba 👆</span>
+        <div class="step-title">Pegá el enlace</div>
+        <div class="step-desc">Usá el sticker de "Enlace" 🔗 y pegá el link que copiaste arriba.</div>
+        <span class="step-tag">Toca el link de arriba para copiar 👆</span>
       </div>
     </div>
     <div class="step">
       <div class="step-num">4</div>
       <div>
-        <div class="step-title">Escribí el texto del sticker</div>
-        <div class="step-desc">Tocá el sticker y escribí el texto sugerido. Ej: "Ver oferta 👆"</div>
+        <div class="step-title">Poné el texto</div>
+        <div class="step-desc">En el sticker escribí la sugerencia. Ej: "Ver oferta 👆"</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">5</div>
       <div>
-        <div class="step-title">¡Publicá! ✅</div>
-        <div class="step-desc">Tu historia ya está al aire y lista para convertir.</div>
+        <div class="step-title">¡Listo! ✅</div>
+        <div class="step-desc">Ya estás vendiendo.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FLUJO SEMANAL -->
 <div class="card">
-  <div class="card-title">📅 Ejemplo de <span class="accent">uso</span></div>
-  <div class="card-sub">Solo una sugerencia — vos decidís cuándo publicar</div>
+  <div class="card-title">📅 Sugerencia de <span class="accent">uso</span></div>
   <div class="flujo-aviso">
-    <strong>Las 4 imágenes son tuyas por 30 días.</strong> Podés publicarlas cuando quieras — todas juntas, de a una, o cuando tengas una promo especial.
+    <strong>Tenés 30 días para usarlas.</strong> Podés subirlas todas juntas o espaciarlas así:
   </div>
   <div class="flujo-grid">
     <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Lunes</div>
-      <div class="flujo-img">Imagen 1</div>
+      <div class="flujo-emoji">📅</div><div class="flujo-dia">Lunes</div><div class="flujo-img">Imagen 1</div>
     </div>
     <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Miércoles</div>
-      <div class="flujo-img">Imagen 2</div>
+      <div class="flujo-emoji">📅</div><div class="flujo-dia">Miércoles</div><div class="flujo-img">Imagen 2</div>
     </div>
     <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Viernes</div>
-      <div class="flujo-img">Imagen 3</div>
+      <div class="flujo-emoji">📅</div><div class="flujo-dia">Viernes</div><div class="flujo-img">Imagen 3</div>
     </div>
     <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Sábado</div>
-      <div class="flujo-img">Imagen 4</div>
+      <div class="flujo-emoji">📅</div><div class="flujo-dia">Sábado</div><div class="flujo-img">Imagen 4</div>
     </div>
   </div>
 </div>
 
-<!-- WHATSAPP -->
 <div class="wa-section">
   <div class="wa-card">
-    <div class="wa-titulo">¿Tenés dudas?</div>
-    <div class="wa-sub">Escribinos y te respondemos al toque</div>
-    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">
-      💬 Escribir por WhatsApp
-    </a>
+    <div class="wa-titulo">¿Dudas?</div>
+    <div class="wa-sub">Estamos para ayudarte</div>
+    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 WhatsApp</a>
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <span>Story2Action</span> · Todos los derechos reservados
-</footer>
+<footer><span>Story2Action</span> · 2024</footer>
+
+<script>
+function copiarTexto(elemento) {
+  const texto = elemento.innerText;
+  navigator.clipboard.writeText(texto).then(() => {
+    const original = elemento.innerText;
+    elemento.innerText = "¡Copiado! ✅";
+    elemento.style.background = "#ffe600";
+    
+    setTimeout(() => {
+      elemento.innerText = original;
+      elemento.style.background = "rgba(255, 45, 120, 0.05)";
+    }, 1500);
+  });
+}
+</script>
 
 </body>
-  </html>
-  
+          </html>
