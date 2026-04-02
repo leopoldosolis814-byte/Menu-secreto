@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080">
-<title>Story Nail Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<title>Story Burger Diablo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -36,152 +36,133 @@
     z-index: 2;
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0.5) 0%,
-      rgba(0,0,0,0.0) 40%,
-      rgba(0,0,0,0.2) 70%,
-      rgba(0,0,0,0.6) 100%
+      rgba(0,0,0,0.72) 0%,
+      rgba(0,0,0,0.15) 45%,
+      rgba(0,0,0,0.15) 65%,
+      rgba(0,0,0,0.75) 100%
     );
   }
 
-  .content {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  .content.visible { opacity: 1; }
-
+  /* ── TITULAR ── */
   .top-text {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    text-align: center;
-    padding: 0 60px;
-  }
-
-  .headline {
-    font-family: 'Pacifico', cursive;
-    font-size: 88px;
-    line-height: 1.2;
-    color: #fff;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.4);
-    min-height: 440px;
-  }
-
-  .pink   { color: #ff6eb4; }
-  .yellow { color: #ffe066; }
-
-  .cursor {
-    display: inline-block;
-    width: 5px;
-    height: 80px;
-    background: #fff;
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 0.7s step-end infinite;
-  }
-
-  .sub-pill {
-    display: inline-block;
-    margin-top: 40px;
-    background: linear-gradient(90deg, #ff6eb4, #ff9de2);
-    border-radius: 60px;
-    padding: 22px 52px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 48px;
-    color: #fff;
-    box-shadow: 0 8px 30px rgba(255,110,180,0.5);
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-  .sub-pill.visible { opacity: 1; }
-
-  .sparkles {
     position: absolute;
     top: 60px;
     left: 0;
     right: 0;
-    z-index: 9;
-    pointer-events: none;
+    z-index: 10;
+    text-align: center;
+    padding: 0 70px;
   }
 
-  .spark {
-    position: absolute;
-    font-size: 48px;
+  .line {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 98px;
+    line-height: 1.1;
+    color: #f5dfa0;
+    text-shadow:
+      3px 3px 0 #5a1a00,
+      -1px -1px 0 #5a1a00,
+      0 0 30px rgba(255,100,0,0.5);
     opacity: 0;
-    animation: sparkle 1.5s ease-in-out infinite alternate;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .spark:nth-child(1) { top: 20px;  left: 80px;  animation-delay: 0.2s; }
-  .spark:nth-child(2) { top: 10px;  left: 900px; animation-delay: 0.6s; }
-  .spark:nth-child(3) { top: 200px; left: 40px;  animation-delay: 1.0s; }
-  .spark:nth-child(4) { top: 180px; left: 950px; animation-delay: 0.4s; }
-  .spark:nth-child(5) { top: 400px; left: 100px; animation-delay: 0.8s; }
-  .spark:nth-child(6) { top: 380px; left: 880px; animation-delay: 1.2s; }
 
+  .line.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .line-sub {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 68px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .line-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── LOGO ── */
+  .logo-badge {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    z-index: 10;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(245,223,160,0.95);
+    border: 4px solid #5a1a00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .logo-badge.visible { opacity: 1; }
+
+  .logo-badge span {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #5a1a00;
+    line-height: 1.2;
+  }
+
+  /* ── CTA ── */
   .cta-wrap {
     position: absolute;
-    bottom: 160px;
+    bottom: 100px;
     left: 0;
     right: 0;
     z-index: 10;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+    justify-content: center;
     opacity: 0;
     transition: opacity 0.6s ease;
   }
   .cta-wrap.visible { opacity: 1; }
 
-  .cta-btn {
-    background: linear-gradient(135deg, #ff4d8d, #ff85c0);
-    border-radius: 40px;
-    padding: 40px 100px;
-    font-family: 'Pacifico', cursive;
-    font-size: 72px;
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 12px 50px rgba(255,77,141,0.6);
-    animation: heartbeat 1.8s ease-in-out infinite;
+  .cta {
+    background: rgba(245,223,160,0.95);
+    border: 3px solid #5a1a00;
+    border-radius: 12px;
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .cta-text {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 58px;
+    color: #5a1a00;
+    letter-spacing: 1px;
   }
 
   .cta-arrow {
-    font-size: 60px;
-    color: #ff6eb4;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-    animation: bounceArrow 0.6s ease-in-out infinite alternate;
+    font-size: 48px;
+    color: #5a1a00;
   }
 
-  .footer {
-    position: absolute;
-    bottom: 50px;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 2px;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-  @keyframes sparkle {
-    from { opacity: 0; transform: scale(0.7) rotate(-10deg); }
-    to   { opacity: 1; transform: scale(1.2) rotate(10deg); }
-  }
-  @keyframes heartbeat {
+  /* ── KEYFRAMES ── */
+  @keyframes pulse {
     0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.05); }
-  }
-  @keyframes bounceArrow {
-    from { transform: translateY(0); }
-    to   { transform: translateY(12px); }
+    50%       { transform: scale(1.04); }
   }
 </style>
 </head>
@@ -189,85 +170,52 @@
 <div class="scene">
 
   <video id="vid" autoplay muted loop playsinline>
-    <source src="https://raw.githubusercontent.com/leopoldosolis814-byte/Menu-secreto/main/the_woman_walks_forward_naturally_hair_moves_gently_with_her_stride_coat_sways_slightly_as_she_walk_dszx8sdj8mdjtjbiz240_1.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/leopoldosolis814-byte/Menu-secreto/main/the_devil_chefs_lips_curl_into_a_slow_sinister_grin_corners_of_his_mouth_rise_slightly_tail_curls_a_73vatuyhrwj7huwl80m1_1.mp4" type="video/mp4">
   </video>
 
   <div class="overlay"></div>
 
-  <div class="sparkles content" id="sparkles">
-    <span class="spark">✨</span>
-    <span class="spark">💕</span>
-    <span class="spark">⭐</span>
-    <span class="spark">✨</span>
-    <span class="spark">💫</span>
-    <span class="spark">💕</span>
+  <div class="top-text">
+    <span class="line" id="l1">Dicen que las mejores</span>
+    <span class="line" id="l2">burgers las hace el</span>
+    <span class="line" id="l3">diablo mismo...</span>
+    <span class="line-sub" id="l4">Hoy vino a probarlo</span>
   </div>
 
-  <div class="top-text content" id="topText">
-    <div class="headline" id="headline"><span class="cursor"></span></div>
-    <div class="sub-pill" id="subPill">Y empieza en las manos... 👆</div>
+  <div class="logo-badge" id="logo">
+    <span>AQUÍ<br>LOGO DE TU<br>HAMBURGUESERÍA</span>
   </div>
 
   <div class="cta-wrap" id="cta">
-    <div class="cta-btn">¡Descubrilo acá!</div>
-    <div class="cta-arrow">▼</div>
+    <div class="cta">
+      <span class="cta-arrow">▼</span>
+      <span class="cta-text">Hacé click y probá si es verdad</span>
+      <span class="cta-arrow">▼</span>
+    </div>
   </div>
-
-  <div class="footer content" id="footer">Story2Action</div>
 
 </div>
 
 <script>
   const video = document.getElementById('vid');
 
-  const segments = [
-    { text: 'Hay un ', cls: '' },
-    { text: 'detalle', cls: 'pink' },
-    { text: ' que\nestá cambiando\n', cls: '' },
-    { text: 'todos los looks', cls: 'yellow' },
-    { text: '\neste mes...', cls: '' },
-  ];
-
-  const chars = [];
-  segments.forEach(seg => {
-    for (let c of seg.text) {
-      chars.push({ char: c, cls: seg.cls });
-    }
-  });
-
   function startAnimation() {
-    document.querySelectorAll('.content').forEach(el => el.classList.add('visible'));
+    const delays = [0, 600, 1200, 2000];
+    const ids = ['l1','l2','l3','l4'];
 
-    const headline = document.getElementById('headline');
-    const cursor = headline.querySelector('.cursor');
-    const subPill = document.getElementById('subPill');
-    const cta = document.getElementById('cta');
+    ids.forEach((id, i) => {
+      setTimeout(() => {
+        document.getElementById(id).classList.add('visible');
+      }, delays[i]);
+    });
 
-    let i = 0;
-    let textNode = document.createElement('span');
-    headline.insertBefore(textNode, cursor);
+    setTimeout(() => {
+      document.getElementById('logo').classList.add('visible');
+    }, 800);
 
-    const interval = setInterval(() => {
-      if (i < chars.length) {
-        const { char, cls } = chars[i];
-        if (char === '\n') {
-          textNode.appendChild(document.createElement('br'));
-        } else if (cls) {
-          const span = document.createElement('span');
-          span.className = cls;
-          span.textContent = char;
-          textNode.appendChild(span);
-        } else {
-          textNode.appendChild(document.createTextNode(char));
-        }
-        i++;
-      } else {
-        clearInterval(interval);
-        cursor.style.display = 'none';
-        subPill.classList.add('visible');
-        setTimeout(() => cta.classList.add('visible'), 800);
-      }
-    }, 90);
+    setTimeout(() => {
+      document.getElementById('cta').classList.add('visible');
+    }, 2800);
   }
 
   video.addEventListener('canplay', startAnimation, { once: true });
@@ -275,4 +223,5 @@
 </script>
 
 </body>
-</html>
+   </html>
+   
