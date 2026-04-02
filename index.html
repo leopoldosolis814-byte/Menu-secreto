@@ -51,14 +51,14 @@
     right: 0;
     z-index: 10;
     text-align: center;
-    padding: 0 70px;
+    padding: 0 40px;
   }
 
   .line {
     display: block;
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 72px;
+    font-size: 80px;
     line-height: 1.1;
     color: #f5dfa0;
     text-shadow:
@@ -129,34 +129,50 @@
     right: 0;
     z-index: 10;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     opacity: 0;
     transition: opacity 0.6s ease;
   }
   .cta-wrap.visible { opacity: 1; }
 
   .cta {
-    background: #8b0000;
-    border: 3px solid #000;
-    border-radius: 12px;
-    padding: 20px 48px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
     animation: pulse 2s ease-in-out infinite;
   }
 
   .cta-text {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 46px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 52px;
     color: #f5dfa0;
     letter-spacing: 1px;
+    text-shadow:
+      3px 3px 0 #5a1a00,
+      -1px -1px 0 #5a1a00,
+      0 0 20px rgba(255,100,0,0.4),
+      0 8px 6px rgba(139,0,0,0.7),
+      0 16px 8px rgba(120,0,0,0.4),
+      0 24px 10px rgba(100,0,0,0.2);
   }
 
   .cta-arrow {
-    font-size: 38px;
-    color: #f5dfa0;
+    font-size: 56px;
+    color: #8b0000;
+    text-shadow:
+      2px 2px 0 #000,
+      0 6px 5px rgba(139,0,0,0.8),
+      0 12px 7px rgba(120,0,0,0.5),
+      0 18px 9px rgba(100,0,0,0.3);
+    animation: bounceArrow 0.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bounceArrow {
+    from { transform: translateY(0); }
+    to   { transform: translateY(10px); }
   }
 
   /* ── KEYFRAMES ── */
