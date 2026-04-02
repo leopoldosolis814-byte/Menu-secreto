@@ -7,30 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* --- NUEVA PALETA CLARA --- */
     --blanco: #ffffff;
-    --gris-seccion: #f4f4f6; /* Para header y hero */
+    --gris-seccion: #f4f4f6; /* Fondo claro sutil para algunas tarjetas */
     --gris-borde: #e2e2e8;
-    --negro: #111111; /* Texto principal */
-    --texto-suave-oscuro: #555566; /* Texto secundario sobre fondo claro */
-    
-    /* --- COLORES DE MARCA MANTENIDOS --- */
+    --negro: #111111; /* Texto principal y fondo header/hero */
     --fucsia: #ff2d78;
     --amarillo: #ffe600;
+    --texto: #222222;
+    --texto-suave: #888899;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--blanco); /* Fondo global blanco */
-    color: var(--negro);
+    background: var(--blanco); /* --- CAMBIO A FONDO BLANCO --- */
+    color: var(--texto);
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
   }
 
-  /* ── HEADER ── */
+  /* ── HEADER (Se mantiene oscuro para contraste) ── */
   header {
-    background: var(--gris-seccion); /* Fondo claro sutil */
+    background: var(--negro);
     padding: 22px 24px 18px;
     text-align: center;
     position: sticky;
@@ -43,25 +41,24 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 4px;
-    color: var(--negro); /* Texto negro */
+    color: var(--blanco);
   }
 
   .logo span { color: var(--fucsia); }
 
   .tagline {
     font-size: 11px;
-    color: var(--texto-suave-oscuro); /* Texto suave legible */
+    color: rgba(255,255,255,0.4);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 2px;
   }
 
-  /* ── HERO ── */
+  /* ── HERO (Se mantiene oscuro para contraste) ── */
   .hero {
-    background: var(--gris-seccion); /* Fondo claro sutil */
+    background: var(--negro);
     padding: 36px 24px 40px;
     text-align: center;
-    border-bottom: 1px solid var(--gris-borde);
   }
 
   .hero-badge {
@@ -80,27 +77,27 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 58px;
     line-height: 1.0;
-    color: var(--negro); /* Texto negro */
+    color: var(--blanco);
     letter-spacing: 1px;
   }
 
-  .hero-title span { color: var(--fucsia); } /* Cambiado a fucsia para mejor contraste en fondo claro */
+  .hero-title span { color: var(--amarillo); }
 
   .hero-sub {
     font-size: 14px;
-    color: var(--texto-suave-oscuro);
+    color: rgba(255,255,255,0.45);
     margin-top: 12px;
     line-height: 1.6;
   }
 
-  /* ── CARD ── */
+  /* ── CARD (Ajustada para fondo blanco) ── */
   .card {
     background: var(--blanco);
     border-radius: 20px;
     padding: 24px;
     margin: 20px 16px;
-    border: 1px solid var(--gris-borde); /* Borde más visible en fondo blanco */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Sombra un poco más definida */
+    border: 1px solid var(--gris-borde); /* Borde fino definido */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05); /* Sombra muy suave */
   }
 
   .card-title {
@@ -118,7 +115,7 @@
 
   .card-sub {
     font-size: 12px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     margin-bottom: 20px;
     letter-spacing: 0.5px;
   }
@@ -131,7 +128,7 @@
   }
 
   .img-card {
-    background: #fbfbfb; /* Fondo tarjeta imagen sutil */
+    background: var(--gris-seccion); /* Fondo sutil para destacar la imagen */
     border-radius: 14px;
     overflow: hidden;
     border: 1px solid var(--gris-borde);
@@ -151,13 +148,13 @@
   .img-placeholder {
     width: 100%;
     aspect-ratio: 9/16;
-    background: #eeeeee;
+    background: #e0e0e0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 6px;
-    color: #9999aa;
+    color: var(--texto-suave);
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -180,7 +177,7 @@
 
   .img-enlace-label {
     font-size: 10px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 2px;
@@ -192,17 +189,15 @@
     font-weight: 900;
     margin-bottom: 5px;
     word-break: break-all;
-    /* Estilo para interactividad */
     cursor: pointer;
     padding: 4px;
-    background: rgba(255, 45, 120, 0.05);
+    background: rgba(255, 45, 120, 0.05); /* Fondo fucsia muy sutil */
     border-radius: 4px;
-    transition: all 0.2s;
   }
 
   .img-sticker {
     font-size: 11px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     margin-bottom: 10px;
   }
 
@@ -229,7 +224,7 @@
     display: block;
     width: 100%;
     background: var(--gris-borde);
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 17px;
     letter-spacing: 1px;
@@ -251,12 +246,10 @@
     gap: 14px;
     align-items: flex-start;
     padding: 14px;
-    background: #fbfbfb; /* Fondo paso sutil */
+    background: var(--gris-seccion);
     border-radius: 12px;
-    border-left: 3px solid var(--fucsia);
     border: 1px solid var(--gris-borde);
-    border-left-width: 3px;
-    border-left-color: var(--fucsia);
+    border-left: 3px solid var(--fucsia);
   }
 
   .step-num {
@@ -276,7 +269,7 @@
 
   .step-desc {
     font-size: 12px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     line-height: 1.5;
   }
 
@@ -293,8 +286,8 @@
 
   /* ── FLUJO ── */
   .flujo-aviso {
-    background: #fffdf0; /* Amarillo muy sutil */
-    border: 1.5px solid var(--amarillo);
+    background: #fffdf0; /* Amarillo extremadamente sutil */
+    border: 1px solid var(--amarillo);
     border-radius: 12px;
     padding: 14px 16px;
     font-size: 13px;
@@ -312,7 +305,7 @@
   }
 
   .flujo-card {
-    background: #fbfbfb;
+    background: var(--gris-seccion);
     border-radius: 12px;
     padding: 16px 12px;
     text-align: center;
@@ -330,15 +323,14 @@
 
   .flujo-img {
     font-size: 11px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     margin-top: 2px;
   }
 
-  /* ── WHATSAPP ── */
+  /* ── WHATSAPP (Se mantiene claro) ── */
   .wa-section {
     padding: 8px 16px 48px;
     text-align: center;
-    background: var(--blanco);
   }
 
   .wa-card {
@@ -346,7 +338,7 @@
     border-radius: 20px;
     padding: 28px 24px;
     border: 1px solid var(--gris-borde);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
   }
 
   .wa-titulo {
@@ -359,7 +351,7 @@
 
   .wa-sub {
     font-size: 13px;
-    color: var(--texto-suave-oscuro);
+    color: var(--texto-suave);
     margin-bottom: 20px;
   }
 
@@ -382,11 +374,11 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--gris-seccion); /* Fondo claro sutil */
+    background: var(--negro);
     padding: 24px;
     text-align: center;
     font-size: 12px;
-    color: var(--texto-suave-oscuro);
+    color: rgba(255,255,255,0.4);
     letter-spacing: 1px;
     border-top: 1px solid var(--gris-borde);
   }
@@ -556,17 +548,23 @@
 function copiarTexto(elemento) {
   const texto = elemento.innerText;
   navigator.clipboard.writeText(texto).then(() => {
-    const original = elemento.innerText;
+    // Feedback visual al copiar
+    const originalText = elemento.innerText;
     elemento.innerText = "¡Copiado! ✅";
-    elemento.style.background = "#ffe600";
-    
+    elemento.style.background = "#ffe600"; // Fondo amarillo temporal
+    elemento.style.color = "#111111"; // Texto negro temporal
+
     setTimeout(() => {
-      elemento.innerText = original;
-      elemento.style.background = "rgba(255, 45, 120, 0.05)";
+      // Revertir a los estilos originales
+      elemento.innerText = originalText;
+      elemento.style.background = ""; 
+      elemento.style.color = "";
     }, 1500);
+  }).catch(err => {
+    console.error('Error al copiar: ', err);
   });
 }
 </script>
 
 </body>
-          </html>
+  </html>
