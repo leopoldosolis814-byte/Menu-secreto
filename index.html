@@ -58,13 +58,16 @@
     display: block;
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 98px;
+    font-size: 72px;
     line-height: 1.1;
     color: #f5dfa0;
     text-shadow:
       3px 3px 0 #5a1a00,
       -1px -1px 0 #5a1a00,
-      0 0 30px rgba(255,100,0,0.5);
+      0 0 20px rgba(255,100,0,0.4),
+      0 8px 6px rgba(139,0,0,0.6),
+      0 14px 8px rgba(120,0,0,0.4),
+      0 20px 10px rgba(100,0,0,0.2);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -79,10 +82,10 @@
     display: block;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 68px;
+    font-size: 52px;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-    margin-top: 20px;
+    margin-top: 16px;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -124,7 +127,7 @@
   /* ── CTA ── */
   .cta-wrap {
     position: absolute;
-    bottom: 100px;
+    bottom: 320px;
     left: 0;
     right: 0;
     z-index: 10;
@@ -139,7 +142,7 @@
     background: rgba(245,223,160,0.95);
     border: 3px solid #5a1a00;
     border-radius: 12px;
-    padding: 28px 60px;
+    padding: 20px 48px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -149,13 +152,13 @@
   .cta-text {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 58px;
+    font-size: 46px;
     color: #5a1a00;
     letter-spacing: 1px;
   }
 
   .cta-arrow {
-    font-size: 48px;
+    font-size: 38px;
     color: #5a1a00;
   }
 
@@ -223,5 +226,4 @@
 </script>
 
 </body>
-   </html>
-   
+</html>
