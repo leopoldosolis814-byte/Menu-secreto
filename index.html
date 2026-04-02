@@ -7,20 +7,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blanco: #ffffff;
-    --gris-muy-claro: #f9f9fb;
-    --gris-borde: #eeeef2;
+    --blanco-puro: #ffffff;
     --negro: #111111;
     --fucsia: #ff2d78;
     --amarillo: #ffe600;
-    --texto-suave: #777788;
+    --gris-borde: #f0f0f5; /* Borde casi invisible */
+    --texto-suave: #666677;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
 
-  /* --- FONDO TOTALMENTE BLANCO --- */
-  body {
-    background: var(--blanco);
+  /* --- FONDO BLANCO ABSOLUTO --- */
+  html, body {
+    background-color: var(--blanco-puro) !important;
     color: var(--negro);
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
@@ -28,19 +31,16 @@
 
   /* ── HEADER BLANCO ── */
   header {
-    background: var(--blanco);
-    padding: 22px 24px 18px;
+    background-color: var(--blanco-puro);
+    padding: 25px 20px;
     text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
     border-bottom: 2px solid var(--fucsia);
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
-    letter-spacing: 4px;
+    font-size: 38px;
+    letter-spacing: 3px;
     color: var(--negro);
   }
 
@@ -49,89 +49,79 @@
   .tagline {
     font-size: 11px;
     color: var(--texto-suave);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 2px;
   }
 
   /* ── HERO BLANCO ── */
   .hero {
-    background: var(--blanco);
-    padding: 40px 24px;
+    background-color: var(--blanco-puro);
+    padding: 50px 24px;
     text-align: center;
-    border-bottom: 1px solid var(--gris-borde);
   }
 
   .hero-badge {
     display: inline-block;
     background: var(--fucsia);
-    color: var(--blanco);
+    color: var(--blanco-puro);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 14px;
-    letter-spacing: 3px;
-    padding: 5px 16px;
-    border-radius: 100px;
-    margin-bottom: 14px;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 15px;
   }
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px;
-    line-height: 1.0;
+    font-size: 55px;
+    line-height: 1;
     color: var(--negro);
-    letter-spacing: 1px;
   }
 
   .hero-title span { color: var(--fucsia); }
 
   .hero-sub {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--texto-suave);
-    margin-top: 12px;
-    line-height: 1.6;
+    margin-top: 15px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  /* ── CARDS SOBRE FONDO BLANCO ── */
+  /* ── SECCIONES / CARDS (Sin fondos grises) ── */
   .card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 24px;
-    margin: 20px 16px;
-    border: 1px solid var(--gris-borde);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    background-color: var(--blanco-puro);
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gris-borde);
   }
 
   .card-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 2px;
+    font-size: 28px;
     color: var(--negro);
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
-  .card-title .accent { color: var(--fucsia); }
+  .card-title span { color: var(--fucsia); }
 
-  .card-sub {
-    font-size: 12px;
-    color: var(--texto-suave);
-    margin-bottom: 20px;
-  }
-
-  /* ── GRID IMÁGENES ── */
+  /* ── GRID DE IMÁGENES ── */
   .images-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 15px;
+    margin-top: 20px;
   }
 
   .img-card {
-    background: var(--gris-muy-claro);
-    border-radius: 14px;
-    overflow: hidden;
+    background: var(--blanco-puro);
     border: 1px solid var(--gris-borde);
+    border-radius: 15px;
+    overflow: hidden;
   }
 
   .img-thumb {
@@ -139,132 +129,86 @@
     aspect-ratio: 9/16;
     object-fit: cover;
     display: block;
-    border-bottom: 1px solid var(--gris-borde);
+    background-color: #f9f9f9;
   }
 
   .img-info {
-    padding: 12px;
-    background: var(--blanco);
+    padding: 15px;
   }
 
   .img-numero {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--fucsia);
-    letter-spacing: 2px;
     margin-bottom: 5px;
-  }
-
-  .img-enlace-label {
-    font-size: 10px;
-    color: var(--texto-suave);
-    text-transform: uppercase;
-    margin-bottom: 2px;
   }
 
   .img-enlace {
     font-size: 11px;
-    color: var(--negro);
     font-weight: 900;
-    margin-bottom: 8px;
+    padding: 8px;
+    background: #fdf2f7; /* Un fucsia casi blanco para destacar el link */
+    color: var(--negro);
+    border-radius: 5px;
+    margin-bottom: 10px;
     cursor: pointer;
-    padding: 6px;
-    background: var(--gris-muy-claro);
-    border-radius: 4px;
-    border: 1px dashed var(--gris-borde);
     word-break: break-all;
+    text-align: center;
   }
 
   .img-sticker {
     font-size: 11px;
     color: var(--texto-suave);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .btn-download {
     display: block;
     width: 100%;
     background: var(--fucsia);
-    color: var(--blanco);
+    color: var(--blanco-puro);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
     text-decoration: none;
   }
 
-  .btn-disabled {
-    display: block;
-    width: 100%;
-    background: var(--gris-borde);
-    color: var(--texto-suave);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: not-allowed;
-  }
-
-  /* ── PASOS ── */
+  /* ── PASOS (Limpios) ── */
   .step {
     display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 16px;
-    background: var(--gris-muy-claro);
-    border-radius: 12px;
-    margin-bottom: 10px;
+    gap: 15px;
+    padding: 20px;
     border: 1px solid var(--gris-borde);
+    border-radius: 15px;
+    margin-bottom: 15px;
   }
 
   .step-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
+    font-size: 35px;
     color: var(--fucsia);
     line-height: 1;
   }
 
   .step-title {
     font-weight: 900;
-    font-size: 14px;
-    margin-bottom: 2px;
+    font-size: 15px;
+    margin-bottom: 4px;
   }
 
   .step-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--texto-suave);
-  }
-
-  /* ── FLUJO ── */
-  .flujo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .flujo-card {
-    background: var(--gris-muy-claro);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    border: 1px solid var(--gris-borde);
-  }
-
-  .flujo-dia {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
+    line-height: 1.4;
   }
 
   /* ── WHATSAPP ── */
-  .wa-card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 30px;
+  .wa-section {
     text-align: center;
-    border: 1px solid var(--gris-borde);
-    margin: 20px 16px 50px;
+    padding: 50px 20px;
+    border-top: 1px solid var(--gris-borde);
   }
 
   .btn-wa {
@@ -272,93 +216,94 @@
     align-items: center;
     gap: 10px;
     background: #25d366;
-    color: var(--blanco);
+    color: var(--blanco-puro);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    padding: 16px 40px;
+    font-size: 24px;
+    padding: 15px 40px;
     border-radius: 100px;
     text-decoration: none;
   }
 
   footer {
-    padding: 30px;
+    padding: 40px 20px;
     text-align: center;
     font-size: 12px;
     color: var(--texto-suave);
-    border-top: 1px solid var(--gris-borde);
+    background: var(--blanco-puro);
   }
+
+  footer span { color: var(--fucsia); font-weight: bold; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">Story<span>2</span>Action</div>
-  <div class="tagline">Panel de Entrega</div>
+  <div class="tagline">Panel de Entrega exclusivo</div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">MATERIAL LISTO</div>
+  <div class="hero-badge">LISTO PARA USAR</div>
   <h1 class="hero-title">Tus <span>4 Historias</span></h1>
-  <p class="hero-sub">Todo lo que necesitás para publicar hoy mismo.</p>
+  <p class="hero-sub">Descargá el material y empezá a vender hoy mismo.</p>
 </div>
 
 <div class="card">
-  <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Clic en el enlace para copiar y en descargar para guardar.</div>
+  <div class="card-title">🚀 Tus <span>Imágenes</span></div>
   
   <div class="images-grid">
     <div class="img-card">
       <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png">
       <div class="img-info">
-        <div class="img-numero">HISTORIA 01</div>
-        <div class="img-enlace-label">Enlace:</div>
+        <div class="img-numero">RECURSO 01</div>
         <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
         <div class="img-sticker">Sticker: <strong>Ver oferta 👆</strong></div>
-        <a class="btn-download" href="#" download>⬇ Descargar</a>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download>⬇ DESCARGAR</a>
       </div>
     </div>
 
     <div class="img-card">
       <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png">
       <div class="img-info">
-        <div class="img-numero">HISTORIA 02</div>
-        <div class="img-enlace-label">Enlace:</div>
+        <div class="img-numero">RECURSO 02</div>
         <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
         <div class="img-sticker">Sticker: <strong>Pedí ahora 👆</strong></div>
-        <a class="btn-download" href="#" download>⬇ Descargar</a>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download>⬇ DESCARGAR</a>
       </div>
     </div>
   </div>
 </div>
 
 <div class="card">
-  <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
+  <div class="card-title">✅ Cómo <span>Publicar</span></div>
+  
   <div class="step">
     <div class="step-num">1</div>
     <div>
-      <p class="step-title">Descargá la imagen</p>
-      <p class="step-desc">Guardala en tu carrete o galería.</p>
+      <p class="step-title">Descarga el diseño</p>
+      <p class="step-desc">Usa el botón azul para guardar la imagen en tu dispositivo.</p>
     </div>
   </div>
+
   <div class="step">
     <div class="step-num">2</div>
     <div>
-      <p class="step-title">Copiá el link</p>
-      <p class="step-desc">Tocá el cuadro gris arriba para copiar la URL.</p>
+      <p class="step-title">Copia tu enlace</p>
+      <p class="step-desc">Toca el cuadro rosa de arriba para copiar el link automáticamente.</p>
     </div>
   </div>
+
   <div class="step">
     <div class="step-num">3</div>
     <div>
-      <p class="step-title">Instagram</p>
-      <p class="step-desc">Subí la foto, poné el Sticker de Enlace y pegá.</p>
+      <p class="step-title">Sube a Instagram</p>
+      <p class="step-desc">Usa el sticker de "Enlace", pega la URL y escribe el texto sugerido.</p>
     </div>
   </div>
 </div>
 
-<div class="wa-card">
-  <h2 class="card-title" style="justify-content: center; margin-bottom: 15px;">¿Dudas?</h2>
-  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 Escribinos</a>
+<div class="wa-section">
+  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 ¿DUDAS? ESCRIBINOS</a>
 </div>
 
 <footer>
@@ -370,11 +315,11 @@ function copiarTexto(elemento) {
   const texto = elemento.innerText;
   navigator.clipboard.writeText(texto).then(() => {
     const original = elemento.innerText;
-    elemento.innerText = "¡Copiado! ✅";
+    elemento.innerText = "¡COPIADO! ✅";
     elemento.style.background = "#ffe600";
     setTimeout(() => {
       elemento.innerText = original;
-      elemento.style.background = "";
+      elemento.style.background = "#fdf2f7";
     }, 1500);
   });
 }
