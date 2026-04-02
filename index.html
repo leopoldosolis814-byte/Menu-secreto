@@ -3,533 +3,653 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu pack del mes — Story2Action</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<title>Tu Pack del Mes — Story2Action (Professional Edit)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* Nueva Paleta Profesional */
     --blanco: #ffffff;
-    --gris-claro: #f4f4f6;
-    --gris-borde: #e2e2e8;
-    --negro: #111111;
+    --fondo-claro: #f8f9fa; /* Gris sutil para secciones */
+    --gris-borde: #e9ecef;
+    --negro-profundo: #0a0a0c; /* Texto principal elegante */
+    --texto-suave: #6c757d;
+    
+    /* Colores de Marca (como Acentos) */
     --fucsia: #ff2d78;
-    --amarillo: #ffe600;
-    --texto: #222222;
-    --texto-suave: #888899;
+    --fucsia-hover: #e02569;
+    --amarillo-acento: #ffe600;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--gris-claro);
-    color: var(--texto);
+    background: var(--blanco);
+    color: var(--negro-profundo);
     font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
     min-height: 100vh;
   }
 
-  /* ── HEADER ── */
+  /* ── HEADER (Professional Clean) ── */
   header {
-    background: var(--negro);
-    padding: 22px 24px 18px;
-    text-align: center;
+    background: var(--blanco);
+    padding: 16px 24px;
+    text-align: left; /* Alineado a la izquierda para look corporativo */
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 3px solid var(--fucsia);
+    border-bottom: 1px solid var(--gris-borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 4px;
-    color: var(--blanco);
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--negro-profundo);
+    text-decoration: none;
   }
 
   .logo span { color: var(--fucsia); }
 
   .tagline {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 3px;
+    font-size: 12px;
+    color: var(--texto-suave);
+    font-weight: 700;
     text-transform: uppercase;
-    margin-top: 2px;
+    letter-spacing: 1px;
   }
 
-  /* ── HERO ── */
+  /* ── HERO (Minimalist Tech) ── */
   .hero {
-    background: var(--negro);
-    padding: 36px 24px 40px;
+    background: var(--fondo-claro);
+    padding: 60px 24px;
     text-align: center;
+    border-bottom: 1px solid var(--gris-borde);
   }
 
   .hero-badge {
     display: inline-block;
-    background: var(--fucsia);
-    color: var(--blanco);
+    background: var(--blanco);
+    color: var(--fucsia);
+    border: 1px solid var(--fucsia);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    padding: 5px 16px;
-    border-radius: 100px;
-    margin-bottom: 14px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 4px; /* Esquinas más rectas */
+    margin-bottom: 16px;
+    font-weight: 700;
   }
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 58px;
-    line-height: 1.0;
-    color: var(--blanco);
+    font-size: 48px;
+    line-height: 1.1;
+    color: var(--negro-profundo);
     letter-spacing: 1px;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .hero-title span { color: var(--amarillo); }
+  .hero-title span { color: var(--fucsia); } /* Solo fucsia como acento */
 
   .hero-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-    margin-top: 12px;
-    line-height: 1.6;
+    font-size: 16px;
+    color: var(--texto-suave);
+    margin-top: 16px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  /* ── CARD ── */
-  .card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 24px;
-    margin: 20px 16px;
-    border: 1px solid var(--gris-borde);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  /* ── SECTION & CONTAINER ── */
+  .section {
+    padding: 40px 16px;
   }
 
-  .card-title {
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 2px;
-    color: var(--negro);
-    margin-bottom: 4px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: var(--negro-profundo);
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
-  .card-title .accent { color: var(--fucsia); }
+  .section-title .accent { color: var(--fucsia); }
 
-  .card-sub {
-    font-size: 12px;
+  .section-sub {
+    font-size: 14px;
     color: var(--texto-suave);
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
+    margin-bottom: 30px;
   }
 
-  /* ── GRID IMÁGENES ── */
+  /* ── GRID IMÁGENES (Refined) ── */
   .images-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 20px;
   }
 
   .img-card {
-    background: var(--gris-claro);
-    border-radius: 14px;
+    background: var(--blanco);
+    border-radius: 8px;
     overflow: hidden;
-    border: 1.5px solid var(--gris-borde);
-    transition: box-shadow 0.2s ease;
+    border: 1px solid var(--gris-borde);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .img-card:active { box-shadow: 0 0 0 2px var(--fucsia); }
+  .img-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+
+  .img-thumb-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: var(--fondo-claro);
+    overflow: hidden;
+  }
 
   .img-thumb {
     width: 100%;
-    aspect-ratio: 9/16;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
 
   .img-placeholder {
     width: 100%;
-    aspect-ratio: 9/16;
-    background: var(--gris-borde);
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     color: var(--texto-suave);
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 12px;
     text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
-  .img-placeholder .icon { font-size: 28px; opacity: 0.4; }
+  .img-placeholder .icon { font-size: 32px; opacity: 0.3; }
 
   .img-info {
-    padding: 12px;
+    padding: 16px;
+    border-top: 1px solid var(--gris-borde);
   }
 
   .img-numero {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    color: var(--fucsia);
-    letter-spacing: 2px;
-    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--texto-suave);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
   }
 
-  .img-enlace-label {
-    font-size: 10px;
+  .img-meta-group {
+    margin-bottom: 12px;
+  }
+
+  .img-label {
+    font-size: 11px;
     color: var(--texto-suave);
     text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
 
-  .img-enlace {
-    font-size: 11px;
-    color: var(--negro);
-    font-weight: 900;
-    margin-bottom: 5px;
-    word-break: break-all;
-    cursor: pointer;
-    padding: 4px;
-    background: rgba(255, 45, 120, 0.05);
+  /* Link estilo campo de texto profesional */
+  .img-enlace-input {
+    font-size: 12px;
+    color: var(--negro-profundo);
+    font-weight: 700;
+    background: var(--fondo-claro);
+    border: 1px solid var(--gris-borde);
+    padding: 8px 10px;
     border-radius: 4px;
+    cursor: pointer;
+    word-break: break-all;
     transition: all 0.2s;
+    position: relative;
   }
 
-  .img-sticker {
-    font-size: 11px;
-    color: var(--texto-suave);
-    margin-bottom: 10px;
+  .img-enlace-input:hover {
+    border-color: var(--fucsia);
+    background: var(--blanco);
   }
 
-  .img-sticker strong { color: var(--negro); }
+  .img-sticker-text {
+    font-size: 13px;
+    color: var(--negro-profundo);
+    font-weight: 700;
+  }
 
   .btn-download {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
     background: var(--fucsia);
     color: var(--blanco);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-family: 'Nunito', sans-serif; /* Fuente de cuerpo para botón pro */
+    font-weight: 700;
+    font-size: 14px;
     text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 4px;
     text-decoration: none;
+    transition: background 0.2s ease;
   }
+
+  .btn-download:hover { background: var(--fucsia-hover); }
 
   .btn-disabled {
     display: block;
     width: 100%;
     background: var(--gris-borde);
     color: var(--texto-suave);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 14px;
     text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 4px;
     cursor: not-allowed;
   }
 
-  /* ── PASOS ── */
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  /* ── PASOS (Clean Accordion style) ── */
+  .steps-container {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .step {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     align-items: flex-start;
-    padding: 14px;
-    background: var(--gris-claro);
-    border-radius: 12px;
-    border-left: 3px solid var(--fucsia);
+    padding: 20px;
+    border-bottom: 1px solid var(--gris-borde);
   }
+
+  .step:last-child { border-bottom: none; }
 
   .step-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
+    font-size: 28px;
     color: var(--fucsia);
     line-height: 1;
-    min-width: 24px;
+    margin-top: -2px;
   }
 
+  .step-content { flex: 1; }
+
   .step-title {
-    font-weight: 900;
-    font-size: 14px;
-    color: var(--negro);
-    margin-bottom: 2px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--negro-profundo);
+    margin-bottom: 4px;
   }
 
   .step-desc {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--texto-suave);
-    line-height: 1.5;
   }
 
   .step-tag {
     display: inline-block;
-    background: var(--amarillo);
-    color: var(--negro);
-    font-weight: 900;
+    background: var(--amarillo-acento);
+    color: var(--negro-profundo);
+    font-weight: 700;
     font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 100px;
-    margin-top: 5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
   }
 
-  /* ── FLUJO ── */
+  /* ── FLUJO (Professional Grid) ── */
   .flujo-aviso {
-    background: #fff8e1;
-    border: 1.5px solid var(--amarillo);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 13px;
-    color: #665a00;
-    margin-bottom: 16px;
-    line-height: 1.5;
+    background: #fffdf0; /* Amarillo muy sutil */
+    border: 1px solid var(--amarillo-acento);
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 14px;
+    color: #6c6000;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+    align-items: start;
   }
 
   .flujo-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr); /* 4 en línea para desktop pro */
+    gap: 16px;
   }
 
   .flujo-card {
-    background: var(--gris-claro);
-    border-radius: 12px;
-    padding: 16px 12px;
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 20px 10px;
     text-align: center;
-    border: 1.5px solid var(--gris-borde);
+    border: 1px solid var(--gris-borde);
   }
 
-  .flujo-emoji { font-size: 20px; margin-bottom: 4px; }
+  .flujo-emoji { font-size: 24px; margin-bottom: 8px; display: block; }
 
   .flujo-dia {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
-    color: var(--negro);
+    color: var(--negro-profundo);
     letter-spacing: 1px;
   }
 
   .flujo-img {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--texto-suave);
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
-  /* ── WHATSAPP ── */
-  .wa-section {
-    padding: 8px 16px 48px;
+  /* ── SUPPORT / WHATSAPP (Professional CTA) ── */
+  .support-section {
+    background: var(--fondo-claro);
+    padding: 60px 16px;
     text-align: center;
+    border-top: 1px solid var(--gris-borde);
+    border-bottom: 1px solid var(--gris-borde);
   }
 
-  .wa-card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 28px 24px;
-    border: 1px solid var(--gris-borde);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  .support-card {
+    max-width: 500px;
+    margin: 0 auto;
   }
 
-  .wa-titulo {
+  .support-titulo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
-    color: var(--negro);
+    font-size: 36px;
+    color: var(--negro-profundo);
     letter-spacing: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
-  .wa-sub {
-    font-size: 13px;
+  .support-sub {
+    font-size: 16px;
     color: var(--texto-suave);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
-  .btn-wa {
+  .btn-support {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: #25d366;
+    gap: 12px;
+    background: var(--fucsia); /* Usamos fucsia de marca, no verde */
     color: var(--blanco);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-    padding: 16px 36px;
-    border-radius: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 4px;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+    transition: background 0.2s ease, transform 0.2s ease;
   }
 
-  /* ── FOOTER ── */
+  .btn-support:hover {
+    background: var(--fucsia-hover);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER (Minimal) ── */
   footer {
-    background: var(--negro);
-    padding: 20px;
+    background: var(--blanco);
+    padding: 24px;
     text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 1px;
+    font-size: 13px;
+    color: var(--texto-suave);
+    border-top: 1px solid var(--gris-borde);
   }
 
-  footer span { color: var(--fucsia); }
+  footer span { color: var(--fucsia); font-weight: 700; }
+
+  /* ── RESPONSIVE (Mobile First adjustments) ── */
+  @media (max-width: 600px) {
+    .hero-title { font-size: 36px; }
+    .images-grid { grid-template-columns: 1fr; gap: 16px; } /* 1 columna en móvil */
+    .flujo-grid { grid-template-columns: 1fr 1fr; } /* 2 columnas en móvil */
+    header { text-align: center; flex-direction: column; gap: 8px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Story<span>2</span>Action</div>
-  <div class="tagline">Tu pack del mes está listo</div>
+  <a href="#" class="logo">Story<span>2</span>Action</a>
+  <div class="tagline">Panel de Entrega de Activos</div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">PACK DEL MES</div>
-  <div class="hero-title">Tus <span>4 historias</span><br>están listas</div>
-  <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
-</div>
-
-<div class="card">
-  <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Tocá el enlace para copiarlo y "Descargar" para guardar la imagen</div>
-  <div class="images-grid">
-
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Imagen 1">
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 01</div>
-        <div class="img-enlace-label">Toca para copiar link:</div>
-        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Ver oferta 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download="Historia_01.png">⬇ Descargar</a>
-      </div>
-    </div>
-
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Imagen 2">
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 02</div>
-        <div class="img-enlace-label">Toca para copiar link:</div>
-        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Pedí ahora 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download="Historia_02.png">⬇ Descargar</a>
-      </div>
-    </div>
-
-    <div class="img-card">
-      <div class="img-placeholder"><div class="icon">🖼</div>Próximo</div>
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 03</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Ver más 👆"</strong></div>
-        <div class="btn-disabled">Próximamente</div>
-      </div>
-    </div>
-
-    <div class="img-card">
-      <div class="img-placeholder"><div class="icon">🖼</div>Próximo</div>
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 04</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Reservá 👆"</strong></div>
-        <div class="btn-disabled">Próximamente</div>
-      </div>
-    </div>
-
+  <div class="container">
+    <div class="hero-badge">ENTREGA DE ESTE MES</div>
+    <h1 class="hero-title">Tus <span>4 Historias</span><br>de Alto Impacto</h1>
+    <p class="hero-sub">Descarga los materiales visuales, copia los enlaces estratégicos y comienza a convertir seguidores en clientes hoy mismo.</p>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
-  <div class="card-sub">5 pasos rápidos</div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div>
-        <div class="step-title">Guardá la imagen</div>
-        <div class="step-desc">Tocá "Descargar". Si se abre en el navegador, mantené presionado y elegí "Guardar imagen".</div>
+<div id="materiales" class="section">
+  <div class="container">
+    <h2 class="section-title">📲 Materiales <span class="accent">Visuales</span></h2>
+    <p class="section-sub">Sigue las instrucciones: Copia el enlace y luego descarga la imagen.</p>
+    
+    <div class="images-grid">
+
+      <div class="img-card">
+        <div class="img-thumb-container">
+          <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Historia Profesional 1">
+        </div>
+        <div class="img-info">
+          <div class="img-numero">Recurso #01</div>
+          
+          <div class="img-meta-group">
+            <div class="img-label">1. Toca para copiar enlace:</div>
+            <div class="img-enlace-input" onclick="copiarTexto(this)" title="Clic para copiar">tulocal.com/promo</div>
+          </div>
+          
+          <div class="img-meta-group">
+            <div class="img-label">2. Texto sugerido para Sticker:</div>
+            <div class="img-sticker-text">"Ver oferta 👆"</div>
+          </div>
+          
+          <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download="S2A_Historia_01.png">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 11L3 6H6V1H10V6H13L8 11Z" fill="white"/><path d="M1 13H15V15H1V13Z" fill="white"/></svg>
+            Descargar Imagen
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div>
-        <div class="step-title">Abrí Instagram</div>
-        <div class="step-desc">Subí la imagen a tus Stories.</div>
+
+      <div class="img-card">
+        <div class="img-thumb-container">
+          <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Historia Profesional 2">
+        </div>
+        <div class="img-info">
+          <div class="img-numero">Recurso #02</div>
+          
+          <div class="img-meta-group">
+            <div class="img-label">1. Toca para copiar enlace:</div>
+            <div class="img-enlace-input" onclick="copiarTexto(this)" title="Clic para copiar">tulocal.com/promo</div>
+          </div>
+          
+          <div class="img-meta-group">
+            <div class="img-label">2. Texto sugerido para Sticker:</div>
+            <div class="img-sticker-text">"Pedí ahora 👆"</div>
+          </div>
+          
+          <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download="S2A_Historia_02.png">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 11L3 6H6V1H10V6H13L8 11Z" fill="white"/><path d="M1 13H15V15H1V13Z" fill="white"/></svg>
+            Descargar Imagen
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <div class="step-title">Pegá el enlace</div>
-        <div class="step-desc">Usá el sticker de "Enlace" 🔗 y pegá el link que copiaste arriba.</div>
-        <span class="step-tag">Toca el link de arriba para copiar 👆</span>
+
+      <div class="img-card">
+        <div class="img-thumb-container">
+          <div class="img-placeholder"><div class="icon">🖼</div>Próximo Recurso</div>
+        </div>
+        <div class="img-info">
+          <div class="img-numero">Recurso #03</div>
+          <div class="img-meta-group">
+            <div class="img-label">Enlace Estratégico</div>
+            <div class="img-enlace-input" style="cursor:default; opacity:0.5;">tulocal.com/promo</div>
+          </div>
+          <div class="btn-disabled">No disponible</div>
+        </div>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div>
-        <div class="step-title">Poné el texto</div>
-        <div class="step-desc">En el sticker escribí la sugerencia. Ej: "Ver oferta 👆"</div>
+
+      <div class="img-card">
+        <div class="img-thumb-container">
+          <div class="img-placeholder"><div class="icon">🖼</div>Próximo Recurso</div>
+        </div>
+        <div class="img-info">
+          <div class="img-numero">Recurso #04</div>
+          <div class="img-meta-group">
+            <div class="img-label">Enlace Estratégico</div>
+            <div class="img-enlace-input" style="cursor:default; opacity:0.5;">tulocal.com/promo</div>
+          </div>
+          <div class="btn-disabled">No disponible</div>
+        </div>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">5</div>
-      <div>
-        <div class="step-title">¡Listo! ✅</div>
-        <div class="step-desc">Ya estás vendiendo.</div>
-      </div>
+
     </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title">📅 Sugerencia de <span class="accent">uso</span></div>
-  <div class="flujo-aviso">
-    <strong>Tenés 30 días para usarlas.</strong> Podés subirlas todas juntas o espaciarlas así:
-  </div>
-  <div class="flujo-grid">
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div><div class="flujo-dia">Lunes</div><div class="flujo-img">Imagen 1</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div><div class="flujo-dia">Miércoles</div><div class="flujo-img">Imagen 2</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div><div class="flujo-dia">Viernes</div><div class="flujo-img">Imagen 3</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div><div class="flujo-dia">Sábado</div><div class="flujo-img">Imagen 4</div>
+<div id="instrucciones" class="section" style="background-color: var(--fondo-claro);">
+  <div class="container">
+    <h2 class="section-title">✅ Protocolo de <span class="accent">Publicación</span></h2>
+    <p class="section-sub">Proceso optimizado para menos de 2 minutos.</p>
+    
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p class="step-title">Almacenamiento del Recurso</p>
+          <p class="step-desc">Haz clic en "Descargar Imagen". Si se visualiza en el navegador, mantén presionado y selecciona "Guardar en Fotos".</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p class="step-title">Preparación en Instagram</p>
+          <p class="step-desc">Abre la sección de Historias en Instagram y selecciona la imagen descargada desde tu galería.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p class="step-title">Implementación del Enlace</p>
+          <p class="step-desc">Selecciona el sticker de "Enlace" (icono de cadena 🔗) y pega la URL que copiaste anteriormente.</p>
+          <span class="step-tag">Recuerda copiar el link en la sección superior 👆</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <p class="step-title">Configuración del Texto de Acción</p>
+          <p class="step-desc">En la configuración del sticker, introduce el "Texto sugerido" correspondiente (ej: "Ver oferta 👆").</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <p class="step-title">Finalización y Publicación</p>
+          <p class="step-desc">Verifica la ubicación del sticker y procede a publicar la Historia ✅.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="wa-section">
-  <div class="wa-card">
-    <div class="wa-titulo">¿Dudas?</div>
-    <div class="wa-sub">Estamos para ayudarte</div>
-    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 WhatsApp</a>
+<div id="calendario" class="section">
+  <div class="container">
+    <h2 class="section-title">📅 Cronograma <span class="accent">Sugerido</span></h2>
+    
+    <div class="flujo-aviso">
+      <span>💡</span>
+      <p><strong>Validez de los recursos:</strong> Estos materiales están diseñados para ser utilizados estratégicamente durante los próximos 30 días. Puedes publicarlos secuencialmente o según tus necesidades promocionales.</p>
+    </div>
+    
+    <div class="flujo-grid">
+      <div class="flujo-card">
+        <span class="flujo-emoji">📈</span><div class="flujo-dia">Lunes</div><div class="flujo-img">Recurso 1</div>
+      </div>
+      <div class="flujo-card">
+        <span class="flujo-emoji">🎯</span><div class="flujo-dia">Miércoles</div><div class="flujo-img">Recurso 2</div>
+      </div>
+      <div class="flujo-card">
+        <span class="flujo-emoji">🔥</span><div class="flujo-dia">Viernes</div><div class="flujo-img">Recurso 3</div>
+      </div>
+      <div class="flujo-card">
+        <span class="flujo-emoji">💰</span><div class="flujo-dia">Sábado</div><div class="flujo-img">Recurso 4</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<footer><span>Story2Action</span> · 2024</footer>
+<div class="support-section">
+  <div class="container support-card">
+    <h2 class="support-titulo">¿Necesitas Soporte?</h2>
+    <p class="support-sub">Si tienes dudas sobre la implementación o los materiales, nuestro equipo está a tu disposición.</p>
+    <a class="btn-support" href="https://wa.me/TUNUMERO" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 6V6C13.518 6 14.881 6.837 15.568 8.163V8.163C16.48 9.931 15.717 12.115 13.917 12.912V12.912C12.43 13.568 10.73 13.23 9.6 12.06V12.06" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M16 16L19 19M16 8L19 5M8 16L5 19M8 8L5 5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/></svg>
+      Contactar vía WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer>
+  Este panel es propiedad exclusiva de <span>Story2Action</span> · © 2024
+</footer>
 
 <script>
 function copiarTexto(elemento) {
   const texto = elemento.innerText;
+  
+  // Usar API moderna de portapapeles
   navigator.clipboard.writeText(texto).then(() => {
-    const original = elemento.innerText;
-    elemento.innerText = "¡Copiado! ✅";
-    elemento.style.background = "#ffe600";
+    // Feedback visual profesional
+    const originalText = elemento.innerText;
+    elemento.innerText = "¡Copiado al portapapeles!";
+    elemento.style.borderColor = var(--amarillo-acento);
+    elemento.style.color = var(--fucsia);
+    elemento.style.background = "#fffdf0"; // Fondo amarillo sutil
     
+    // Revertir feedback
     setTimeout(() => {
-      elemento.innerText = original;
-      elemento.style.background = "rgba(255, 45, 120, 0.05)";
-    }, 1500);
+      elemento.innerText = originalText;
+      elemento.style.borderColor = ""; // Revertir a CSS
+      elemento.style.color = "";
+      elemento.style.background = "";
+    }, 1800);
+  }).catch(err => {
+    console.error('Error al copiar: ', err);
+    // Fallback simple si falla (raro en móviles modernos)
+    alert("No se pudo copiar automáticamente. Por favor selecciónalo manualmente.");
   });
 }
 </script>
 
 </body>
-          </html>
+  </html>
