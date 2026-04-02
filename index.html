@@ -8,57 +8,58 @@
 <style>
   :root {
     --blanco: #ffffff;
-    --gris-seccion: #f4f4f6; /* Fondo claro sutil para algunas tarjetas */
-    --gris-borde: #e2e2e8;
-    --negro: #111111; /* Texto principal y fondo header/hero */
+    --gris-muy-claro: #f9f9fb;
+    --gris-borde: #eeeef2;
+    --negro: #111111;
     --fucsia: #ff2d78;
     --amarillo: #ffe600;
-    --texto: #222222;
-    --texto-suave: #888899;
+    --texto-suave: #777788;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* --- FONDO TOTALMENTE BLANCO --- */
   body {
-    background: var(--blanco); /* --- CAMBIO A FONDO BLANCO --- */
-    color: var(--texto);
+    background: var(--blanco);
+    color: var(--negro);
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
   }
 
-  /* ── HEADER (Se mantiene oscuro para contraste) ── */
+  /* ── HEADER BLANCO ── */
   header {
-    background: var(--negro);
+    background: var(--blanco);
     padding: 22px 24px 18px;
     text-align: center;
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 3px solid var(--fucsia);
+    border-bottom: 2px solid var(--fucsia);
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
+    font-size: 34px;
     letter-spacing: 4px;
-    color: var(--blanco);
+    color: var(--negro);
   }
 
   .logo span { color: var(--fucsia); }
 
   .tagline {
     font-size: 11px;
-    color: rgba(255,255,255,0.4);
+    color: var(--texto-suave);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 2px;
   }
 
-  /* ── HERO (Se mantiene oscuro para contraste) ── */
+  /* ── HERO BLANCO ── */
   .hero {
-    background: var(--negro);
-    padding: 36px 24px 40px;
+    background: var(--blanco);
+    padding: 40px 24px;
     text-align: center;
+    border-bottom: 1px solid var(--gris-borde);
   }
 
   .hero-badge {
@@ -75,29 +76,29 @@
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 58px;
+    font-size: 54px;
     line-height: 1.0;
-    color: var(--blanco);
+    color: var(--negro);
     letter-spacing: 1px;
   }
 
-  .hero-title span { color: var(--amarillo); }
+  .hero-title span { color: var(--fucsia); }
 
   .hero-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
+    font-size: 15px;
+    color: var(--texto-suave);
     margin-top: 12px;
     line-height: 1.6;
   }
 
-  /* ── CARD (Ajustada para fondo blanco) ── */
+  /* ── CARDS SOBRE FONDO BLANCO ── */
   .card {
     background: var(--blanco);
     border-radius: 20px;
     padding: 24px;
     margin: 20px 16px;
-    border: 1px solid var(--gris-borde); /* Borde fino definido */
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05); /* Sombra muy suave */
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
   }
 
   .card-title {
@@ -117,7 +118,6 @@
     font-size: 12px;
     color: var(--texto-suave);
     margin-bottom: 20px;
-    letter-spacing: 0.5px;
   }
 
   /* ── GRID IMÁGENES ── */
@@ -128,14 +128,11 @@
   }
 
   .img-card {
-    background: var(--gris-seccion); /* Fondo sutil para destacar la imagen */
+    background: var(--gris-muy-claro);
     border-radius: 14px;
     overflow: hidden;
     border: 1px solid var(--gris-borde);
-    transition: box-shadow 0.2s ease;
   }
-
-  .img-card:active { box-shadow: 0 0 0 2px var(--fucsia); }
 
   .img-thumb {
     width: 100%;
@@ -145,26 +142,9 @@
     border-bottom: 1px solid var(--gris-borde);
   }
 
-  .img-placeholder {
-    width: 100%;
-    aspect-ratio: 9/16;
-    background: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 6px;
-    color: var(--texto-suave);
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--gris-borde);
-  }
-
-  .img-placeholder .icon { font-size: 28px; opacity: 0.4; }
-
   .img-info {
     padding: 12px;
+    background: var(--blanco);
   }
 
   .img-numero {
@@ -179,7 +159,6 @@
     font-size: 10px;
     color: var(--texto-suave);
     text-transform: uppercase;
-    letter-spacing: 1px;
     margin-bottom: 2px;
   }
 
@@ -187,12 +166,13 @@
     font-size: 11px;
     color: var(--negro);
     font-weight: 900;
-    margin-bottom: 5px;
-    word-break: break-all;
+    margin-bottom: 8px;
     cursor: pointer;
-    padding: 4px;
-    background: rgba(255, 45, 120, 0.05); /* Fondo fucsia muy sutil */
+    padding: 6px;
+    background: var(--gris-muy-claro);
     border-radius: 4px;
+    border: 1px dashed var(--gris-borde);
+    word-break: break-all;
   }
 
   .img-sticker {
@@ -201,8 +181,6 @@
     margin-bottom: 10px;
   }
 
-  .img-sticker strong { color: var(--negro); }
-
   .btn-download {
     display: block;
     width: 100%;
@@ -210,15 +188,11 @@
     color: var(--blanco);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 17px;
-    letter-spacing: 1px;
     text-align: center;
     padding: 10px;
     border-radius: 8px;
     text-decoration: none;
-    transition: background 0.15s ease;
   }
-
-  .btn-download:active { background: #cc1f5e; }
 
   .btn-disabled {
     display: block;
@@ -227,7 +201,6 @@
     color: var(--texto-suave);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 17px;
-    letter-spacing: 1px;
     text-align: center;
     padding: 10px;
     border-radius: 8px;
@@ -235,69 +208,36 @@
   }
 
   /* ── PASOS ── */
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .step {
     display: flex;
     gap: 14px;
     align-items: flex-start;
-    padding: 14px;
-    background: var(--gris-seccion);
+    padding: 16px;
+    background: var(--gris-muy-claro);
     border-radius: 12px;
+    margin-bottom: 10px;
     border: 1px solid var(--gris-borde);
-    border-left: 3px solid var(--fucsia);
   }
 
   .step-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
+    font-size: 30px;
     color: var(--fucsia);
     line-height: 1;
-    min-width: 24px;
   }
 
   .step-title {
     font-weight: 900;
     font-size: 14px;
-    color: var(--negro);
     margin-bottom: 2px;
   }
 
   .step-desc {
     font-size: 12px;
     color: var(--texto-suave);
-    line-height: 1.5;
-  }
-
-  .step-tag {
-    display: inline-block;
-    background: var(--amarillo);
-    color: var(--negro);
-    font-weight: 900;
-    font-size: 11px;
-    padding: 2px 10px;
-    border-radius: 100px;
-    margin-top: 5px;
   }
 
   /* ── FLUJO ── */
-  .flujo-aviso {
-    background: #fffdf0; /* Amarillo extremadamente sutil */
-    border: 1px solid var(--amarillo);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 13px;
-    color: #665a00;
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-
-  .flujo-aviso strong { color: #443d00; }
-
   .flujo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -305,54 +245,26 @@
   }
 
   .flujo-card {
-    background: var(--gris-seccion);
+    background: var(--gris-muy-claro);
     border-radius: 12px;
-    padding: 16px 12px;
+    padding: 16px;
     text-align: center;
     border: 1px solid var(--gris-borde);
   }
-
-  .flujo-emoji { font-size: 20px; margin-bottom: 4px; }
 
   .flujo-dia {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--negro);
-    letter-spacing: 1px;
+    font-size: 18px;
   }
 
-  .flujo-img {
-    font-size: 11px;
-    color: var(--texto-suave);
-    margin-top: 2px;
-  }
-
-  /* ── WHATSAPP (Se mantiene claro) ── */
-  .wa-section {
-    padding: 8px 16px 48px;
-    text-align: center;
-  }
-
+  /* ── WHATSAPP ── */
   .wa-card {
     background: var(--blanco);
     border-radius: 20px;
-    padding: 28px 24px;
+    padding: 30px;
+    text-align: center;
     border: 1px solid var(--gris-borde);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-  }
-
-  .wa-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
-    color: var(--negro);
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-
-  .wa-sub {
-    font-size: 13px;
-    color: var(--texto-suave);
-    margin-bottom: 20px;
+    margin: 20px 16px 50px;
   }
 
   .btn-wa {
@@ -363,181 +275,90 @@
     color: var(--blanco);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
-    letter-spacing: 1px;
-    padding: 16px 36px;
+    padding: 16px 40px;
     border-radius: 100px;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.25);
   }
 
-  .btn-wa:active { opacity: 0.9; }
-
-  /* ── FOOTER ── */
   footer {
-    background: var(--negro);
-    padding: 24px;
+    padding: 30px;
     text-align: center;
     font-size: 12px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 1px;
+    color: var(--texto-suave);
     border-top: 1px solid var(--gris-borde);
   }
-
-  footer span { color: var(--fucsia); font-weight: bold; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">Story<span>2</span>Action</div>
-  <div class="tagline">Tu pack del mes está listo</div>
+  <div class="tagline">Panel de Entrega</div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">PACK DEL MES</div>
-  <div class="hero-title">Tus <span>4 historias</span><br>están listas</div>
-  <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
+  <div class="hero-badge">MATERIAL LISTO</div>
+  <h1 class="hero-title">Tus <span>4 Historias</span></h1>
+  <p class="hero-sub">Todo lo que necesitás para publicar hoy mismo.</p>
 </div>
 
 <div class="card">
   <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Tocá el enlace para copiarlo y "Descargar" en cada una</div>
+  <div class="card-sub">Clic en el enlace para copiar y en descargar para guardar.</div>
+  
   <div class="images-grid">
-
     <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Imagen 1">
+      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png">
       <div class="img-info">
-        <div class="img-numero">IMAGEN 01</div>
-        <div class="img-enlace-label">Toca para copiar link:</div>
+        <div class="img-numero">HISTORIA 01</div>
+        <div class="img-enlace-label">Enlace:</div>
         <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Ver oferta 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download="Historia_01.png">⬇ Descargar</a>
+        <div class="img-sticker">Sticker: <strong>Ver oferta 👆</strong></div>
+        <a class="btn-download" href="#" download>⬇ Descargar</a>
       </div>
     </div>
 
     <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Imagen 2">
+      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png">
       <div class="img-info">
-        <div class="img-numero">IMAGEN 02</div>
-        <div class="img-enlace-label">Toca para copiar link:</div>
+        <div class="img-numero">HISTORIA 02</div>
+        <div class="img-enlace-label">Enlace:</div>
         <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Pedí ahora 👆"</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download="Historia_02.png">⬇ Descargar</a>
+        <div class="img-sticker">Sticker: <strong>Pedí ahora 👆</strong></div>
+        <a class="btn-download" href="#" download>⬇ Descargar</a>
       </div>
     </div>
-
-    <div class="img-card">
-      <div class="img-placeholder">
-        <div class="icon">🖼</div>
-        Próximo
-      </div>
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 03</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Ver más 👆"</strong></div>
-        <div class="btn-disabled">Próximamente</div>
-      </div>
-    </div>
-
-    <div class="img-card">
-      <div class="img-placeholder">
-        <div class="icon">🖼</div>
-        Próximo
-      </div>
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 04</div>
-        <div class="img-enlace-label">Tu enlace</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>"Reservá 👆"</strong></div>
-        <div class="btn-disabled">Próximamente</div>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <div class="card">
   <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
-  <div class="card-sub">5 pasos, menos de 2 minutos</div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div>
-        <div class="step-title">Guardá la imagen</div>
-        <div class="step-desc">Tocá "Descargar". Si se abre en el navegador, mantené presionada la imagen y elegí "Guardar imagen" o "Descargar".</div>
-      </div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <p class="step-title">Descargá la imagen</p>
+      <p class="step-desc">Guardala en tu carrete o galería.</p>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div>
-        <div class="step-title">Abrí Instagram</div>
-        <div class="step-desc">Tocá el "+" de story y seleccioná la imagen guardada.</div>
-      </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <p class="step-title">Copiá el link</p>
+      <p class="step-desc">Tocá el cuadro gris arriba para copiar la URL.</p>
     </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <div class="step-title">Agregá el enlace</div>
-        <div class="step-desc">Tocá el sticker 🔗 y pegá el enlace que copiaste arriba.</div>
-        <span class="step-tag">Toca el link de arriba para copiar 👆</span>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div>
-        <div class="step-title">Escribí el texto del sticker</div>
-        <div class="step-desc">Tocá el sticker y escribí el texto sugerido. Ej: "Ver oferta 👆"</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">5</div>
-      <div>
-        <div class="step-title">¡Publicá! ✅</div>
-        <div class="step-desc">Tu historia ya está al aire y lista para convertir.</div>
-      </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <p class="step-title">Instagram</p>
+      <p class="step-desc">Subí la foto, poné el Sticker de Enlace y pegá.</p>
     </div>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-title">📅 Ejemplo de <span class="accent">uso</span></div>
-  <div class="card-sub">Solo una sugerencia — vos decidís cuándo publicar</div>
-  <div class="flujo-aviso">
-    <strong>Las 4 imágenes son tuyas por 30 días.</strong> Podés publicarlas cuando quieras — todas juntas, de a una, o cuando tengas una promo especial.
-  </div>
-  <div class="flujo-grid">
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Lunes</div>
-      <div class="flujo-img">Imagen 1</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Miércoles</div>
-      <div class="flujo-img">Imagen 2</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Viernes</div>
-      <div class="flujo-img">Imagen 3</div>
-    </div>
-    <div class="flujo-card">
-      <div class="flujo-emoji">📅</div>
-      <div class="flujo-dia">Sábado</div>
-      <div class="flujo-img">Imagen 4</div>
-    </div>
-  </div>
-</div>
-
-<div class="wa-section">
-  <div class="wa-card">
-    <div class="wa-titulo">¿Tenés dudas?</div>
-    <div class="wa-sub">Escribinos y te respondemos al toque</div>
-    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">
-      💬 Escribir por WhatsApp
-    </a>
-  </div>
+<div class="wa-card">
+  <h2 class="card-title" style="justify-content: center; margin-bottom: 15px;">¿Dudas?</h2>
+  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 Escribinos</a>
 </div>
 
 <footer>
@@ -548,23 +369,16 @@
 function copiarTexto(elemento) {
   const texto = elemento.innerText;
   navigator.clipboard.writeText(texto).then(() => {
-    // Feedback visual al copiar
-    const originalText = elemento.innerText;
+    const original = elemento.innerText;
     elemento.innerText = "¡Copiado! ✅";
-    elemento.style.background = "#ffe600"; // Fondo amarillo temporal
-    elemento.style.color = "#111111"; // Texto negro temporal
-
+    elemento.style.background = "#ffe600";
     setTimeout(() => {
-      // Revertir a los estilos originales
-      elemento.innerText = originalText;
-      elemento.style.background = ""; 
-      elemento.style.color = "";
+      elemento.innerText = original;
+      elemento.style.background = "";
     }, 1500);
-  }).catch(err => {
-    console.error('Error al copiar: ', err);
   });
 }
 </script>
 
 </body>
-  </html>
+</html>
