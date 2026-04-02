@@ -46,7 +46,7 @@
   /* ── TITULAR ── */
   .top-text {
     position: absolute;
-    top: 60px;
+    top: 30px;
     left: 0;
     right: 0;
     z-index: 10;
@@ -64,10 +64,7 @@
     text-shadow:
       3px 3px 0 #5a1a00,
       -1px -1px 0 #5a1a00,
-      0 0 20px rgba(255,100,0,0.4),
-      0 8px 6px rgba(139,0,0,0.6),
-      0 14px 8px rgba(120,0,0,0.4),
-      0 20px 10px rgba(100,0,0,0.2);
+      0 0 20px rgba(255,100,0,0.4);
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -82,7 +79,7 @@
     display: block;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 52px;
+    font-size: 62px;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
     margin-top: 16px;
@@ -139,8 +136,8 @@
   .cta-wrap.visible { opacity: 1; }
 
   .cta {
-    background: rgba(245,223,160,0.95);
-    border: 3px solid #5a1a00;
+    background: #8b0000;
+    border: 3px solid #000;
     border-radius: 12px;
     padding: 20px 48px;
     display: flex;
@@ -153,13 +150,13 @@
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 46px;
-    color: #5a1a00;
+    color: #f5dfa0;
     letter-spacing: 1px;
   }
 
   .cta-arrow {
     font-size: 38px;
-    color: #5a1a00;
+    color: #f5dfa0;
   }
 
   /* ── KEYFRAMES ── */
@@ -185,10 +182,6 @@
     <span class="line-sub" id="l4">Hoy vino a probarlo</span>
   </div>
 
-  <div class="logo-badge" id="logo">
-    <span>AQUÍ<br>LOGO DE TU<br>HAMBURGUESERÍA</span>
-  </div>
-
   <div class="cta-wrap" id="cta">
     <div class="cta">
       <span class="cta-arrow">▼</span>
@@ -211,10 +204,6 @@
         document.getElementById(id).classList.add('visible');
       }, delays[i]);
     });
-
-    setTimeout(() => {
-      document.getElementById('logo').classList.add('visible');
-    }, 800);
 
     setTimeout(() => {
       document.getElementById('cta').classList.add('visible');
