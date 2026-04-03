@@ -4,17 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tu pack del mes — Story2Action</title>
-<meta name="description" content="Tus historias están listas. Descargá y publicá ahora.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
-<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
-<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-<meta property="og:image:secure_url" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="600">
-<meta property="og:image:height" content="600">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -35,6 +24,7 @@
     color: var(--texto);
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
+    padding-bottom: 40px;
   }
 
   header {
@@ -55,14 +45,6 @@
   }
 
   .logo span { color: var(--fucsia); }
-
-  .tagline {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
 
   .hero {
     background: var(--negro);
@@ -91,52 +73,79 @@
 
   .hero-title span { color: var(--amarillo); }
 
-  .hero-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-    margin-top: 12px;
-    line-height: 1.6;
-  }
-
+  /* ESTILOS DE CARPETAS */
   .card {
     background: var(--blanco);
     border-radius: 20px;
-    padding: 24px;
-    margin: 20px 16px;
+    margin: 16px;
     border: 1px solid var(--gris-borde);
     box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
+
+  .folder-header {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .folder-header:active { background: #fafafa; }
 
   .card-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
     letter-spacing: 2px;
     color: var(--negro);
-    margin-bottom: 4px;
   }
 
   .card-title .accent { color: var(--fucsia); }
+  
   .card-sub {
     font-size: 12px;
     color: var(--texto-suave);
-    margin-bottom: 20px;
+    margin-top: 4px;
   }
 
-  /* GRID IMÁGENES */
-  .images-grid {
+  .folder-icon {
+    font-size: 18px;
+    color: var(--fucsia);
+    transition: transform 0.3s ease;
+  }
+
+  .folder-content {
+    display: none;
+    padding: 0 20px 24px;
+    border-top: 1px dashed var(--gris-borde);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .card.is-open .folder-content { display: block; }
+  .card.is-open .folder-icon { transform: rotate(180deg); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* GRID CONTENIDO */
+  .images-grid, .videos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 12px;
+    margin-top: 20px;
   }
 
   .item-card {
     background: var(--gris-claro);
     border-radius: 14px;
     overflow: hidden;
-    border: 1.5px solid var(--gris-borde);
+    border: 1px solid var(--gris-borde);
   }
 
-  .item-thumb {
+  .item-thumb, .video-thumb {
     width: 100%;
     aspect-ratio: 9/16;
     object-fit: cover;
@@ -146,50 +155,18 @@
   .item-placeholder {
     width: 100%;
     aspect-ratio: 9/16;
-    background: var(--gris-borde);
+    background: #e9e9ed;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 6px;
     color: var(--texto-suave);
-    font-size: 11px;
-    text-transform: uppercase;
+    font-size: 10px;
   }
 
-  /* GRID VIDEOS */
-  .videos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  .video-thumb {
-    width: 100%;
-    aspect-ratio: 9/16;
-    object-fit: cover;
-    display: block;
-  }
-
-  .item-info {
-    padding: 12px;
-  }
-
-  .item-numero {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    color: var(--fucsia);
-    letter-spacing: 2px;
-    margin-bottom: 5px;
-  }
-
-  .item-enlace {
-    font-size: 11px;
-    color: var(--negro);
-    font-weight: 900;
-    margin-bottom: 8px;
-    word-break: break-all;
-  }
+  .item-info { padding: 10px; }
+  .item-numero { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--fucsia); margin-bottom: 4px; }
+  .item-enlace { font-size: 10px; color: var(--texto-suave); margin-bottom: 8px; word-break: break-all; }
 
   .btn-download {
     display: block;
@@ -197,309 +174,172 @@
     background: var(--fucsia);
     color: var(--blanco);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-size: 14px;
     text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 6px;
     text-decoration: none;
   }
 
   .btn-locked {
     display: block;
     width: 100%;
-    background: var(--gris-borde);
-    color: var(--texto-suave);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 17px;
-    letter-spacing: 1px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: not-allowed;
-  }
-
-  /* PASOS */
-  .steps { display: flex; flex-direction: column; gap: 10px; }
-
-  .step {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 14px;
-    background: var(--gris-claro);
-    border-radius: 12px;
-    border-left: 3px solid var(--fucsia);
-  }
-
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
-    color: var(--fucsia);
-    line-height: 1;
-    min-width: 24px;
-  }
-
-  .step-title { font-weight: 900; font-size: 14px; margin-bottom: 2px; }
-  .step-desc { font-size: 12px; color: var(--texto-suave); line-height: 1.5; }
-
-  /* FLUJO */
-  .flujo-aviso {
-    background: #fff8e1;
-    border: 1.5px solid var(--amarillo);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 13px;
-    color: #665a00;
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-
-  .flujo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .flujo-card {
-    background: var(--gris-claro);
-    border-radius: 12px;
-    padding: 16px 12px;
-    text-align: center;
-    border: 1.5px solid var(--gris-borde);
-  }
-
-  .flujo-dia {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--negro);
-  }
-
-  .flujo-img { font-size: 11px; color: var(--texto-suave); margin-top: 2px; }
-
-  /* WA */
-  .wa-section { padding: 8px 16px 48px; text-align: center; }
-
-  .wa-card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 28px 24px;
-    border: 1px solid var(--gris-borde);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  }
-
-  .wa-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
-    color: var(--negro);
-    margin-bottom: 4px;
-  }
-
-  .wa-sub { font-size: 13px; color: var(--texto-suave); margin-bottom: 20px; }
-
-  .btn-wa {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #25d366;
+    background: #d1d1d6;
     color: var(--blanco);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-    padding: 16px 36px;
-    border-radius: 100px;
-    text-decoration: none;
-  }
-
-  footer {
-    background: var(--negro);
-    padding: 20px;
+    font-size: 14px;
     text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
+    padding: 8px;
+    border-radius: 6px;
   }
 
-  footer span { color: var(--fucsia); }
+  /* OTROS */
+  .badge-count {
+    background: var(--amarillo);
+    color: var(--negro);
+    font-size: 11px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; padding: 20px; }
+  .step { display: flex; gap: 12px; padding: 12px; background: var(--gris-claro); border-radius: 12px; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--fucsia); }
+  .step-title { font-weight: 900; font-size: 13px; }
+  .step-desc { font-size: 11px; color: var(--texto-suave); }
+
+  footer { text-align: center; padding: 20px; font-size: 12px; color: var(--texto-suave); }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">Story<span>2</span>Action</div>
-  <div class="tagline">Tu pack del mes está listo</div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">PACK DEL MES</div>
+  <div class="hero-badge">ACCESO EXCLUSIVO</div>
   <div class="hero-title">Tus <span>historias</span><br>están listas</div>
-  <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
 </div>
 
-<!-- IMÁGENES -->
-<div class="card">
-  <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Solo podés descargar las que corresponden a tu pack</div>
-  <div class="images-grid" id="imagesGrid"></div>
+<div class="card" id="card-images">
+  <div class="folder-header" onclick="toggleFolder('card-images')">
+    <div>
+      <div class="card-title">📂 Carpeta <span class="accent">Imágenes</span> <span class="badge-count" id="count-img">0</span></div>
+      <div class="card-sub">Tocá para ver tus diseños</div>
+    </div>
+    <div class="folder-icon">▼</div>
+  </div>
+  <div class="folder-content">
+    <div class="images-grid" id="imagesGrid"></div>
+  </div>
 </div>
 
-<!-- VIDEOS -->
-<div class="card">
-  <div class="card-title">🎬 Tus <span class="accent">videos</span></div>
-  <div class="card-sub">Videos gancho listos para publicar</div>
-  <div class="videos-grid" id="videosGrid"></div>
+<div class="card" id="card-videos">
+  <div class="folder-header" onclick="toggleFolder('card-videos')">
+    <div>
+      <div class="card-title">🎬 Carpeta <span class="accent">Videos</span> <span class="badge-count" id="count-vid">0</span></div>
+      <div class="card-sub">Ganchos visuales de alto impacto</div>
+    </div>
+    <div class="folder-icon">▼</div>
+  </div>
+  <div class="folder-content">
+    <div class="videos-grid" id="videosGrid"></div>
+  </div>
 </div>
 
-<!-- CÓMO PUBLICAR -->
 <div class="card">
-  <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
-  <div class="card-sub">5 pasos, menos de 2 minutos</div>
+  <div style="padding: 20px 20px 0;"><div class="card-title">✅ ¿Cómo publicar?</div></div>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <div>
-        <div class="step-title">Guardá la imagen o video</div>
-        <div class="step-desc">Tocá "Descargar" y guardalo en tu celu.</div>
-      </div>
+      <div><div class="step-title">Descargá</div><div class="step-desc">Guardá el archivo en tu celular.</div></div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
-      <div>
-        <div class="step-title">Abrí Instagram</div>
-        <div class="step-desc">Tocá el "+" de story y seleccioná el archivo.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <div class="step-title">Agregá el enlace</div>
-        <div class="step-desc">Tocá el sticker 🔗 y pegá el enlace que aparece debajo de tu imagen.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div>
-        <div class="step-title">Escribí el texto del sticker</div>
-        <div class="step-desc">Ej: "Ver oferta 👆" o "Reservá acá 👆"</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">5</div>
-      <div>
-        <div class="step-title">¡Publicá! ✅</div>
-        <div class="step-desc">Tu historia ya está al aire.</div>
-      </div>
+      <div><div class="step-title">Subí a Instagram</div><div class="step-desc">Usá el sticker de enlace 🔗 con el link de abajo.</div></div>
     </div>
   </div>
 </div>
 
-<!-- FLUJO SEMANAL -->
-<div class="card">
-  <div class="card-title">📅 Ejemplo de <span class="accent">uso</span></div>
-  <div class="flujo-aviso">
-    <strong>Tu contenido es tuyo por 30 días.</strong> Publicalo cuando quieras — todos juntos, de a uno, o cuando tengas una promo especial.
-  </div>
-  <div class="flujo-grid">
-    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Lunes</div><div class="flujo-img">Imagen 1</div></div>
-    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Miércoles</div><div class="flujo-img">Imagen 2</div></div>
-    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Viernes</div><div class="flujo-img">Imagen 3</div></div>
-    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Sábado</div><div class="flujo-img">Imagen 4</div></div>
-  </div>
-</div>
-
-<!-- WHATSAPP -->
-<div class="wa-section">
-  <div class="wa-card">
-    <div class="wa-titulo">¿Tenés dudas?</div>
-    <div class="wa-sub">Escribinos y te respondemos al toque</div>
-    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 Escribir por WhatsApp</a>
-  </div>
-</div>
-
-<footer><span>Story2Action</span> · Todos los derechos reservados</footer>
+<footer>Story2Action · 2026</footer>
 
 <script>
-  // ── DATOS DEL RUBRO ──
+  // ── CONFIGURACIÓN DE CONTENIDO ──
   const IMAGENES = [
     { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png", enlace: "tulocal.com/promo" },
     { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png", enlace: "tulocal.com/promo" },
     { id: 3, src: null, enlace: "tulocal.com/promo" },
-    { id: 4, src: null, enlace: "tulocal.com/promo" },
-    { id: 5, src: null, enlace: "tulocal.com/promo" },
-    { id: 6, src: null, enlace: "tulocal.com/promo" },
-    { id: 7, src: null, enlace: "tulocal.com/promo" },
-    { id: 8, src: null, enlace: "tulocal.com/promo" },
-    { id: 9, src: null, enlace: "tulocal.com/promo" },
-    { id: 10, src: null, enlace: "tulocal.com/promo" },
-    { id: 11, src: null, enlace: "tulocal.com/promo" },
-    { id: 12, src: null, enlace: "tulocal.com/promo" },
+    { id: 4, src: null, enlace: "tulocal.com/promo" }
   ];
 
   const VIDEOS = [
     { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4", enlace: "tulocal.com/promo" },
-    { id: 14, src: null, enlace: "tulocal.com/promo" },
-    { id: 15, src: null, enlace: "tulocal.com/promo" },
-    { id: 16, src: null, enlace: "tulocal.com/promo" },
+    { id: 14, src: null, enlace: "tulocal.com/promo" }
   ];
 
-  // ── LEER PARÁMETRO URL ──
+  // ── LÓGICA DE ACTIVACIÓN ──
   const params = new URLSearchParams(window.location.search);
-  const activas = params.get('activas')
-    ? params.get('activas').split(',').map(Number)
-    : [];
+  const activas = params.get('activas') ? params.get('activas').split(',').map(Number) : [];
 
-  // ── RENDER IMÁGENES ──
-  const imgGrid = document.getElementById('imagesGrid');
-  IMAGENES.forEach(img => {
-    const activa = activas.includes(img.id);
-    const card = document.createElement('div');
-    card.className = 'item-card';
+  // ── RENDERIZADO ──
+  function render() {
+    const imgGrid = document.getElementById('imagesGrid');
+    const vidGrid = document.getElementById('videosGrid');
+    
+    let countImg = 0;
+    let countVid = 0;
 
-    const thumb = img.src
-      ? `<img class="item-thumb" src="${img.src}" alt="Imagen ${img.id}">`
-      : `<div class="item-placeholder">🖼<br>Próximo</div>`;
+    IMAGENES.forEach(img => {
+      const isActiva = activas.includes(img.id);
+      if(isActiva) countImg++;
+      
+      const thumb = img.src ? `<img class="item-thumb" src="${img.src}" loading="lazy">` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
+      const btn = isActiva ? `<a class="btn-download" href="${img.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
+      
+      imgGrid.innerHTML += `
+        <div class="item-card">
+          ${thumb}
+          <div class="item-info">
+            <div class="item-numero">IMAGEN ${img.id}</div>
+            <div class="item-enlace">${img.enlace}</div>
+            ${btn}
+          </div>
+        </div>`;
+    });
 
-    const btn = activa
-      ? `<a class="btn-download" href="${img.src}?fl_attachment=true" download>⬇ Descargar</a>`
-      : `<div class="btn-locked">🔒 No incluido</div>`;
+    VIDEOS.forEach(vid => {
+      const isActiva = activas.includes(vid.id);
+      if(isActiva) countVid++;
 
-    card.innerHTML = `
-      ${thumb}
-      <div class="item-info">
-        <div class="item-numero">IMAGEN ${String(img.id).padStart(2,'0')}</div>
-        <div class="item-enlace">${img.enlace}</div>
-        ${btn}
-      </div>
-    `;
-    imgGrid.appendChild(card);
-  });
+      const thumb = vid.src ? `<video class="video-thumb" src="${vid.src}" muted playsinline></video>` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
+      const btn = isActiva ? `<a class="btn-download" href="${vid.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
 
-  // ── RENDER VIDEOS ──
-  const vidGrid = document.getElementById('videosGrid');
-  VIDEOS.forEach(vid => {
-    const activa = activas.includes(vid.id);
-    const card = document.createElement('div');
-    card.className = 'item-card';
+      vidGrid.innerHTML += `
+        <div class="item-card">
+          ${thumb}
+          <div class="item-info">
+            <div class="item-numero">VIDEO ${vid.id - 12}</div>
+            <div class="item-enlace">${vid.enlace}</div>
+            ${btn}
+          </div>
+        </div>`;
+    });
 
-    const thumb = vid.src
-      ? `<video class="video-thumb" src="${vid.src}" muted playsinline preload="metadata"></video>`
-      : `<div class="item-placeholder">🎬<br>Próximo</div>`;
+    document.getElementById('count-img').innerText = countImg;
+    document.getElementById('count-vid').innerText = countVid;
+  }
 
-    const btn = activa
-      ? `<a class="btn-download" href="${vid.src}" download>⬇ Descargar</a>`
-      : `<div class="btn-locked">🔒 No incluido</div>`;
+  // ── INTERACCIÓN ──
+  function toggleFolder(id) {
+    document.getElementById(id).classList.toggle('is-open');
+  }
 
-    card.innerHTML = `
-      ${thumb}
-      <div class="item-info">
-        <div class="item-numero">VIDEO ${String(vid.id - 12).padStart(2,'0')}</div>
-        <div class="item-enlace">${vid.enlace}</div>
-        ${btn}
-      </div>
-    `;
-    vidGrid.appendChild(card);
-  });
+  render();
 </script>
 
 </body>
-    </html>
-          
+                                                                                                                                        </html>
