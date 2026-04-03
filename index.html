@@ -2,24 +2,22 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1080">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Story2Action Reel</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    width: 1080px;
-    height: 1920px;
+  html, body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     background: #000;
   }
 
   .scene {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    width: 1080px;
-    height: 1920px;
     opacity: 0;
     transition: opacity 0.7s ease;
     pointer-events: none;
@@ -30,49 +28,78 @@
     pointer-events: all;
   }
 
-  /* ══════════════════════════
-     INTRO
-  ══════════════════════════ */
+  /* INTRO */
   #intro {
-    background: #080808;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #080808 70%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 5vh;
   }
 
-  .intro-logo {
-    width: 780px;
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
     opacity: 0;
-    transform: scale(0.88);
-    transition: opacity 0.9s ease, transform 0.9s ease;
+    animation: float linear infinite;
   }
-  .intro-logo.vis { opacity: 1; transform: scale(1); }
 
-  .intro-line {
-    width: 0;
-    height: 4px;
-    background: #ff2d78;
-    border-radius: 2px;
-    transition: width 0.8s ease;
+  @keyframes float {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
   }
-  .intro-line.vis { width: 700px; }
 
-  .intro-label {
+  .logo-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
-    letter-spacing: 8px;
+    font-size: 16vw;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    position: relative;
+    z-index: 2;
+  }
+  .logo-text.vis { opacity: 1; transform: scale(1); }
+  .logo-text .two { color: #ff2d78; }
+
+  .intro-divider {
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff2d78, transparent);
+    border-radius: 2px;
+    transition: width 0.9s ease;
+    position: relative;
+    z-index: 2;
+  }
+  .intro-divider.vis { width: 70vw; }
+
+  .intro-tagline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5.5vw;
+    letter-spacing: 5px;
     color: rgba(255,255,255,0);
     text-align: center;
-    transition: color 0.8s ease;
+    transition: color 0.9s ease;
+    position: relative;
+    z-index: 2;
   }
-  .intro-label.vis { color: rgba(255,255,255,0.75); }
-  .intro-label span { color: #ff2d78; }
+  .intro-tagline.vis { color: rgba(255,255,255,0.65); }
+  .intro-tagline span { color: #ff2d78; }
 
-  /* ══════════════════════════
-     STORY SIMULADA
-  ══════════════════════════ */
+  /* STORY */
   #story { background: #000; }
 
   #story video {
@@ -84,24 +111,22 @@
     z-index: 1;
   }
 
-  /* Barra superior Instagram */
   .ig-top {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
-    padding: 30px 30px 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    padding: 3vh 4vw 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
   }
 
-  /* Barra de progreso */
   .ig-progress-bar {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: rgba(255,255,255,0.3);
     border-radius: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     overflow: hidden;
   }
 
@@ -112,27 +137,26 @@
     border-radius: 2px;
   }
 
-  /* Info usuario */
   .ig-user-row {
     display: flex;
     align-items: center;
-    gap: 18px;
-    padding-bottom: 16px;
+    gap: 3vw;
+    padding-bottom: 1.5vh;
   }
 
   .ig-avatar {
-    width: 80px;
-    height: 80px;
+    width: 10vw;
+    height: 10vw;
     border-radius: 50%;
     background: linear-gradient(135deg, #ff2d78, #ffe600);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
+    font-size: 3.5vw;
     color: #fff;
     flex-shrink: 0;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
   }
 
   .ig-user-info { flex: 1; }
@@ -140,33 +164,27 @@
   .ig-username {
     font-family: 'Nunito', sans-serif;
     font-weight: 900;
-    font-size: 34px;
+    font-size: 3.8vw;
     color: #fff;
     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
   }
 
   .ig-time {
-    font-size: 26px;
+    font-size: 3vw;
     color: rgba(255,255,255,0.65);
     font-weight: 700;
   }
 
   .ig-icons {
     display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .ig-icon {
-    font-size: 44px;
+    gap: 4vw;
+    font-size: 5.5vw;
     color: #fff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   }
 
-  /* Sticker enlace */
   .ig-sticker {
     position: absolute;
-    bottom: 80px;
+    bottom: 12vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -174,86 +192,82 @@
     transition: opacity 0.6s ease;
   }
   .ig-sticker.vis { opacity: 1; }
-
   .ig-sticker img {
-    width: 600px;
-    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+    width: 75vw;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
   }
 
-  /* Barra inferior Instagram */
   .ig-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 10;
-    padding: 0 30px 40px;
+    padding: 0 4vw 3vh;
     display: flex;
     align-items: center;
-    gap: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+    gap: 3vw;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
   }
 
   .ig-reply {
     flex: 1;
-    border: 2px solid rgba(255,255,255,0.5);
+    border: 2px solid rgba(255,255,255,0.45);
     border-radius: 50px;
-    padding: 18px 30px;
-    font-size: 28px;
-    color: rgba(255,255,255,0.7);
+    padding: 2vw 4vw;
+    font-size: 3.5vw;
+    color: rgba(255,255,255,0.65);
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
   }
 
   .ig-bottom-icons {
     display: flex;
-    gap: 24px;
-    align-items: center;
-  }
-
-  .ig-bottom-icon {
-    font-size: 52px;
+    gap: 4vw;
+    font-size: 7vw;
     color: #fff;
   }
 
-  /* ══════════════════════════
-     OUTRO
-  ══════════════════════════ */
+  /* OUTRO */
   #outro {
-    background: #080808;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #080808 70%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 56px;
-    padding: 80px;
+    gap: 5vh;
+    padding: 8vw;
   }
 
-  .outro-logo {
-    width: 680px;
+  .outro-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13vw;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .outro-logo.vis { opacity: 1; }
+  .outro-logo-text.vis { opacity: 1; transform: scale(1); }
+  .outro-logo-text .two { color: #ff2d78; }
 
-  .outro-line {
+  .outro-divider {
     width: 0;
-    height: 4px;
-    background: #ff2d78;
-    border-radius: 2px;
-    transition: width 0.8s ease 0.3s;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff2d78, transparent);
+    transition: width 0.9s ease 0.3s;
   }
-  .outro-line.vis { width: 600px; }
+  .outro-divider.vis { width: 70vw; }
 
   .outro-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 110px;
+    font-size: 14vw;
     line-height: 1.0;
     text-align: center;
     color: #fff;
-    letter-spacing: 2px;
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(4vh);
     transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
   }
   .outro-title.vis { opacity: 1; transform: translateY(0); }
@@ -262,8 +276,8 @@
   .outro-sub {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 48px;
-    color: rgba(255,255,255,0.5);
+    font-size: 4.5vw;
+    color: rgba(255,255,255,0.45);
     text-align: center;
     opacity: 0;
     transition: opacity 0.7s ease 0.9s;
@@ -272,9 +286,9 @@
 
   .outro-handle {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
+    font-size: 9vw;
     color: #ffe600;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     opacity: 0;
     transition: opacity 0.7s ease 1.3s;
   }
@@ -291,19 +305,17 @@
 </head>
 <body>
 
-<!-- INTRO -->
 <div class="scene active" id="intro">
-  <img class="intro-logo" id="iLogo" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775179729/Copilot_20260320_213406_ex6t59.png" alt="Logo">
-  <div class="intro-line" id="iLine"></div>
-  <div class="intro-label" id="iLabel">Historia con <span>video gancho</span></div>
+  <div class="particles" id="particles"></div>
+  <div class="logo-text" id="iLogo">STORY<span class="two">2</span>ACTION</div>
+  <div class="intro-divider" id="iLine"></div>
+  <div class="intro-tagline" id="iTag">Historia con <span>video gancho</span></div>
 </div>
 
-<!-- STORY -->
 <div class="scene" id="story">
   <video id="vid" muted playsinline>
     <source src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4" type="video/mp4">
   </video>
-
   <div class="ig-top">
     <div class="ig-progress-bar">
       <div class="ig-progress-fill" id="pgFill"></div>
@@ -314,30 +326,21 @@
         <div class="ig-username">story2action</div>
         <div class="ig-time">Ahora</div>
       </div>
-      <div class="ig-icons">
-        <span class="ig-icon">⋯</span>
-        <span class="ig-icon">✕</span>
-      </div>
+      <div class="ig-icons"><span>⋯</span><span>✕</span></div>
     </div>
   </div>
-
   <div class="ig-sticker" id="sticker">
     <img src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775179595/Copilot_20260402_221507_zmzti1.png" alt="sticker">
   </div>
-
   <div class="ig-bottom">
     <div class="ig-reply">Enviar mensaje...</div>
-    <div class="ig-bottom-icons">
-      <span class="ig-bottom-icon">🤍</span>
-      <span class="ig-bottom-icon">➦</span>
-    </div>
+    <div class="ig-bottom-icons"><span>🤍</span><span>➦</span></div>
   </div>
 </div>
 
-<!-- OUTRO -->
 <div class="scene" id="outro">
-  <img class="outro-logo" id="oLogo" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775179729/Copilot_20260320_213406_ex6t59.png" alt="Logo">
-  <div class="outro-line" id="oLine"></div>
+  <div class="outro-logo-text" id="oLogo">STORY<span class="two">2</span>ACTION</div>
+  <div class="outro-divider" id="oLine"></div>
   <div class="outro-title" id="oTitle">¿Querés esto<br>para tu <span>negocio?</span></div>
   <div class="outro-sub" id="oSub">Convertimos tus stories en ventas</div>
   <div class="outro-handle" id="oHandle">@story2action</div>
@@ -346,49 +349,60 @@
 <script>
   const VIDEO_DURATION = 15;
 
+  const pc = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `
+      left: ${Math.random()*100}%;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${Math.random()>0.5?'#ff2d78':'#ffe600'};
+      animation-duration: ${Math.random()*6+5}s;
+      animation-delay: ${Math.random()*5}s;
+    `;
+    pc.appendChild(p);
+  }
+
   function show(id) {
     document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   }
 
-  function vis(id) {
-    document.getElementById(id).classList.add('vis');
-  }
+  function vis(id) { document.getElementById(id).classList.add('vis'); }
 
-  // ── INTRO ──
   function runIntro() {
     show('intro');
     setTimeout(() => vis('iLogo'), 300);
     setTimeout(() => vis('iLine'), 700);
-    setTimeout(() => vis('iLabel'), 1100);
-    setTimeout(() => runStory(), 3500);
+    setTimeout(() => vis('iTag'), 1100);
+    setTimeout(runStory, 3800);
   }
 
-  // ── STORY ──
   function runStory() {
     show('story');
     const vid = document.getElementById('vid');
     const fill = document.getElementById('pgFill');
+    let done = false;
 
     vid.play();
-
-    // Progreso sincronizado
     vid.addEventListener('timeupdate', () => {
-      const pct = (vid.currentTime / VIDEO_DURATION) * 100;
-      fill.style.width = pct + '%';
+      fill.style.width = Math.min((vid.currentTime/VIDEO_DURATION)*100, 100) + '%';
     });
 
-    // Sticker aparece a los 10 segundos
     setTimeout(() => vis('sticker'), 10000);
 
-    // Al terminar → outro
-    vid.addEventListener('ended', () => runOutro());
+    function goOutro() {
+      if (done) return;
+      done = true;
+      runOutro();
+    }
 
-    // Fallback por si ended no dispara
-    setTimeout(() => runOutro(), (VIDEO_DURATION + 1) * 1000);
+    vid.addEventListener('ended', goOutro);
+    setTimeout(goOutro, (VIDEO_DURATION + 0.5) * 1000);
   }
 
-  // ── OUTRO ──
   function runOutro() {
     show('outro');
     setTimeout(() => vis('oLogo'), 200);
@@ -398,9 +412,7 @@
     setTimeout(() => vis('oHandle'), 1400);
   }
 
-  // Arrancar
   runIntro();
 </script>
-
 </body>
 </html>
