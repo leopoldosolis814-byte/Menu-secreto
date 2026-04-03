@@ -2,421 +2,554 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Story2Action Reel - Ajuste Final</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
+<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
+<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775214668/Copilot_20260403_080908_c6txoy.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>Tu pack del mes — Story2Action</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f6;
+    --gris-borde: #e2e2e8;
+    --negro: #111111;
+    --fucsia: #ff2d78;
+    --amarillo: #ffe600;
+    --texto: #222222;
+    --texto-suave: #888899;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
+  body {
+    background: var(--gris-claro);
+    color: var(--texto);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
   }
 
-  .scene {
-    position: fixed;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.7s ease;
-    pointer-events: none;
-  }
-
-  .scene.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  /* INTRO */
-  #intro {
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #080808 70%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5vh;
-  }
-
-  .particles {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0;
-    animation: float linear infinite;
-  }
-
-  @keyframes float {
-    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-    10%  { opacity: 0.7; }
-    90%  { opacity: 0.3; }
-    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-  }
-
-  .logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16vw;
-    letter-spacing: 2px;
-    color: #fff;
+  /* ── HEADER ── */
+  header {
+    background: var(--negro);
+    padding: 22px 24px 18px;
     text-align: center;
-    line-height: 1;
-    opacity: 0;
-    transform: scale(0.85);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-    position: relative;
-    z-index: 2;
-  }
-  .logo-text.vis { opacity: 1; transform: scale(1); }
-  .logo-text .two { color: #ff2d78; }
-
-  .intro-divider {
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #ff2d78, transparent);
-    border-radius: 2px;
-    transition: width 0.9s ease;
-    position: relative;
-    z-index: 2;
-  }
-  .intro-divider.vis { width: 70vw; }
-
-  .intro-tagline {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 5.5vw;
-    letter-spacing: 5px;
-    color: rgba(255,255,255,0);
-    text-align: center;
-    transition: color 0.9s ease;
-    position: relative;
-    z-index: 2;
-  }
-  .intro-tagline.vis { color: rgba(255,255,255,0.65); }
-  .intro-tagline span { color: #ff2d78; }
-
-  /* STORY - AJUSTE DE POSICIÓN DEL VIDEO */
-  #story { background: #000; }
-
-  #story video {
-    position: absolute;
-    top: 7vh; /* Bajamos el video para que el texto naranja no choque con el logo superior */
-    left: 0;
-    width: 100%;
-    height: 86vh; /* Ajustamos altura para que no tape el footer */
-    object-fit: contain; /* Para que el texto se vea completo sin recortes laterales */
-    z-index: 1;
-  }
-
-  .ig-top {
-    position: absolute;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    padding: 1.5vh 4vw 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    z-index: 100;
+    border-bottom: 3px solid var(--fucsia);
   }
 
-  .ig-progress-bar {
-    width: 100%;
-    height: 2px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 2px;
-    margin-bottom: 1vh;
-    overflow: hidden;
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: var(--blanco);
   }
 
-  .ig-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: #fff;
-    border-radius: 2px;
+  .logo span { color: var(--fucsia); }
+
+  .tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
   }
 
-  .ig-user-row {
+  /* ── HERO ── */
+  .hero {
+    background: var(--negro);
+    padding: 36px 24px 40px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 1.0;
+    color: var(--blanco);
+    letter-spacing: 1px;
+  }
+
+  .hero-title span { color: var(--amarillo); }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 16px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--negro);
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
-    gap: 2vw;
-    padding-bottom: 1vh;
+    gap: 8px;
   }
 
-  .ig-avatar {
-    width: 8vw;
-    height: 8vw;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff2d78, #ffe600);
+  .card-title .accent { color: var(--fucsia); }
+
+  .card-sub {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── GRID IMÁGENES ── */
+  .images-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .img-card {
+    background: var(--gris-claro);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1.5px solid var(--gris-borde);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .img-card:active { box-shadow: 0 0 0 2px var(--fucsia); }
+
+  .img-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    display: block;
+  }
+
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: var(--gris-borde);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--texto-suave);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .img-placeholder .icon { font-size: 28px; opacity: 0.4; }
+
+  .img-info {
+    padding: 12px;
+  }
+
+  .img-numero {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.8vw;
-    color: #fff;
-    flex-shrink: 0;
-    border: 2px solid #fff;
+    font-size: 13px;
+    color: var(--fucsia);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
   }
 
-  .ig-user-info { flex: 1; }
+  .img-enlace-label {
+    font-size: 10px;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
 
-  .ig-username {
-    font-family: 'Nunito', sans-serif;
+  .img-enlace {
+    font-size: 11px;
+    color: var(--negro);
     font-weight: 900;
-    font-size: 3vw;
-    color: #fff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    margin-bottom: 5px;
+    word-break: break-all;
   }
 
-  .ig-time {
-    font-size: 2.5vw;
-    color: rgba(255,255,255,0.65);
-    font-weight: 700;
+  .img-sticker {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin-bottom: 10px;
   }
 
-  .ig-icons {
-    display: flex;
-    gap: 4vw;
-    font-size: 4.5vw;
-    color: #fff;
+  .img-sticker strong { color: var(--negro); }
+
+  .btn-download {
+    display: block;
+    width: 100%;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s ease;
   }
 
-  /* STICKER - POSICIÓN ORIGINAL RESTAURADA */
-  .ig-sticker {
-    position: absolute;
-    bottom: 7vh; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-  }
-  .ig-sticker.vis { opacity: 1; }
-  .ig-sticker img {
-    width: 70vw;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+  .btn-download:active { background: #cc1f5e; }
+
+  .btn-disabled {
+    display: block;
+    width: 100%;
+    background: var(--gris-borde);
+    color: var(--texto-suave);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: not-allowed;
   }
 
-  .ig-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    padding: 0 4vw 1.5vh;
-    display: flex;
-    align-items: center;
-    gap: 3vw;
-    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
-  }
-
-  .ig-reply {
-    flex: 1;
-    border: 2px solid rgba(255,255,255,0.45);
-    border-radius: 50px;
-    padding: 1.5vw 4vw;
-    font-size: 3vw;
-    color: rgba(255,255,255,0.65);
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-  }
-
-  .ig-bottom-icons {
-    display: flex;
-    gap: 4vw;
-    font-size: 6vw;
-    color: #fff;
-  }
-
-  /* OUTRO */
-  #outro {
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #080808 70%);
+  /* ── PASOS ── */
+  .steps {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px;
+    background: var(--gris-claro);
+    border-radius: 12px;
+    border-left: 3px solid var(--fucsia);
+  }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: var(--fucsia);
+    line-height: 1;
+    min-width: 24px;
+  }
+
+  .step-title {
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--negro);
+    margin-bottom: 2px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: var(--texto-suave);
+    line-height: 1.5;
+  }
+
+  .step-tag {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 900;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-top: 5px;
+  }
+
+  /* ── FLUJO ── */
+  .flujo-aviso {
+    background: #fff8e1;
+    border: 1.5px solid var(--amarillo);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #665a00;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .flujo-aviso strong { color: #443d00; }
+
+  .flujo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .flujo-card {
+    background: var(--gris-claro);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    border: 1.5px solid var(--gris-borde);
+  }
+
+  .flujo-emoji { font-size: 20px; margin-bottom: 4px; }
+
+  .flujo-dia {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--negro);
+    letter-spacing: 1px;
+  }
+
+  .flujo-img {
+    font-size: 11px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+
+  /* ── WHATSAPP ── */
+  .wa-section {
+    padding: 8px 16px 48px;
+    text-align: center;
+  }
+
+  .wa-card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 28px 24px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  .wa-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: var(--negro);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .wa-sub {
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin-bottom: 20px;
+  }
+
+  .btn-wa {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 5vh;
-    padding: 8vw;
-  }
-
-  .outro-logo-text {
+    gap: 10px;
+    background: #25d366;
+    color: var(--blanco);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 13vw;
-    letter-spacing: 2px;
-    color: #fff;
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+  }
+
+  .btn-wa:active { opacity: 0.9; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro);
+    padding: 20px;
     text-align: center;
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .outro-logo-text.vis { opacity: 1; transform: scale(1); }
-  .outro-logo-text .two { color: #ff2d78; }
-
-  .outro-divider {
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #ff2d78, transparent);
-    transition: width 0.9s ease 0.3s;
-  }
-  .outro-divider.vis { width: 70vw; }
-
-  .outro-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14vw;
-    line-height: 1.0;
-    text-align: center;
-    color: #fff;
-    opacity: 0;
-    transform: translateY(4vh);
-    transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
-  }
-  .outro-title.vis { opacity: 1; transform: translateY(0); }
-  .outro-title span { color: #ff2d78; }
-
-  .outro-sub {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 4.5vw;
-    color: rgba(255,255,255,0.45);
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.7s ease 0.9s;
-  }
-  .outro-sub.vis { opacity: 1; }
-
-  .outro-handle {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 9vw;
-    color: #ffe600;
-    letter-spacing: 3px;
-    opacity: 0;
-    transition: opacity 0.7s ease 1.3s;
-  }
-  .outro-handle.vis {
-    opacity: 1;
-    animation: pulse 2s ease-in-out infinite;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
   }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
+  footer span { color: var(--fucsia); }
 </style>
 </head>
 <body>
 
-<div class="scene active" id="intro">
-  <div class="particles" id="particles"></div>
-  <div class="logo-text" id="iLogo">STORY<span class="two">2</span>ACTION</div>
-  <div class="intro-divider" id="iLine"></div>
-  <div class="intro-tagline" id="iTag">Historia con <span>video gancho</span></div>
+<!-- HEADER -->
+<header>
+  <div class="logo">Story<span>2</span>Action</div>
+  <div class="tagline">Tu pack del mes está listo</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">PACK DEL MES</div>
+  <div class="hero-title">Tus <span>4 historias</span><br>están listas</div>
+  <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
 </div>
 
-<div class="scene" id="story">
-  <video id="vid" muted playsinline>
-    <source src="https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4" type="video/mp4">
-  </video>
-  <div class="ig-top">
-    <div class="ig-progress-bar">
-      <div class="ig-progress-fill" id="pgFill"></div>
-    </div>
-    <div class="ig-user-row">
-      <div class="ig-avatar">S2A</div>
-      <div class="ig-user-info">
-        <div class="ig-username">story2action</div>
-        <div class="ig-time">Ahora</div>
+<!-- IMÁGENES -->
+<div class="card">
+  <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
+  <div class="card-sub">Tocá "Descargar" en cada una y seguí los pasos de abajo</div>
+  <div class="images-grid">
+
+    <div class="img-card">
+      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Imagen 1">
+      <div class="img-info">
+        <div class="img-numero">IMAGEN 01</div>
+        <div class="img-enlace-label">Tu enlace</div>
+        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-sticker">Sticker: <strong>"Ver oferta 👆"</strong></div>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download>⬇ Descargar</a>
       </div>
-      <div class="ig-icons"><span>⋯</span><span>✕</span></div>
+    </div>
+
+    <div class="img-card">
+      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Imagen 2">
+      <div class="img-info">
+        <div class="img-numero">IMAGEN 02</div>
+        <div class="img-enlace-label">Tu enlace</div>
+        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-sticker">Sticker: <strong>"Pedí ahora 👆"</strong></div>
+        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download>⬇ Descargar</a>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-placeholder">
+        <div class="icon">🖼</div>
+        Próximo
+      </div>
+      <div class="img-info">
+        <div class="img-numero">IMAGEN 03</div>
+        <div class="img-enlace-label">Tu enlace</div>
+        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-sticker">Sticker: <strong>"Ver más 👆"</strong></div>
+        <div class="btn-disabled">Próximamente</div>
+      </div>
+    </div>
+
+    <div class="img-card">
+      <div class="img-placeholder">
+        <div class="icon">🖼</div>
+        Próximo
+      </div>
+      <div class="img-info">
+        <div class="img-numero">IMAGEN 04</div>
+        <div class="img-enlace-label">Tu enlace</div>
+        <div class="img-enlace">tulocal.com/promo</div>
+        <div class="img-sticker">Sticker: <strong>"Reservá 👆"</strong></div>
+        <div class="btn-disabled">Próximamente</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CÓMO PUBLICAR -->
+<div class="card">
+  <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
+  <div class="card-sub">5 pasos, menos de 2 minutos</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Guardá la imagen</div>
+        <div class="step-desc">Tocá "Guardar imagen" — se abre en el navegador. Mantené presionada la imagen y elegí "Guardar imagen" o "Descargar".</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Abrí Instagram</div>
+        <div class="step-desc">Tocá el "+" de story y seleccioná la imagen guardada.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Agregá el enlace</div>
+        <div class="step-desc">Tocá el sticker 🔗 y pegá el enlace que aparece debajo de tu imagen.</div>
+        <span class="step-tag">Copiá el enlace de arriba 👆</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Escribí el texto del sticker</div>
+        <div class="step-desc">Tocá el sticker y escribí el texto sugerido. Ej: "Ver oferta 👆"</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <div class="step-title">¡Publicá! ✅</div>
+        <div class="step-desc">Tu historia ya está al aire y lista para convertir.</div>
+      </div>
     </div>
   </div>
-  <div class="ig-sticker" id="sticker">
-    <img src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775179595/Copilot_20260402_221507_zmzti1.png" alt="sticker">
+</div>
+
+<!-- FLUJO SEMANAL -->
+<div class="card">
+  <div class="card-title">📅 Ejemplo de <span class="accent">uso</span></div>
+  <div class="card-sub">Solo una sugerencia — vos decidís cuándo publicar</div>
+  <div class="flujo-aviso">
+    <strong>Las 4 imágenes son tuyas por 30 días.</strong> Podés publicarlas cuando quieras — todas juntas, de a una, o cuando tengas una promo especial.
   </div>
-  <div class="ig-bottom">
-    <div class="ig-reply">Enviar mensaje...</div>
-    <div class="ig-bottom-icons"><span>🤍</span><span>➦</span></div>
+  <div class="flujo-grid">
+    <div class="flujo-card">
+      <div class="flujo-emoji">📅</div>
+      <div class="flujo-dia">Lunes</div>
+      <div class="flujo-img">Imagen 1</div>
+    </div>
+    <div class="flujo-card">
+      <div class="flujo-emoji">📅</div>
+      <div class="flujo-dia">Miércoles</div>
+      <div class="flujo-img">Imagen 2</div>
+    </div>
+    <div class="flujo-card">
+      <div class="flujo-emoji">📅</div>
+      <div class="flujo-dia">Viernes</div>
+      <div class="flujo-img">Imagen 3</div>
+    </div>
+    <div class="flujo-card">
+      <div class="flujo-emoji">📅</div>
+      <div class="flujo-dia">Sábado</div>
+      <div class="flujo-img">Imagen 4</div>
+    </div>
   </div>
 </div>
 
-<div class="scene" id="outro">
-  <div class="outro-logo-text" id="oLogo">STORY<span class="two">2</span>ACTION</div>
-  <div class="outro-divider" id="oLine"></div>
-  <div class="outro-title" id="oTitle">¿Querés esto<br>para tu <span>negocio?</span></div>
-  <div class="outro-sub" id="oSub">Convertimos tus stories en ventas</div>
-  <div class="outro-handle" id="oHandle">@story2action</div>
+<!-- WHATSAPP -->
+<div class="wa-section">
+  <div class="wa-card">
+    <div class="wa-titulo">¿Tenés dudas?</div>
+    <div class="wa-sub">Escribinos y te respondemos al toque</div>
+    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">
+      💬 Escribir por WhatsApp
+    </a>
+  </div>
 </div>
 
-<script>
-  const VIDEO_DURATION = 15;
+<!-- FOOTER -->
+<footer>
+  <span>Story2Action</span> · Todos los derechos reservados
+</footer>
 
-  const pc = document.getElementById('particles');
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 5 + 2;
-    p.style.cssText = `
-      left: ${Math.random()*100}%;
-      width: ${size}px;
-      height: ${size}px;
-      background: ${Math.random()>0.5?'#ff2d78':'#ffe600'};
-      animation-duration: ${Math.random()*6+5}s;
-      animation-delay: ${Math.random()*5}s;
-    `;
-    pc.appendChild(p);
-  }
-
-  function show(id) {
-    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-
-  function vis(id) { document.getElementById(id).classList.add('vis'); }
-
-  function runIntro() {
-    show('intro');
-    setTimeout(() => vis('iLogo'), 300);
-    setTimeout(() => vis('iLine'), 700);
-    setTimeout(() => vis('iTag'), 1100);
-    setTimeout(runStory, 3800);
-  }
-
-  function runStory() {
-    show('story');
-    const vid = document.getElementById('vid');
-    const fill = document.getElementById('pgFill');
-    let done = false;
-
-    vid.play();
-    vid.addEventListener('timeupdate', () => {
-      if (vid.duration) {
-         fill.style.width = Math.min((vid.currentTime/vid.duration)*100, 100) + '%';
-      }
-    });
-
-    setTimeout(() => vis('sticker'), 5000);
-
-    function goOutro() {
-      if (done) return;
-      done = true;
-      runOutro();
-    }
-
-    vid.addEventListener('ended', goOutro);
-    setTimeout(goOutro, (VIDEO_DURATION + 1) * 1000);
-  }
-
-  function runOutro() {
-    show('outro');
-    setTimeout(() => vis('oLogo'), 200);
-    setTimeout(() => vis('oLine'), 400);
-    setTimeout(() => vis('oTitle'), 600);
-    setTimeout(() => vis('oSub'), 1000);
-    setTimeout(() => vis('oHandle'), 1400);
-  }
-
-  runIntro();
-</script>
 </body>
- </html>
+         </html>
+ 
