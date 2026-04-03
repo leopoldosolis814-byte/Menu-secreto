@@ -1,328 +1,210 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu pack del mes — Story2Action</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=1080">
+<title>Story Burger Diablo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --blanco-puro: #ffffff;
-    --negro: #111111;
-    --fucsia: #ff2d78;
-    --amarillo: #ffe600;
-    --gris-borde: #f0f0f5; /* Borde casi invisible */
-    --texto-suave: #666677;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  * { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-  }
-
-  /* --- FONDO BLANCO ABSOLUTO --- */
-  html, body {
-    background-color: var(--blanco-puro) !important;
-    color: var(--negro);
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-  }
-
-  /* ── HEADER BLANCO ── */
-  header {
-    background-color: var(--blanco-puro);
-    padding: 25px 20px;
-    text-align: center;
-    border-bottom: 2px solid var(--fucsia);
-  }
-
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px;
-    letter-spacing: 3px;
-    color: var(--negro);
-  }
-
-  .logo span { color: var(--fucsia); }
-
-  .tagline {
-    font-size: 11px;
-    color: var(--texto-suave);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* ── HERO BLANCO ── */
-  .hero {
-    background-color: var(--blanco-puro);
-    padding: 50px 24px;
-    text-align: center;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--fucsia);
-    color: var(--blanco-puro);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    padding: 6px 18px;
-    border-radius: 50px;
-    margin-bottom: 15px;
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 55px;
-    line-height: 1;
-    color: var(--negro);
-  }
-
-  .hero-title span { color: var(--fucsia); }
-
-  .hero-sub {
-    font-size: 16px;
-    color: var(--texto-suave);
-    margin-top: 15px;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* ── SECCIONES / CARDS (Sin fondos grises) ── */
-  .card {
-    background-color: var(--blanco-puro);
-    padding: 30px 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--gris-borde);
-  }
-
-  .card-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--negro);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .card-title span { color: var(--fucsia); }
-
-  /* ── GRID DE IMÁGENES ── */
-  .images-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 20px;
-  }
-
-  .img-card {
-    background: var(--blanco-puro);
-    border: 1px solid var(--gris-borde);
-    border-radius: 15px;
+  body {
+    width: 1080px;
+    height: 1920px;
     overflow: hidden;
+    background: #000;
   }
 
-  .img-thumb {
+  .scene {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+  }
+
+  video {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 9/16;
+    height: 100%;
     object-fit: cover;
+    z-index: 1;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.72) 0%,
+      rgba(0,0,0,0.15) 45%,
+      rgba(0,0,0,0.15) 65%,
+      rgba(0,0,0,0.75) 100%
+    );
+  }
+
+  .top-text {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    text-align: center;
+    padding: 0 40px;
+  }
+
+  .line {
     display: block;
-    background-color: #f9f9f9;
-  }
-
-  .img-info {
-    padding: 15px;
-  }
-
-  .img-numero {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    color: var(--fucsia);
-    margin-bottom: 5px;
-  }
-
-  .img-enlace {
-    font-size: 11px;
+    font-family: 'Playfair Display', serif;
     font-weight: 900;
-    padding: 8px;
-    background: #fdf2f7; /* Un fucsia casi blanco para destacar el link */
-    color: var(--negro);
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    word-break: break-all;
-    text-align: center;
+    font-size: 80px;
+    line-height: 1.1;
+    color: #f5dfa0;
+    text-shadow:
+      3px 3px 0 #5a1a00,
+      -1px -1px 0 #5a1a00,
+      0 0 20px rgba(255,100,0,0.4),
+      0 8px 6px rgba(139,0,0,0.7),
+      0 16px 8px rgba(120,0,0,0.4),
+      0 24px 10px rgba(100,0,0,0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  .img-sticker {
-    font-size: 11px;
-    color: var(--texto-suave);
-    margin-bottom: 15px;
+  .line.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .btn-download {
+  .line-sub {
     display: block;
-    width: 100%;
-    background: var(--fucsia);
-    color: var(--blanco-puro);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 62px;
+    color: #fff;
+    text-shadow:
+      2px 2px 0 #000,
+      0 6px 5px rgba(139,0,0,0.7),
+      0 12px 7px rgba(120,0,0,0.4),
+      0 18px 9px rgba(100,0,0,0.2);
+    margin-top: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  /* ── PASOS (Limpios) ── */
-  .step {
+  .line-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cta-wrap {
+    position: absolute;
+    bottom: 320px;
+    left: 0;
+    right: 0;
+    z-index: 10;
     display: flex;
-    gap: 15px;
-    padding: 20px;
-    border: 1px solid var(--gris-borde);
-    border-radius: 15px;
-    margin-bottom: 15px;
-  }
-
-  .step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 35px;
-    color: var(--fucsia);
-    line-height: 1;
-  }
-
-  .step-title {
-    font-weight: 900;
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-
-  .step-desc {
-    font-size: 13px;
-    color: var(--texto-suave);
-    line-height: 1.4;
-  }
-
-  /* ── WHATSAPP ── */
-  .wa-section {
-    text-align: center;
-    padding: 50px 20px;
-    border-top: 1px solid var(--gris-borde);
-  }
-
-  .btn-wa {
-    display: inline-flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
-    background: #25d366;
-    color: var(--blanco-puro);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    padding: 15px 40px;
-    border-radius: 100px;
-    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .cta-wrap.visible { opacity: 1; }
+
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: pulse 2s ease-in-out infinite;
   }
 
-  footer {
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--texto-suave);
-    background: var(--blanco-puro);
+  .cta-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 62px;
+    color: #f5dfa0;
+    letter-spacing: 1px;
+    text-shadow:
+      3px 3px 0 #5a1a00,
+      -1px -1px 0 #5a1a00,
+      0 0 20px rgba(255,100,0,0.4),
+      0 8px 6px rgba(139,0,0,0.7),
+      0 16px 8px rgba(120,0,0,0.4),
+      0 24px 10px rgba(100,0,0,0.2);
   }
 
-  footer span { color: var(--fucsia); font-weight: bold; }
+  .cta-arrow {
+    font-size: 56px;
+    color: #8b0000;
+    text-shadow:
+      2px 2px 0 #000,
+      0 6px 5px rgba(139,0,0,0.8),
+      0 12px 7px rgba(120,0,0,0.5),
+      0 18px 9px rgba(100,0,0,0.3);
+    animation: bounceArrow 0.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bounceArrow {
+    from { transform: translateY(0); }
+    to   { transform: translateY(10px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.04); }
+  }
 </style>
 </head>
 <body>
+<div class="scene">
 
-<header>
-  <div class="logo">Story<span>2</span>Action</div>
-  <div class="tagline">Panel de Entrega exclusivo</div>
-</header>
+  <video id="vid" autoplay muted loop playsinline>
+    <source src="https://raw.githubusercontent.com/leopoldosolis814-byte/Menu-secreto/main/the_devil_chefs_lips_curl_into_a_slow_sinister_grin_corners_of_his_mouth_rise_slightly_tail_curls_a_73vatuyhrwj7huwl80m1_1.mp4" type="video/mp4">
+  </video>
 
-<div class="hero">
-  <div class="hero-badge">LISTO PARA USAR</div>
-  <h1 class="hero-title">Tus <span>4 Historias</span></h1>
-  <p class="hero-sub">Descargá el material y empezá a vender hoy mismo.</p>
-</div>
+  <div class="overlay"></div>
 
-<div class="card">
-  <div class="card-title">🚀 Tus <span>Imágenes</span></div>
-  
-  <div class="images-grid">
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png">
-      <div class="img-info">
-        <div class="img-numero">RECURSO 01</div>
-        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>Ver oferta 👆</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download>⬇ DESCARGAR</a>
-      </div>
-    </div>
-
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png">
-      <div class="img-info">
-        <div class="img-numero">RECURSO 02</div>
-        <div class="img-enlace" onclick="copiarTexto(this)">tulocal.com/promo</div>
-        <div class="img-sticker">Sticker: <strong>Pedí ahora 👆</strong></div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download>⬇ DESCARGAR</a>
-      </div>
-    </div>
+  <div class="top-text">
+    <span class="line" id="l1">Dicen que las mejores</span>
+    <span class="line" id="l2">burgers las hace el</span>
+    <span class="line" id="l3">diablo mismo...</span>
+    <span class="line-sub" id="l4">Hoy vino a probarlo</span>
   </div>
-</div>
 
-<div class="card">
-  <div class="card-title">✅ Cómo <span>Publicar</span></div>
-  
-  <div class="step">
-    <div class="step-num">1</div>
-    <div>
-      <p class="step-title">Descarga el diseño</p>
-      <p class="step-desc">Usa el botón azul para guardar la imagen en tu dispositivo.</p>
+  <div class="cta-wrap" id="cta">
+    <div class="cta">
+      <span class="cta-arrow">▼</span>
+      <span class="cta-text">Hacé click y probá si es verdad</span>
+      <span class="cta-arrow">▼</span>
     </div>
   </div>
 
-  <div class="step">
-    <div class="step-num">2</div>
-    <div>
-      <p class="step-title">Copia tu enlace</p>
-      <p class="step-desc">Toca el cuadro rosa de arriba para copiar el link automáticamente.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">3</div>
-    <div>
-      <p class="step-title">Sube a Instagram</p>
-      <p class="step-desc">Usa el sticker de "Enlace", pega la URL y escribe el texto sugerido.</p>
-    </div>
-  </div>
 </div>
-
-<div class="wa-section">
-  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 ¿DUDAS? ESCRIBINOS</a>
-</div>
-
-<footer>
-  <span>Story2Action</span> · 2024
-</footer>
 
 <script>
-function copiarTexto(elemento) {
-  const texto = elemento.innerText;
-  navigator.clipboard.writeText(texto).then(() => {
-    const original = elemento.innerText;
-    elemento.innerText = "¡COPIADO! ✅";
-    elemento.style.background = "#ffe600";
+  const video = document.getElementById('vid');
+
+  function startAnimation() {
+    const delays = [0, 600, 1200, 2000];
+    const ids = ['l1','l2','l3','l4'];
+
+    ids.forEach((id, i) => {
+      setTimeout(() => {
+        document.getElementById(id).classList.add('visible');
+      }, delays[i]);
+    });
+
     setTimeout(() => {
-      elemento.innerText = original;
-      elemento.style.background = "#fdf2f7";
-    }, 1500);
-  });
-}
+      document.getElementById('cta').classList.add('visible');
+    }, 2800);
+  }
+
+  video.addEventListener('canplay', startAnimation, { once: true });
+  if (video.readyState >= 3) startAnimation();
 </script>
 
 </body>
