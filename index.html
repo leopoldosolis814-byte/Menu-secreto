@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Story2Action Reel - Video Ajustado</title>
+<title>Story2Action Reel - Ajuste Final</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +12,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #000; /* Fondo negro global */
+    background: #000;
   }
 
   .scene {
@@ -99,22 +99,17 @@
   .intro-tagline.vis { color: rgba(255,255,255,0.65); }
   .intro-tagline span { color: #ff2d78; }
 
-  /* STORY - SECCIÓN MODIFICADA */
-  #story { 
-    background: #000; /* Fondo negro para rellenar el hueco superior */
-    overflow: hidden; /* Asegura que el video no se salga si lo movemos */
-  }
+  /* STORY - AJUSTE DE POSICIÓN DEL VIDEO */
+  #story { background: #000; }
 
   #story video {
     position: absolute;
-    inset: 0;
+    top: 7vh; /* Bajamos el video para que el texto naranja no choque con el logo superior */
+    left: 0;
     width: 100%;
-    height: 100%;
-    /* CAMBIO 1: object-fit cover para que llene y podamos moverlo */
-    object-fit: cover; 
+    height: 86vh; /* Ajustamos altura para que no tape el footer */
+    object-fit: contain; /* Para que el texto se vea completo sin recortes laterales */
     z-index: 1;
-    /* CAMBIO 2: Desplazamos el video hacia abajo un 10% de la altura */
-    transform: translateY(10%); 
   }
 
   .ig-top {
@@ -124,8 +119,7 @@
     right: 0;
     z-index: 10;
     padding: 1.5vh 4vw 0;
-    /* Gradiente ajustado para el fondo negro superior */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
   }
 
   .ig-progress-bar {
@@ -189,9 +183,10 @@
     color: #fff;
   }
 
+  /* STICKER - POSICIÓN ORIGINAL RESTAURADA */
   .ig-sticker {
     position: absolute;
-    bottom: 12vh; /* Subido un poco para que no tape el texto inferior del video */
+    bottom: 7vh; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -408,9 +403,7 @@
       runOutro();
     }
 
-
     vid.addEventListener('ended', goOutro);
-    // Backup por seguridad si el evento ended falla
     setTimeout(goOutro, (VIDEO_DURATION + 1) * 1000);
   }
 
@@ -426,4 +419,4 @@
   runIntro();
 </script>
 </body>
-</html>
+ </html>
