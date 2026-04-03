@@ -3,343 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu pack del mes — Story2Action</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<title>Story2Action — Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blanco: #ffffff;
-    --gris-claro: #f4f4f6;
-    --gris-borde: #e2e2e8;
-    --negro: #111111;
-    --fucsia: #ff2d78;
-    --amarillo: #ffe600;
-    --texto: #222222;
-    --texto-suave: #888899;
+    --bg-dark: #08080a;
+    --card-bg: #1a1a1e;
+    --accent: #ff2d78; /* Fucsia Netflix-style */
+    --gold: #ffe600;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a5;
+    --glass: rgba(255, 255, 255, 0.03);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   body {
-    background: var(--gris-claro);
-    color: var(--texto);
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-    padding-bottom: 40px;
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at top right, #1a1015 0%, var(--bg-dark) 40%);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
   }
 
+  /* HEADER ESTILO STREAMING */
   header {
-    background: var(--negro);
-    padding: 22px 24px 18px;
-    text-align: center;
+    background: rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
-    z-index: 100;
-    border-bottom: 3px solid var(--fucsia);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 4px;
-    color: var(--blanco);
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-shadow: 0 0 15px rgba(255, 45, 120, 0.3);
   }
 
-  .logo span { color: var(--fucsia); }
+  .user-badge {
+    background: var(--glass);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
+  /* HERO CINEMATOGRÁFICO */
   .hero {
-    background: var(--negro);
-    padding: 36px 24px 40px;
+    padding: 60px 24px 30px;
     text-align: center;
   }
 
-  .hero-badge {
-    display: inline-block;
-    background: var(--fucsia);
-    color: var(--blanco);
+  .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 0.9;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    color: var(--text-dim);
     font-size: 14px;
-    letter-spacing: 3px;
-    padding: 5px 16px;
-    border-radius: 100px;
-    margin-bottom: 14px;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    line-height: 1.0;
-    color: var(--blanco);
+  /* CONTENEDOR DE CARPETAS (ACORDEÓN) */
+  .shelf {
+    margin: 10px 16px 20px;
   }
 
-  .hero-title span { color: var(--amarillo); }
-
-  /* ESTILOS DE CARPETAS */
-  .card {
-    background: var(--blanco);
-    border-radius: 20px;
-    margin: 16px;
-    border: 1px solid var(--gris-borde);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  .folder {
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .folder-header {
-    padding: 24px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
   }
 
-  .folder-header:active { background: #fafafa; }
-
-  .card-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 2px;
-    color: var(--negro);
-  }
-
-  .card-title .accent { color: var(--fucsia); }
-  
-  .card-sub {
-    font-size: 12px;
-    color: var(--texto-suave);
-    margin-top: 4px;
-  }
-
-  .folder-icon {
+  .folder-title {
     font-size: 18px;
-    color: var(--fucsia);
-    transition: transform 0.3s ease;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .folder-title span { color: var(--accent); font-size: 12px; opacity: 0.8; }
+
+  .chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+    opacity: 0.5;
   }
 
   .folder-content {
-    display: none;
-    padding: 0 20px 24px;
-    border-top: 1px dashed var(--gris-borde);
-    animation: fadeIn 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding: 0 15px;
   }
 
-  .card.is-open .folder-content { display: block; }
-  .card.is-open .folder-icon { transform: rotate(180deg); }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+  .folder.is-open {
+    background: #212126;
+    border-color: rgba(255, 45, 120, 0.3);
   }
 
-  /* GRID CONTENIDO */
-  .images-grid, .videos-grid {
+  .folder.is-open .folder-content {
+    max-height: 2000px;
+    padding-bottom: 20px;
+  }
+
+  .folder.is-open .chevron { transform: rotate(180deg); }
+
+  /* GRID DE CONTENIDO */
+  .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-top: 20px;
   }
 
-  .item-card {
-    background: var(--gris-claro);
-    border-radius: 14px;
+  .item {
+    position: relative;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--gris-borde);
+    background: #000;
   }
 
-  .item-thumb, .video-thumb {
+  .item-media {
     width: 100%;
     aspect-ratio: 9/16;
     object-fit: cover;
-    display: block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
   }
 
-  .item-placeholder {
-    width: 100%;
-    aspect-ratio: 9/16;
-    background: #e9e9ed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: var(--texto-suave);
-    font-size: 10px;
+  .item.active .item-media { opacity: 1; }
+
+  .item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
   }
 
-  .item-info { padding: 10px; }
-  .item-numero { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--fucsia); margin-bottom: 4px; }
-  .item-enlace { font-size: 10px; color: var(--texto-suave); margin-bottom: 8px; word-break: break-all; }
+  .item-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
 
-  .btn-download {
+  .btn-action {
     display: block;
     width: 100%;
-    background: var(--fucsia);
-    color: var(--blanco);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
+    background: var(--text-main);
+    color: #000;
     text-align: center;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 4px;
     text-decoration: none;
+    font-weight: 900;
+    font-size: 11px;
+    transition: transform 0.2s;
   }
+
+  .btn-action:active { transform: scale(0.95); }
 
   .btn-locked {
-    display: block;
-    width: 100%;
-    background: #d1d1d6;
-    color: var(--blanco);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    text-align: center;
-    padding: 8px;
-    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    color: var(--text-dim);
   }
 
-  /* OTROS */
-  .badge-count {
-    background: var(--amarillo);
-    color: var(--negro);
-    font-size: 11px;
+  .badge-new {
+    background: var(--gold);
+    color: #000;
+    padding: 2px 6px;
+    font-size: 9px;
     font-weight: 900;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
-    vertical-align: middle;
+    border-radius: 2px;
   }
 
-  .steps { display: flex; flex-direction: column; gap: 8px; padding: 20px; }
-  .step { display: flex; gap: 12px; padding: 12px; background: var(--gris-claro); border-radius: 12px; }
-  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--fucsia); }
-  .step-title { font-weight: 900; font-size: 13px; }
-  .step-desc { font-size: 11px; color: var(--texto-suave); }
-
-  footer { text-align: center; padding: 20px; font-size: 12px; color: var(--texto-suave); }
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #444;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Story<span>2</span>Action</div>
+  <div class="logo">S2A<span>.</span>STUDIO</div>
+  <div class="user-badge" id="user-tier">PACK ACTIVO</div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">ACCESO EXCLUSIVO</div>
-  <div class="hero-title">Tus <span>historias</span><br>están listas</div>
+  <h1>NEW<br>RELEASE</h1>
+  <p>Tu contenido exclusivo de Abril ya está disponible para descargar.</p>
 </div>
 
-<div class="card" id="card-images">
-  <div class="folder-header" onclick="toggleFolder('card-images')">
-    <div>
-      <div class="card-title">📂 Carpeta <span class="accent">Imágenes</span> <span class="badge-count" id="count-img">0</span></div>
-      <div class="card-sub">Tocá para ver tus diseños</div>
+<div class="shelf">
+  <div class="folder" id="f-img">
+    <div class="folder-header" onclick="toggle('f-img')">
+      <div class="folder-title">GALERÍA DE DISEÑOS <span id="count-img">0</span></div>
+      <img class="chevron" src="https://cdn-icons-png.flaticon.com/512/271/271210.png" style="filter: invert(1);">
     </div>
-    <div class="folder-icon">▼</div>
+    <div class="folder-content">
+      <div class="grid" id="grid-img"></div>
+    </div>
   </div>
-  <div class="folder-content">
-    <div class="images-grid" id="imagesGrid"></div>
-  </div>
-</div>
 
-<div class="card" id="card-videos">
-  <div class="folder-header" onclick="toggleFolder('card-videos')">
-    <div>
-      <div class="card-title">🎬 Carpeta <span class="accent">Videos</span> <span class="badge-count" id="count-vid">0</span></div>
-      <div class="card-sub">Ganchos visuales de alto impacto</div>
+  <div class="folder" id="f-vid">
+    <div class="folder-header" onclick="toggle('f-vid')">
+      <div class="folder-title">REELS & GANCHOS <span id="count-vid">0</span></div>
+      <img class="chevron" src="https://cdn-icons-png.flaticon.com/512/271/271210.png" style="filter: invert(1);">
     </div>
-    <div class="folder-icon">▼</div>
-  </div>
-  <div class="folder-content">
-    <div class="videos-grid" id="videosGrid"></div>
-  </div>
-</div>
-
-<div class="card">
-  <div style="padding: 20px 20px 0;"><div class="card-title">✅ ¿Cómo publicar?</div></div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div><div class="step-title">Descargá</div><div class="step-desc">Guardá el archivo en tu celular.</div></div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div><div class="step-title">Subí a Instagram</div><div class="step-desc">Usá el sticker de enlace 🔗 con el link de abajo.</div></div>
+    <div class="folder-content">
+      <div class="grid" id="grid-vid"></div>
     </div>
   </div>
 </div>
 
-<footer>Story2Action · 2026</footer>
+<footer>STORY2ACTION © 2026 • DIGITAL ASSETS</footer>
 
 <script>
-  // ── CONFIGURACIÓN DE CONTENIDO ──
   const IMAGENES = [
-    { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png", enlace: "tulocal.com/promo" },
-    { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png", enlace: "tulocal.com/promo" },
-    { id: 3, src: null, enlace: "tulocal.com/promo" },
-    { id: 4, src: null, enlace: "tulocal.com/promo" }
+    { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" },
+    { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" },
+    { id: 3, src: null },
+    { id: 4, src: null }
   ];
 
   const VIDEOS = [
-    { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4", enlace: "tulocal.com/promo" },
-    { id: 14, src: null, enlace: "tulocal.com/promo" }
+    { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4" },
+    { id: 14, src: null }
   ];
 
-  // ── LÓGICA DE ACTIVACIÓN ──
   const params = new URLSearchParams(window.location.search);
   const activas = params.get('activas') ? params.get('activas').split(',').map(Number) : [];
 
-  // ── RENDERIZADO ──
   function render() {
-    const imgGrid = document.getElementById('imagesGrid');
-    const vidGrid = document.getElementById('videosGrid');
-    
-    let countImg = 0;
-    let countVid = 0;
+    const iGrid = document.getElementById('grid-img');
+    const vGrid = document.getElementById('grid-vid');
+    let cImg = 0, cVid = 0;
 
     IMAGENES.forEach(img => {
-      const isActiva = activas.includes(img.id);
-      if(isActiva) countImg++;
-      
-      const thumb = img.src ? `<img class="item-thumb" src="${img.src}" loading="lazy">` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
-      const btn = isActiva ? `<a class="btn-download" href="${img.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
-      
-      imgGrid.innerHTML += `
-        <div class="item-card">
-          ${thumb}
-          <div class="item-info">
-            <div class="item-numero">IMAGEN ${img.id}</div>
-            <div class="item-enlace">${img.enlace}</div>
-            ${btn}
+      const ok = activas.includes(img.id);
+      if(ok) cImg++;
+      iGrid.innerHTML += `
+        <div class="item ${ok ? 'active' : ''}">
+          ${img.src ? `<img class="item-media" src="${img.src}">` : `<div class="item-media" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:10px;color:#333">PROXIMAMENTE</div>`}
+          <div class="item-overlay">
+            <div class="item-label">IMG-${img.id} ${ok ? '<span class="badge-new">LISTO</span>' : ''}</div>
+            ${ok ? `<a class="btn-action" href="${img.src}" download>DESCARGAR</a>` : `<div class="btn-action btn-locked">BLOQUEADO</div>`}
           </div>
         </div>`;
     });
 
     VIDEOS.forEach(vid => {
-      const isActiva = activas.includes(vid.id);
-      if(isActiva) countVid++;
-
-      const thumb = vid.src ? `<video class="video-thumb" src="${vid.src}" muted playsinline></video>` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
-      const btn = isActiva ? `<a class="btn-download" href="${vid.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
-
-      vidGrid.innerHTML += `
-        <div class="item-card">
-          ${thumb}
-          <div class="item-info">
-            <div class="item-numero">VIDEO ${vid.id - 12}</div>
-            <div class="item-enlace">${vid.enlace}</div>
-            ${btn}
+      const ok = activas.includes(vid.id);
+      if(ok) cVid++;
+      vGrid.innerHTML += `
+        <div class="item ${ok ? 'active' : ''}">
+          ${vid.src ? `<video class="item-media" src="${vid.src}" muted playsinline></video>` : `<div class="item-media" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:10px;color:#333">PROXIMAMENTE</div>`}
+          <div class="item-overlay">
+            <div class="item-label">VIDEO-${vid.id-12} ${ok ? '<span class="badge-new">LISTO</span>' : ''}</div>
+            ${ok ? `<a class="btn-action" href="${vid.src}" download>DESCARGAR</a>` : `<div class="btn-action btn-locked">BLOQUEADO</div>`}
           </div>
         </div>`;
     });
 
-    document.getElementById('count-img').innerText = countImg;
-    document.getElementById('count-vid').innerText = countVid;
+    document.getElementById('count-img').innerText = `(${cImg})`;
+    document.getElementById('count-vid').innerText = `(${cVid})`;
   }
 
-  // ── INTERACCIÓN ──
-  function toggleFolder(id) {
+  function toggle(id) {
     document.getElementById(id).classList.toggle('is-open');
   }
 
   render();
 </script>
-
 </body>
-                                                                                                                                        </html>
+</html>
