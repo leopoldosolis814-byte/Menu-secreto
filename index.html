@@ -3,191 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaFlix | Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>INSTAFLIX | Descubre lo mejor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5c2be2;
-            --bg: #050505;
-            --card-bg: #111;
-            --text: #ffffff;
+            --hbo-blue: #0012d2;
+            --hbo-bg: #000000;
+            --hbo-card: #121212;
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            padding-bottom: 100px;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--hbo-bg);
+            color: white;
+            overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* HEADER ESTILO MAX */
         header {
-            padding: 20px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 4%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #222;
-        }
-        .brand { font-weight: 900; font-size: 1.8rem; color: var(--primary); }
-        .brand span { color: white; }
-
-        /* SECCIÓN MARKETPLACE (HOME) */
-        .container { padding: 20px 5%; }
-        .section-title { font-size: 1.4rem; margin-bottom: 25px; font-weight: 700; }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            z-index: 1000;
+            box-sizing: border-box;
         }
 
-        .brand-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            aspect-ratio: 1 / 1;
+        .logo { font-weight: 900; font-size: 1.6rem; letter-spacing: 2px; }
+        .logo span { font-weight: 100; }
+        .btn-subscribe { background: #1a1a1a; color: white; border: 1px solid #444; padding: 10px 20px; border-radius: 4px; font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; cursor: pointer; }
+
+        /* HERO - EL GRAN ESTRENO */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(to top, var(--hbo-bg) 5%, transparent 50%), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            text-align: center;
-            padding: 10px;
+            justify-content: flex-end;
+            padding: 0 5% 100px 5%;
         }
-        .brand-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .brand-logo { width: 70px; height: 70px; background: #333; border-radius: 50%; margin-bottom: 15px; display:flex; align-items:center; justify-content:center; font-size: 1.5rem; }
-        .brand-name { font-weight: 700; font-size: 0.9rem; }
-        .brand-genre { font-size: 0.7rem; color: #666; margin-top: 5px; }
 
-        /* VISTA DEL COMERCIO (HIDDEN BY DEFAULT) */
-        #commerce-view {
+        .hero span { text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; color: #aaa; margin-bottom: 10px; }
+        .hero h1 { font-size: 4rem; margin: 0; font-weight: 900; line-height: 0.9; text-transform: uppercase; }
+        
+        /* FILAS DE CONTENIDO (COMO TUS SCREENSHOTS) */
+        .row { padding: 40px 0 0 5%; }
+        .row-title { font-size: 1.5rem; font-weight: 400; margin-bottom: 20px; color: #eee; }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 20px;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        .movie-card {
+            min-width: 180px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .movie-card:hover { transform: scale(1.05); }
+
+        .poster {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        /* VISTA DETALLE COMERCIO (MAX STYLE) */
+        #shop-view {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg);
-            z-index: 1000;
-            overflow-y: auto;
+            background: #000;
+            z-index: 2000;
+            padding: 80px 5% 20px 5%;
+            box-sizing: border-box;
         }
 
-        .back-btn { padding: 20px 5%; cursor: pointer; color: var(--primary); font-weight: 700; }
-        
-        .box-container { padding: 0 5%; }
-        .box-card {
-            background: #1a1a1a;
-            border-radius: 15px;
+        .offer-header { font-size: 2.5rem; font-weight: 900; text-align: center; margin-bottom: 40px; }
+        .offer-header span { display: block; font-size: 1rem; font-weight: 400; color: #aaa; }
+
+        .plan-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: #111;
+            padding: 30px;
+            border-radius: 4px;
+            border-bottom: 4px solid var(--hbo-blue);
+            text-align: center;
             margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .box-info h3 { margin: 0; color: #fff; font-size: 1.2rem; }
-        .box-info p { margin: 10px 0; color: #888; font-size: 0.9rem; }
-        .box-price { font-size: 1.5rem; font-weight: 900; color: #00ffd5; }
-        .btn-comprar {
-            background: var(--primary);
-            color: white; border: none;
-            padding: 10px 20px; border-radius: 8px;
-            font-weight: 700; cursor: pointer;
         }
 
-        .badge-serie {
-            background: rgba(92, 43, 226, 0.2);
-            color: var(--primary);
-            padding: 4px 8px; border-radius: 4px;
-            font-size: 0.7rem; font-weight: 900;
+        .plan-card h3 { margin: 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .plan-card .price { font-size: 2.5rem; font-weight: 900; margin: 20px 0; }
+        .plan-card ul { list-style: none; padding: 0; color: #999; font-size: 0.9rem; margin-bottom: 30px; }
+        .plan-card ul li { margin-bottom: 10px; }
+
+        .btn-buy { 
+            background: var(--hbo-blue); 
+            color: white; 
+            width: 100%; 
+            padding: 15px; 
+            border: none; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            cursor: pointer;
         }
+
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 2rem; cursor: pointer; color: #555; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand">INSTA<span>FLIX</span></div>
-        <div style="font-size: 0.8rem; border: 1px solid #444; padding: 5px 10px; border-radius: 5px;">📍 Corrientes</div>
+        <div class="logo">INSTA<span>FLIX</span></div>
+        <button class="btn-subscribe">Suscríbete ahora</button>
     </header>
 
-    <div class="container" id="home-view">
-        <div class="section-title">Comercios con Estrenos</div>
-        
-        <div class="market-grid">
-            <div class="brand-card" onclick="verComercio('Burger Land', 'Terror en la Cocina', '4 Burgers + Papas + Bebida')">
-                <div class="brand-logo">🍔</div>
-                <div class="brand-name">Burger Land</div>
-                <div class="brand-genre">SUSPENSO</div>
-            </div>
+    <div class="hero">
+        <span>DESCUBRE LO MEJOR</span>
+        <h1>CÓDIGO 404</h1>
+        <p style="max-width: 500px; font-weight: 100; letter-spacing: 1px;">Un maletín, una traición y el secreto mejor guardado de la ciudad. Una producción original para InstaFlix Studio.</p>
+    </div>
 
-            <div class="brand-card" onclick="verComercio('Pizza Noir', 'La Última Porción', '2 Pizzas Gigantes + 1 Litro')">
-                <div class="brand-logo">🍕</div>
-                <div class="brand-name">Pizza Noir</div>
-                <div class="brand-genre">MISTERIO</div>
+    <div class="row">
+        <div class="row-title">Acción y Sabor</div>
+        <div class="carousel">
+            <div class="movie-card" onclick="openShop('BURGER LAND', '12.500', '4 Burgers + Papas + Bebida + Miniserie Completa')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=400');"></div>
+                <div style="font-size: 0.8rem; font-weight: 700;">BURGER LAND</div>
             </div>
-
-            <div class="brand-card" onclick="verComercio('Sushi Ghost', 'Venganza en el Roll', '30 Piezas Premium')">
-                <div class="brand-logo">🍣</div>
-                <div class="brand-name">Sushi Ghost</div>
-                <div class="brand-genre">ACCIÓN</div>
+            <div class="movie-card" onclick="openShop('PIZZA NOIR', '9.800', '2 Pizzas Gigantes + 1 Bebida + Miniserie Completa')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=400');"></div>
+                <div style="font-size: 0.8rem; font-weight: 700;">PIZZA NOIR</div>
             </div>
-
-            <div class="brand-card" onclick="verComercio('The Garage Gomería', 'Ruta Sangrienta', 'Revisión + Alineación')">
-                <div class="brand-logo">🔧</div>
-                <div class="brand-name">The Garage</div>
-                <div class="brand-genre">POLICIAL</div>
+            <div class="movie-card" onclick="openShop('THE GARAGE', '15.000', 'Alineación + Balanceo + Miniserie Completa')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=400');"></div>
+                <div style="font-size: 0.8rem; font-weight: 700;">THE GARAGE</div>
             </div>
         </div>
     </div>
 
-    <div id="commerce-view">
-        <div class="back-btn" onclick="cerrarComercio()">← Volver al Marketplace</div>
+    <div class="row" style="padding-bottom: 100px;">
+        <div class="row-title">Comedia y Relax</div>
+        <div class="carousel">
+            <div class="movie-card" onclick="openShop('COFFEE & CRIME', '4.200', '2 Cafés + 2 Tortas + Miniserie Completa')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400');"></div>
+                <div style="font-size: 0.8rem; font-weight: 700;">COFFEE & CRIME</div>
+            </div>
+            <div class="movie-card" onclick="openShop('SUSHI GHOST', '18.900', '30 Piezas + Miniserie Completa')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=400');"></div>
+                <div style="font-size: 0.8rem; font-weight: 700;">SUSHI GHOST</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="shop-view">
+        <div class="close-btn" onclick="closeShop()">&times;</div>
+        <div class="offer-header">
+            <span id="shop-name-small">BURGER LAND</span>
+            OFERTA POR TIEMPO LIMITADO
+        </div>
         
-        <div class="container">
-            <h1 id="view-title" style="margin-bottom: 5px;">Nombre Local</h1>
-            <p id="view-serie" style="color: var(--primary); font-weight: 900; margin-bottom: 30px;">Serie: Nombre Serie</p>
-
-            <div class="section-title">Elegí tu Box Series</div>
-
-            <div class="box-card">
-                <div class="box-info">
-                    <span class="badge-serie">INCLUYE ACCESO A MINISERIE</span>
-                    <h3 id="view-combo">4 Burgers + Papas + Bebida</h3>
-                    <p>Comé mientras descubrís el misterio. 4 capítulos habilitados.</p>
-                    <div class="box-price">$12.500</div>
-                </div>
-                <button class="btn-comprar" onclick="realizarPedido()">COMPRAR BOX</button>
+        <div class="plan-container">
+            <div class="plan-card">
+                <h3>BOX FILM</h3>
+                <div class="price" id="shop-price">$12.500</div>
+                <ul>
+                    <li id="shop-detail">4 Burgers + Papas + Bebida</li>
+                    <li>Acceso ilimitado a la Miniserie</li>
+                    <li>Calidad 4K Streaming</li>
+                    <li>Activación Inmediata</li>
+                </ul>
+                <button class="btn-buy" onclick="alert('Pedido enviado al comercio. Activating Streaming...')">Suscríbete ahora</button>
             </div>
-
-            <div class="box-card">
-                <div class="box-info">
-                    <span class="badge-serie">INCLUYE CAPÍTULO 1</span>
-                    <h3>Box Individual Premiere</h3>
-                    <p>1 Hamburguesa simple + Papas + Capítulo 1.</p>
-                    <div class="box-price">$4.800</div>
-                </div>
-                <button class="btn-comprar" onclick="realizarPedido()">COMPRAR BOX</button>
-            </div>
+            <p style="font-size: 0.6rem; color: #555; text-align: center;">Oferta válida hasta el 4 de mayo. Incluye consumo en local o delivery.</p>
         </div>
     </div>
 
     <script>
-        function verComercio(nombre, serie, combo) {
-            document.getElementById('view-title').innerText = nombre;
-            document.getElementById('view-serie').innerText = "SERIE EXCLUSIVA: " + serie;
-            document.getElementById('view-combo').innerText = combo;
-            document.getElementById('commerce-view').style.display = 'block';
+        function openShop(name, price, detail) {
+            document.getElementById('shop-name-small').innerText = name;
+            document.getElementById('shop-price').innerText = "$" + price;
+            document.getElementById('shop-detail').innerText = detail;
+            document.getElementById('shop-view').style.display = 'block';
             window.scrollTo(0,0);
         }
 
-        function cerrarComercio() {
-            document.getElementById('commerce-view').style.display = 'none';
-        }
-
-        function realizarPedido() {
-            const local = document.getElementById('view-title').innerText;
-            const msj = `Hola ${local}! Quiero comprar el Box de InstaFlix para activar la serie.`;
-            window.open(`https://wa.me/549123456789?text=${encodeURIComponent(msj)}`);
+        function closeShop() {
+            document.getElementById('shop-view').style.display = 'none';
         }
     </script>
+
 </body>
 </html>
