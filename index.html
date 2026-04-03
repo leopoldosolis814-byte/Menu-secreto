@@ -1,317 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Story2Action — Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-dark: #08080a;
-    --card-bg: #1a1a1e;
-    --accent: #ff2d78; /* Fucsia Netflix-style */
-    --gold: #ffe600;
-    --text-main: #ffffff;
-    --text-dim: #a0a0a5;
-    --glass: rgba(255, 255, 255, 0.03);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaFlix Dining - Box Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff2d78; /* Fucsia InstaFlix */
+            --bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --gold: #d4af37;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            padding-bottom: 50px;
+        }
 
-  body {
-    background-color: var(--bg-dark);
-    background-image: radial-gradient(circle at top right, #1a1015 0%, var(--bg-dark) 40%);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.5;
-  }
+        /* HEADER */
+        header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-sizing: border-box;
+        }
 
-  /* HEADER ESTILO STREAMING */
-  header {
-    background: rgba(8, 8, 10, 0.85);
-    backdrop-filter: blur(15px);
-    padding: 18px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
+        .logo { font-weight: 900; color: var(--primary); letter-spacing: -1px; font-size: 1.2rem; }
+        .status { background: var(--gold); color: black; padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; }
 
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 2px;
-    color: var(--accent);
-    text-shadow: 0 0 15px rgba(255, 45, 120, 0.3);
-  }
+        /* HERO SECTION */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(to top, var(--bg), transparent), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000'); /* Imagen Genérica */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
 
-  .user-badge {
-    background: var(--glass);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 11px;
-    border: 1px solid rgba(255,255,255,0.1);
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
+        .hero h1 { font-size: 2.5rem; margin: 0; text-transform: uppercase; }
+        .hero p { color: #ccc; font-size: 0.9rem; max-width: 300px; margin: 10px 0; }
 
-  /* HERO CINEMATOGRÁFICO */
-  .hero {
-    padding: 60px 24px 30px;
-    text-align: center;
-  }
+        /* LISTA DE EPISODIOS */
+        .episodes-container { padding: 20px; }
+        .section-title { font-size: 1.1rem; margin-bottom: 15px; color: #666; text-transform: uppercase; letter-spacing: 2px; }
 
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 58px;
-    line-height: 0.9;
-    margin-bottom: 10px;
-    background: linear-gradient(to bottom, #fff, #888);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+        .episode-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            border: 1px solid #333;
+        }
 
-  .hero p {
-    color: var(--text-dim);
-    font-size: 14px;
-    max-width: 280px;
-    margin: 0 auto;
-  }
+        .episode-thumb {
+            width: 120px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(1);
+            opacity: 0.5;
+        }
 
-  /* CONTENEDOR DE CARPETAS (ACORDEÓN) */
-  .shelf {
-    margin: 10px 16px 20px;
-  }
+        .episode-info {
+            padding: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-  .folder {
-    background: var(--card-bg);
-    border-radius: 12px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+        .ep-title { font-weight: 900; font-size: 0.9rem; margin-bottom: 5px; }
+        .ep-desc { font-size: 0.7rem; color: #888; }
 
-  .folder-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-  }
+        /* BOTÓN DE DESBLOQUEO */
+        .unlock-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: 900;
+            font-size: 0.7rem;
+            cursor: pointer;
+            margin-top: 10px;
+            width: fit-content;
+        }
 
-  .folder-title {
-    font-size: 18px;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+        /* ESTADO DESBLOQUEADO */
+        .episode-card.unlocked .episode-thumb { filter: grayscale(0); opacity: 1; }
+        .episode-card.unlocked { border-color: var(--primary); }
+        .episode-card.unlocked .unlock-btn { background: #333; }
 
-  .folder-title span { color: var(--accent); font-size: 12px; opacity: 0.8; }
-
-  .chevron {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s;
-    opacity: 0.5;
-  }
-
-  .folder-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-    padding: 0 15px;
-  }
-
-  .folder.is-open {
-    background: #212126;
-    border-color: rgba(255, 45, 120, 0.3);
-  }
-
-  .folder.is-open .folder-content {
-    max-height: 2000px;
-    padding-bottom: 20px;
-  }
-
-  .folder.is-open .chevron { transform: rotate(180deg); }
-
-  /* GRID DE CONTENIDO */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .item {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .item-media {
-    width: 100%;
-    aspect-ratio: 9/16;
-    object-fit: cover;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-  }
-
-  .item.active .item-media { opacity: 1; }
-
-  .item-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-  }
-
-  .item-label {
-    font-size: 9px;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-
-  .btn-action {
-    display: block;
-    width: 100%;
-    background: var(--text-main);
-    color: #000;
-    text-align: center;
-    padding: 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 11px;
-    transition: transform 0.2s;
-  }
-
-  .btn-action:active { transform: scale(0.95); }
-
-  .btn-locked {
-    background: rgba(255,255,255,0.1);
-    color: var(--text-dim);
-  }
-
-  .badge-new {
-    background: var(--gold);
-    color: #000;
-    padding: 2px 6px;
-    font-size: 9px;
-    font-weight: 900;
-    border-radius: 2px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: #444;
-    font-size: 10px;
-    letter-spacing: 2px;
-  }
-</style>
+        /* ICONO CANDADO */
+        .lock-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">S2A<span>.</span>STUDIO</div>
-  <div class="user-badge" id="user-tier">PACK ACTIVO</div>
-</header>
+    <header>
+        <div class="logo">INSTAFLIX Originals</div>
+        <div class="status" id="creditos">PASE ACTIVO: 3/4</div>
+    </header>
 
-<div class="hero">
-  <h1>NEW<br>RELEASE</h1>
-  <p>Tu contenido exclusivo de Abril ya está disponible para descargar.</p>
-</div>
-
-<div class="shelf">
-  <div class="folder" id="f-img">
-    <div class="folder-header" onclick="toggle('f-img')">
-      <div class="folder-title">GALERÍA DE DISEÑOS <span id="count-img">0</span></div>
-      <img class="chevron" src="https://cdn-icons-png.flaticon.com/512/271/271210.png" style="filter: invert(1);">
+    <div class="hero">
+        <h1>CÓDIGO 404</h1>
+        <p>Un maletín, una traición y el secreto mejor guardado de la ciudad.</p>
     </div>
-    <div class="folder-content">
-      <div class="grid" id="grid-img"></div>
+
+    <div class="episodes-container">
+        <div class="section-title">Temporada 1</div>
+
+        <div class="episode-card unlocked">
+            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&q=80&w=200');"></div>
+            <div class="episode-info">
+                <div class="ep-title">Capítulo 1: El Remitente</div>
+                <div class="ep-desc">Visto hace 2 días.</div>
+                <button class="unlock-btn" onclick="alert('Reproduciendo Video...')">VER DE NUEVO</button>
+            </div>
+            <div class="lock-icon">✅</div>
+        </div>
+
+        <div id="ep2" class="episode-card">
+            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1502472545331-645bb8151302?auto=format&fit=crop&q=80&w=200');"></div>
+            <div class="episode-info">
+                <div class="ep-title">Capítulo 2: La Sombra</div>
+                <div class="ep-desc">Pedí tu burger para desbloquear.</div>
+                <button class="unlock-btn" onclick="activarPedido(2)">PEDIR BURGER Y VER</button>
+            </div>
+            <div class="lock-icon">🔒</div>
+        </div>
+
+        <div class="episode-card">
+            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=200');"></div>
+            <div class="episode-info">
+                <div class="ep-title">Capítulo 3: Sin Salida</div>
+                <div class="ep-desc">Disponible tras completar el Cap 2.</div>
+            </div>
+            <div class="lock-icon">🔒</div>
+        </div>
+
     </div>
-  </div>
 
-  <div class="folder" id="f-vid">
-    <div class="folder-header" onclick="toggle('f-vid')">
-      <div class="folder-title">REELS & GANCHOS <span id="count-vid">0</span></div>
-      <img class="chevron" src="https://cdn-icons-png.flaticon.com/512/271/271210.png" style="filter: invert(1);">
-    </div>
-    <div class="folder-content">
-      <div class="grid" id="grid-vid"></div>
-    </div>
-  </div>
-</div>
+    <script>
+        function activarPedido(num) {
+            // 1. Simulación de envío de WhatsApp al comercio
+            const confirmar = confirm("¿Querés activar tu capítulo y enviar el pedido de tu hamburguesa a la cocina?");
+            
+            if(confirmar) {
+                // Simulamos el link de WhatsApp
+                const numeroComercio = "+549123456789";
+                const msj = `Hola! Soy el cliente 001. Activo mi CRÉDITO ${num} del Box Cinema. ¡A la cocina!`;
+                
+                // Abrimos WhatsApp (En una pestaña nueva)
+                window.open(`https://wa.me/${numeroComercio}?text=${encodeURIComponent(msj)}`, '_blank');
 
-<footer>STORY2ACTION © 2026 • DIGITAL ASSETS</footer>
-
-<script>
-  const IMAGENES = [
-    { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" },
-    { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" },
-    { id: 3, src: null },
-    { id: 4, src: null }
-  ];
-
-  const VIDEOS = [
-    { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4" },
-    { id: 14, src: null }
-  ];
-
-  const params = new URLSearchParams(window.location.search);
-  const activas = params.get('activas') ? params.get('activas').split(',').map(Number) : [];
-
-  function render() {
-    const iGrid = document.getElementById('grid-img');
-    const vGrid = document.getElementById('grid-vid');
-    let cImg = 0, cVid = 0;
-
-    IMAGENES.forEach(img => {
-      const ok = activas.includes(img.id);
-      if(ok) cImg++;
-      iGrid.innerHTML += `
-        <div class="item ${ok ? 'active' : ''}">
-          ${img.src ? `<img class="item-media" src="${img.src}">` : `<div class="item-media" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:10px;color:#333">PROXIMAMENTE</div>`}
-          <div class="item-overlay">
-            <div class="item-label">IMG-${img.id} ${ok ? '<span class="badge-new">LISTO</span>' : ''}</div>
-            ${ok ? `<a class="btn-action" href="${img.src}" download>DESCARGAR</a>` : `<div class="btn-action btn-locked">BLOQUEADO</div>`}
-          </div>
-        </div>`;
-    });
-
-    VIDEOS.forEach(vid => {
-      const ok = activas.includes(vid.id);
-      if(ok) cVid++;
-      vGrid.innerHTML += `
-        <div class="item ${ok ? 'active' : ''}">
-          ${vid.src ? `<video class="item-media" src="${vid.src}" muted playsinline></video>` : `<div class="item-media" style="background:#111;display:flex;align-items:center;justify-content:center;font-size:10px;color:#333">PROXIMAMENTE</div>`}
-          <div class="item-overlay">
-            <div class="item-label">VIDEO-${vid.id-12} ${ok ? '<span class="badge-new">LISTO</span>' : ''}</div>
-            ${ok ? `<a class="btn-action" href="${vid.src}" download>DESCARGAR</a>` : `<div class="btn-action btn-locked">BLOQUEADO</div>`}
-          </div>
-        </div>`;
-    });
-
-    document.getElementById('count-img').innerText = `(${cImg})`;
-    document.getElementById('count-vid').innerText = `(${cVid})`;
-  }
-
-  function toggle(id) {
-    document.getElementById(id).classList.toggle('is-open');
-  }
-
-  render();
-</script>
+                // 2. Cambiamos la UI para que parezca desbloqueado
+                const card = document.getElementById('ep' + num);
+                card.classList.add('unlocked');
+                card.querySelector('.unlock-btn').innerText = 'REPRODUCIENDO...';
+                card.querySelector('.lock-icon').innerText = '🎬';
+                card.querySelector('.ep-desc').innerText = '¡Que disfrutes tu comida y el video!';
+                
+                // 3. Actualizamos el contador visual
+                document.getElementById('creditos').innerText = "PASE ACTIVO: 2/4";
+                document.getElementById('creditos').style.background = "#ff2d78";
+                document.getElementById('creditos').style.color = "white";
+            }
+        }
+    </script>
 </body>
 </html>
