@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Story2Action Reel</title>
+<title>Story2Action Reel - Video Ajustado</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +12,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #000;
+    background: #000; /* Fondo negro global */
   }
 
   .scene {
@@ -99,16 +99,22 @@
   .intro-tagline.vis { color: rgba(255,255,255,0.65); }
   .intro-tagline span { color: #ff2d78; }
 
-  /* STORY */
-  #story { background: #000; }
+  /* STORY - SECCIÓN MODIFICADA */
+  #story { 
+    background: #000; /* Fondo negro para rellenar el hueco superior */
+    overflow: hidden; /* Asegura que el video no se salga si lo movemos */
+  }
 
   #story video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    /* CAMBIO 1: object-fit cover para que llene y podamos moverlo */
+    object-fit: cover; 
     z-index: 1;
+    /* CAMBIO 2: Desplazamos el video hacia abajo un 10% de la altura */
+    transform: translateY(10%); 
   }
 
   .ig-top {
@@ -118,7 +124,8 @@
     right: 0;
     z-index: 10;
     padding: 1.5vh 4vw 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+    /* Gradiente ajustado para el fondo negro superior */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
   }
 
   .ig-progress-bar {
@@ -184,7 +191,7 @@
 
   .ig-sticker {
     position: absolute;
-    bottom: 7vh;
+    bottom: 12vh; /* Subido un poco para que no tape el texto inferior del video */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -388,7 +395,9 @@
 
     vid.play();
     vid.addEventListener('timeupdate', () => {
-      fill.style.width = Math.min((vid.currentTime/VIDEO_DURATION)*100, 100) + '%';
+      if (vid.duration) {
+         fill.style.width = Math.min((vid.currentTime/vid.duration)*100, 100) + '%';
+      }
     });
 
     setTimeout(() => vis('sticker'), 5000);
@@ -399,8 +408,10 @@
       runOutro();
     }
 
+
     vid.addEventListener('ended', goOutro);
-    setTimeout(goOutro, (VIDEO_DURATION + 0.5) * 1000);
+    // Backup por seguridad si el evento ended falla
+    setTimeout(goOutro, (VIDEO_DURATION + 1) * 1000);
   }
 
   function runOutro() {
