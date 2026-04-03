@@ -1,280 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Tu pack del mes — Story2Action</title>
-    <meta name="description" content="Tus 4 historias están listas. Descargá y publicá ahora.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu pack del mes — Story2Action</title>
+<meta name="description" content="Tus historias están listas. Descargá y publicá ahora.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
+<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
+<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
+<meta property="og:image:secure_url" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f6;
+    --gris-borde: #e2e2e8;
+    --negro: #111111;
+    --fucsia: #ff2d78;
+    --amarillo: #ffe600;
+    --texto: #222222;
+    --texto-suave: #888899;
+  }
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
-    <meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
-    
-    <meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-    <meta property="og:image:secure_url" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="600">
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
+  body {
+    background: var(--gris-claro);
+    color: var(--texto);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+  }
 
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  header {
+    background: var(--negro);
+    padding: 22px 24px 18px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--fucsia);
+  }
 
-    <style>
-      :root {
-        --blanco: #ffffff;
-        --gris-claro: #f4f4f6;
-        --gris-borde: #e2e2e8;
-        --negro: #111111;
-        --fucsia: #ff2d78;
-        --amarillo: #ffe600;
-        --texto: #222222;
-        --texto-suave: #888899;
-      }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: var(--blanco);
+  }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
+  .logo span { color: var(--fucsia); }
 
-      body {
-        background: var(--gris-claro);
-        color: var(--texto);
-        font-family: 'Nunito', sans-serif;
-        min-height: 100vh;
-      }
+  .tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
 
-      header {
-        background: var(--negro);
-        padding: 22px 24px 18px;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border-bottom: 3px solid var(--fucsia);
-      }
+  .hero {
+    background: var(--negro);
+    padding: 36px 24px 40px;
+    text-align: center;
+  }
 
-      .logo {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 36px;
-        letter-spacing: 4px;
-        color: var(--blanco);
-      }
+  .hero-badge {
+    display: inline-block;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
 
-      .logo span { color: var(--fucsia); }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1.0;
+    color: var(--blanco);
+  }
 
-      .tagline {
-        font-size: 11px;
-        color: rgba(255,255,255,0.4);
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-top: 2px;
-      }
+  .hero-title span { color: var(--amarillo); }
 
-      .hero {
-        background: var(--negro);
-        padding: 36px 24px 40px;
-        text-align: center;
-      }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
 
-      .hero-badge {
-        display: inline-block;
-        background: var(--fucsia);
-        color: var(--blanco);
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 14px;
-        letter-spacing: 3px;
-        padding: 5px 16px;
-        border-radius: 100px;
-        margin-bottom: 14px;
-      }
+  .card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 16px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
 
-      .hero-title {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 58px;
-        line-height: 1.0;
-        color: var(--blanco);
-        letter-spacing: 1px;
-      }
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--negro);
+    margin-bottom: 4px;
+  }
 
-      .hero-title span { color: var(--amarillo); }
+  .card-title .accent { color: var(--fucsia); }
+  .card-sub {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 20px;
+  }
 
-      .hero-sub {
-        font-size: 14px;
-        color: rgba(255,255,255,0.45);
-        margin-top: 12px;
-        line-height: 1.6;
-      }
+  /* GRID IMÁGENES */
+  .images-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
 
-      .card {
-        background: var(--blanco);
-        border-radius: 20px;
-        padding: 24px;
-        margin: 20px 16px;
-        border: 1px solid var(--gris-borde);
-        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      }
+  .item-card {
+    background: var(--gris-claro);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1.5px solid var(--gris-borde);
+  }
 
-      .card-title {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 26px;
-        letter-spacing: 2px;
-        color: var(--negro);
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
+  .item-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    display: block;
+  }
 
-      .card-title .accent { color: var(--fucsia); }
+  .item-placeholder {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: var(--gris-borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--texto-suave);
+    font-size: 11px;
+    text-transform: uppercase;
+  }
 
-      .card-sub {
-        font-size: 12px;
-        color: var(--texto-suave);
-        margin-bottom: 20px;
-        letter-spacing: 0.5px;
-      }
+  /* GRID VIDEOS */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
 
-      .images-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
+  .video-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    display: block;
+  }
 
-      .img-card {
-        background: var(--gris-claro);
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1.5px solid var(--gris-borde);
-      }
+  .item-info {
+    padding: 12px;
+  }
 
-      .img-thumb {
-        width: 100%;
-        aspect-ratio: 9/16;
-        object-fit: cover;
-        display: block;
-      }
+  .item-numero {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: var(--fucsia);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
 
-      .img-placeholder {
-        width: 100%;
-        aspect-ratio: 9/16;
-        background: var(--gris-borde);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 6px;
-        color: var(--texto-suave);
-        font-size: 11px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
+  .item-enlace {
+    font-size: 11px;
+    color: var(--negro);
+    font-weight: 900;
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
 
-      .img-info {
-        padding: 12px;
-      }
+  .btn-download {
+    display: block;
+    width: 100%;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
 
-      .img-numero {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 13px;
-        color: var(--fucsia);
-        letter-spacing: 2px;
-        margin-bottom: 5px;
-      }
+  .btn-locked {
+    display: block;
+    width: 100%;
+    background: var(--gris-borde);
+    color: var(--texto-suave);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: not-allowed;
+  }
 
-      .img-enlace {
-        font-size: 11px;
-        color: var(--negro);
-        font-weight: 900;
-        margin-bottom: 5px;
-        word-break: break-all;
-      }
+  /* PASOS */
+  .steps { display: flex; flex-direction: column; gap: 10px; }
 
-      .btn-download {
-        display: block;
-        width: 100%;
-        background: var(--fucsia);
-        color: var(--blanco);
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 17px;
-        letter-spacing: 1px;
-        text-align: center;
-        padding: 10px;
-        border-radius: 8px;
-        text-decoration: none;
-      }
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px;
+    background: var(--gris-claro);
+    border-radius: 12px;
+    border-left: 3px solid var(--fucsia);
+  }
 
-      .btn-disabled {
-        display: block;
-        width: 100%;
-        background: var(--gris-borde);
-        color: var(--texto-suave);
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 17px;
-        letter-spacing: 1px;
-        text-align: center;
-        padding: 10px;
-        border-radius: 8px;
-      }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: var(--fucsia);
+    line-height: 1;
+    min-width: 24px;
+  }
 
-      .steps {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+  .step-title { font-weight: 900; font-size: 14px; margin-bottom: 2px; }
+  .step-desc { font-size: 12px; color: var(--texto-suave); line-height: 1.5; }
 
-      .step {
-        display: flex;
-        gap: 14px;
-        align-items: flex-start;
-        padding: 14px;
-        background: var(--gris-claro);
-        border-radius: 12px;
-        border-left: 3px solid var(--fucsia);
-      }
+  /* FLUJO */
+  .flujo-aviso {
+    background: #fff8e1;
+    border: 1.5px solid var(--amarillo);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #665a00;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
 
-      .step-num {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 34px;
-        color: var(--fucsia);
-        line-height: 1;
-      }
+  .flujo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-      .flujo-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
+  .flujo-card {
+    background: var(--gris-claro);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    border: 1.5px solid var(--gris-borde);
+  }
 
-      .flujo-card {
-        background: var(--gris-claro);
-        border-radius: 12px;
-        padding: 16px 12px;
-        text-align: center;
-        border: 1.5px solid var(--gris-borde);
-      }
+  .flujo-dia {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--negro);
+  }
 
-      .btn-wa {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: #25d366;
-        color: var(--blanco);
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 22px;
-        letter-spacing: 1px;
-        padding: 16px 36px;
-        border-radius: 100px;
-        text-decoration: none;
-      }
+  .flujo-img { font-size: 11px; color: var(--texto-suave); margin-top: 2px; }
 
-      footer {
-        background: var(--negro);
-        padding: 20px;
-        text-align: center;
-        font-size: 12px;
-        color: rgba(255,255,255,0.25);
-      }
-    </style>
+  /* WA */
+  .wa-section { padding: 8px 16px 48px; text-align: center; }
+
+  .wa-card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 28px 24px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  .wa-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: var(--negro);
+    margin-bottom: 4px;
+  }
+
+  .wa-sub { font-size: 13px; color: var(--texto-suave); margin-bottom: 20px; }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366;
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+  }
+
+  footer {
+    background: var(--negro);
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  footer span { color: var(--fucsia); }
+</style>
 </head>
 <body>
 
@@ -285,74 +331,175 @@
 
 <div class="hero">
   <div class="hero-badge">PACK DEL MES</div>
-  <div class="hero-title">Tus <span>4 historias</span><br>están listas</div>
+  <div class="hero-title">Tus <span>historias</span><br>están listas</div>
   <div class="hero-sub">Descargá, publicá y convertí<br>tus seguidores en clientes.</div>
 </div>
 
+<!-- IMÁGENES -->
 <div class="card">
   <div class="card-title">📲 Tus <span class="accent">imágenes</span></div>
-  <div class="card-sub">Tocá "Descargar" en cada una y seguí los pasos de abajo</div>
-  <div class="images-grid">
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png" alt="Imagen 1">
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 01</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125183/Copilot_20260314_081306_e5nxdg.png" download>⬇ Descargar</a>
-      </div>
-    </div>
-    <div class="img-card">
-      <img class="img-thumb" src="https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" alt="Imagen 2">
-      <div class="img-info">
-        <div class="img-numero">IMAGEN 02</div>
-        <div class="img-enlace">tulocal.com/promo</div>
-        <a class="btn-download" href="https://res.cloudinary.com/ds2udm1nc/image/upload/fl_attachment/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png" download>⬇ Descargar</a>
-      </div>
-    </div>
-    <div class="img-card">
-        <div class="img-placeholder">🖼 Próximo</div>
-        <div class="img-info">
-          <div class="img-numero">IMAGEN 03</div>
-          <div class="btn-disabled">Próximamente</div>
-        </div>
-      </div>
-      <div class="img-card">
-        <div class="img-placeholder">🖼 Próximo</div>
-        <div class="img-info">
-          <div class="img-numero">IMAGEN 04</div>
-          <div class="btn-disabled">Próximamente</div>
-        </div>
-      </div>
-  </div>
+  <div class="card-sub">Solo podés descargar las que corresponden a tu pack</div>
+  <div class="images-grid" id="imagesGrid"></div>
 </div>
 
+<!-- VIDEOS -->
+<div class="card">
+  <div class="card-title">🎬 Tus <span class="accent">videos</span></div>
+  <div class="card-sub">Videos gancho listos para publicar</div>
+  <div class="videos-grid" id="videosGrid"></div>
+</div>
+
+<!-- CÓMO PUBLICAR -->
 <div class="card">
   <div class="card-title">✅ Cómo <span class="accent">publicar</span></div>
+  <div class="card-sub">5 pasos, menos de 2 minutos</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div>
-        <strong>Guardá la imagen</strong>
-        <p style="font-size: 12px; color: var(--texto-suave);">Tocá descargar y guardala en tu carrete.</p>
+        <div class="step-title">Guardá la imagen o video</div>
+        <div class="step-desc">Tocá "Descargar" y guardalo en tu celu.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <div>
-        <strong>Subí a Instagram</strong>
-        <p style="font-size: 12px; color: var(--texto-suave);">Seleccioná la imagen en tus stories.</p>
+        <div class="step-title">Abrí Instagram</div>
+        <div class="step-desc">Tocá el "+" de story y seleccioná el archivo.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Agregá el enlace</div>
+        <div class="step-desc">Tocá el sticker 🔗 y pegá el enlace que aparece debajo de tu imagen.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Escribí el texto del sticker</div>
+        <div class="step-desc">Ej: "Ver oferta 👆" o "Reservá acá 👆"</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <div class="step-title">¡Publicá! ✅</div>
+        <div class="step-desc">Tu historia ya está al aire.</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="wa-section" style="text-align: center; padding: 40px 20px;">
-    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 WhatsApp</a>
+<!-- FLUJO SEMANAL -->
+<div class="card">
+  <div class="card-title">📅 Ejemplo de <span class="accent">uso</span></div>
+  <div class="flujo-aviso">
+    <strong>Tu contenido es tuyo por 30 días.</strong> Publicalo cuando quieras — todos juntos, de a uno, o cuando tengas una promo especial.
+  </div>
+  <div class="flujo-grid">
+    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Lunes</div><div class="flujo-img">Imagen 1</div></div>
+    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Miércoles</div><div class="flujo-img">Imagen 2</div></div>
+    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Viernes</div><div class="flujo-img">Imagen 3</div></div>
+    <div class="flujo-card"><div>📅</div><div class="flujo-dia">Sábado</div><div class="flujo-img">Imagen 4</div></div>
+  </div>
 </div>
 
-<footer>
-  <span>Story2Action</span> · 2026
-</footer>
+<!-- WHATSAPP -->
+<div class="wa-section">
+  <div class="wa-card">
+    <div class="wa-titulo">¿Tenés dudas?</div>
+    <div class="wa-sub">Escribinos y te respondemos al toque</div>
+    <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 Escribir por WhatsApp</a>
+  </div>
+</div>
+
+<footer><span>Story2Action</span> · Todos los derechos reservados</footer>
+
+<script>
+  // ── DATOS DEL RUBRO ──
+  const IMAGENES = [
+    { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png", enlace: "tulocal.com/promo" },
+    { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png", enlace: "tulocal.com/promo" },
+    { id: 3, src: null, enlace: "tulocal.com/promo" },
+    { id: 4, src: null, enlace: "tulocal.com/promo" },
+    { id: 5, src: null, enlace: "tulocal.com/promo" },
+    { id: 6, src: null, enlace: "tulocal.com/promo" },
+    { id: 7, src: null, enlace: "tulocal.com/promo" },
+    { id: 8, src: null, enlace: "tulocal.com/promo" },
+    { id: 9, src: null, enlace: "tulocal.com/promo" },
+    { id: 10, src: null, enlace: "tulocal.com/promo" },
+    { id: 11, src: null, enlace: "tulocal.com/promo" },
+    { id: 12, src: null, enlace: "tulocal.com/promo" },
+  ];
+
+  const VIDEOS = [
+    { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4", enlace: "tulocal.com/promo" },
+    { id: 14, src: null, enlace: "tulocal.com/promo" },
+    { id: 15, src: null, enlace: "tulocal.com/promo" },
+    { id: 16, src: null, enlace: "tulocal.com/promo" },
+  ];
+
+  // ── LEER PARÁMETRO URL ──
+  const params = new URLSearchParams(window.location.search);
+  const activas = params.get('activas')
+    ? params.get('activas').split(',').map(Number)
+    : [];
+
+  // ── RENDER IMÁGENES ──
+  const imgGrid = document.getElementById('imagesGrid');
+  IMAGENES.forEach(img => {
+    const activa = activas.includes(img.id);
+    const card = document.createElement('div');
+    card.className = 'item-card';
+
+    const thumb = img.src
+      ? `<img class="item-thumb" src="${img.src}" alt="Imagen ${img.id}">`
+      : `<div class="item-placeholder">🖼<br>Próximo</div>`;
+
+    const btn = activa
+      ? `<a class="btn-download" href="${img.src}?fl_attachment=true" download>⬇ Descargar</a>`
+      : `<div class="btn-locked">🔒 No incluido</div>`;
+
+    card.innerHTML = `
+      ${thumb}
+      <div class="item-info">
+        <div class="item-numero">IMAGEN ${String(img.id).padStart(2,'0')}</div>
+        <div class="item-enlace">${img.enlace}</div>
+        ${btn}
+      </div>
+    `;
+    imgGrid.appendChild(card);
+  });
+
+  // ── RENDER VIDEOS ──
+  const vidGrid = document.getElementById('videosGrid');
+  VIDEOS.forEach(vid => {
+    const activa = activas.includes(vid.id);
+    const card = document.createElement('div');
+    card.className = 'item-card';
+
+    const thumb = vid.src
+      ? `<video class="video-thumb" src="${vid.src}" muted playsinline preload="metadata"></video>`
+      : `<div class="item-placeholder">🎬<br>Próximo</div>`;
+
+    const btn = activa
+      ? `<a class="btn-download" href="${vid.src}" download>⬇ Descargar</a>`
+      : `<div class="btn-locked">🔒 No incluido</div>`;
+
+    card.innerHTML = `
+      ${thumb}
+      <div class="item-info">
+        <div class="item-numero">VIDEO ${String(vid.id - 12).padStart(2,'0')}</div>
+        <div class="item-enlace">${vid.enlace}</div>
+        ${btn}
+      </div>
+    `;
+    vidGrid.appendChild(card);
+  });
+</script>
 
 </body>
-</html>
+    </html>
+          
