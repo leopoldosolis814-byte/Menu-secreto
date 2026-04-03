@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaFlix Dining - Box Series</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <title>InstaFlix | Streaming & Dining Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff2d78; /* Fucsia InstaFlix */
-            --bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --gold: #d4af37;
+            --primary: #5c2be2; /* Violeta tipo HBO/InstaFlix */
+            --accent: #00ffd5;
+            --bg: #000000;
+            --card-bg: #121212;
         }
 
         body {
@@ -18,174 +18,168 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: white;
-            padding-bottom: 50px;
+            overflow-x: hidden;
         }
 
         /* HEADER */
         header {
-            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            z-index: 1000;
             box-sizing: border-box;
         }
+        .brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; color: white; }
+        .brand span { color: var(--primary); }
+        .btn-suscribete { background: white; color: black; padding: 8px 16px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.8rem; }
 
-        .logo { font-weight: 900; color: var(--primary); letter-spacing: -1px; font-size: 1.2rem; }
-        .status { background: var(--gold); color: black; padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; }
-
-        /* HERO SECTION */
+        /* HERO BANNER */
         .hero {
-            height: 60vh;
-            background: linear-gradient(to top, var(--bg), transparent), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000'); /* Imagen Genérica */
+            height: 70vh;
+            background: linear-gradient(to top, var(--bg), transparent), url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1000');
             background-size: cover;
             background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-
-        .hero h1 { font-size: 2.5rem; margin: 0; text-transform: uppercase; }
-        .hero p { color: #ccc; font-size: 0.9rem; max-width: 300px; margin: 10px 0; }
-
-        /* LISTA DE EPISODIOS */
-        .episodes-container { padding: 20px; }
-        .section-title { font-size: 1.1rem; margin-bottom: 15px; color: #666; text-transform: uppercase; letter-spacing: 2px; }
-
-        .episode-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            display: flex;
-            position: relative;
-            border: 1px solid #333;
-        }
-
-        .episode-thumb {
-            width: 120px;
-            height: 80px;
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(1);
-            opacity: 0.5;
-        }
-
-        .episode-info {
-            padding: 10px;
-            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 0 5%;
+        }
+        .hero h2 { font-size: 3rem; margin: 0; line-height: 1; }
+        .hero p { max-width: 400px; color: #ccc; margin: 20px 0; }
+        .btn-play { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 4px; font-weight: 900; cursor: pointer; width: fit-content; }
+
+        /* SECCIONES DE COMERCIOS */
+        .section { padding: 40px 5%; }
+        .section-title { font-size: 1.2rem; margin-bottom: 20px; font-weight: 700; color: #eee; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
         }
 
-        .ep-title { font-weight: 900; font-size: 0.9rem; margin-bottom: 5px; }
-        .ep-desc { font-size: 0.7rem; color: #888; }
-
-        /* BOTÓN DE DESBLOQUEO */
-        .unlock-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: 900;
-            font-size: 0.7rem;
+        .commerce-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
             cursor: pointer;
-            margin-top: 10px;
-            width: fit-content;
+            border: 1px solid #222;
+            position: relative;
         }
+        .commerce-card:hover { transform: scale(1.05); border-color: var(--primary); }
+        
+        .poster { height: 220px; background-size: cover; background-position: center; }
+        .card-info { padding: 10px; }
+        .card-info h4 { margin: 0; font-size: 0.9rem; }
+        .card-info span { font-size: 0.7rem; color: var(--primary); font-weight: 700; }
 
-        /* ESTADO DESBLOQUEADO */
-        .episode-card.unlocked .episode-thumb { filter: grayscale(0); opacity: 1; }
-        .episode-card.unlocked { border-color: var(--primary); }
-        .episode-card.unlocked .unlock-btn { background: #333; }
-
-        /* ICONO CANDADO */
-        .lock-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2rem;
+        /* MODAL DE COMPRA (Simulado) */
+        #shop-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
+        .modal-content { max-width: 500px; margin: 50px auto; text-align: center; }
+        .box-option {
+            background: #222;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .box-option:hover { border-color: var(--accent); }
+        .box-option h3 { margin: 0; color: var(--accent); }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">INSTAFLIX Originals</div>
-        <div class="status" id="creditos">PASE ACTIVO: 3/4</div>
+        <div class="brand">INSTA<span>FLIX</span></div>
+        <a href="#" class="btn-suscribete">PARA COMERCIOS</a>
     </header>
 
     <div class="hero">
-        <h1>CÓDIGO 404</h1>
-        <p>Un maletín, una traición y el secreto mejor guardado de la ciudad.</p>
+        <span>ESTRENO DESTACADO</span>
+        <h2>EL CÓDIGO 404</h2>
+        <p>Una conspiración que nace en la cocina. Mirá el tráiler exclusivo ahora.</p>
+        <button class="btn-play">▶ REPRODUCIR TRÁILER</button>
     </div>
 
-    <div class="episodes-container">
-        <div class="section-title">Temporada 1</div>
-
-        <div class="episode-card unlocked">
-            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&q=80&w=200');"></div>
-            <div class="episode-info">
-                <div class="ep-title">Capítulo 1: El Remitente</div>
-                <div class="ep-desc">Visto hace 2 días.</div>
-                <button class="unlock-btn" onclick="alert('Reproduciendo Video...')">VER DE NUEVO</button>
+    <div class="section">
+        <div class="section-title">Burgers & Suspenso</div>
+        <div class="grid">
+            <div class="commerce-card" onclick="openShop('Burger King Pro', 'Terror en la Cocina')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=400');"></div>
+                <div class="card-info">
+                    <span>SERIE EXCLUSIVA</span>
+                    <h4>Burger King Pro</h4>
+                </div>
             </div>
-            <div class="lock-icon">✅</div>
-        </div>
-
-        <div id="ep2" class="episode-card">
-            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1502472545331-645bb8151302?auto=format&fit=crop&q=80&w=200');"></div>
-            <div class="episode-info">
-                <div class="ep-title">Capítulo 2: La Sombra</div>
-                <div class="ep-desc">Pedí tu burger para desbloquear.</div>
-                <button class="unlock-btn" onclick="activarPedido(2)">PEDIR BURGER Y VER</button>
+            <div class="commerce-card" onclick="openShop('The Garage Gomería', 'Ruta Sangrienta')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=400');"></div>
+                <div class="card-info">
+                    <span>ACCIÓN</span>
+                    <h4>The Garage Gomería</h4>
+                </div>
             </div>
-            <div class="lock-icon">🔒</div>
-        </div>
-
-        <div class="episode-card">
-            <div class="episode-thumb" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=200');"></div>
-            <div class="episode-info">
-                <div class="ep-title">Capítulo 3: Sin Salida</div>
-                <div class="ep-desc">Disponible tras completar el Cap 2.</div>
+            <div class="commerce-card" onclick="openShop('Pizza Noir', 'La Última Porción')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400');"></div>
+                <div class="card-info">
+                    <span>MISTERIO</span>
+                    <h4>Pizza Noir</h4>
+                </div>
             </div>
-            <div class="lock-icon">🔒</div>
+            <div class="commerce-card" onclick="openShop('Coffee & Crime', 'Sin Cafeína')">
+                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400');"></div>
+                <div class="card-info">
+                    <span>DRAMA</span>
+                    <h4>Coffee & Crime</h4>
+                </div>
+            </div>
         </div>
+    </div>
 
+    <div id="shop-modal">
+        <div class="modal-content">
+            <button onclick="closeShop()" style="background:none; color:white; border:none; float:right; font-size:2rem;">&times;</button>
+            <h2 id="modal-name">Nombre del Local</h2>
+            <p>Elegí tu Box para suscribirte y ver la serie:</p>
+            
+            <div class="box-option" onclick="alert('Pedido enviado al local! Acceso a Cap 1 habilitado.')">
+                <h3>BOX INDIVIDUAL</h3>
+                <p>1 Combo + Capítulo 1</p>
+                <span style="font-weight:900">$ 4.500</span>
+            </div>
+
+            <div class="box-option" onclick="alert('Pedido enviado! Temporada completa habilitada.')">
+                <h3>BOX FILM (4 Combos)</h3>
+                <p>4 Combos + Miniserie Completa</p>
+                <span style="font-weight:900; color:var(--accent)">$ 15.000 (OFERTA)</span>
+            </div>
+        </div>
     </div>
 
     <script>
-        function activarPedido(num) {
-            // 1. Simulación de envío de WhatsApp al comercio
-            const confirmar = confirm("¿Querés activar tu capítulo y enviar el pedido de tu hamburguesa a la cocina?");
-            
-            if(confirmar) {
-                // Simulamos el link de WhatsApp
-                const numeroComercio = "+549123456789";
-                const msj = `Hola! Soy el cliente 001. Activo mi CRÉDITO ${num} del Box Cinema. ¡A la cocina!`;
-                
-                // Abrimos WhatsApp (En una pestaña nueva)
-                window.open(`https://wa.me/${numeroComercio}?text=${encodeURIComponent(msj)}`, '_blank');
-
-                // 2. Cambiamos la UI para que parezca desbloqueado
-                const card = document.getElementById('ep' + num);
-                card.classList.add('unlocked');
-                card.querySelector('.unlock-btn').innerText = 'REPRODUCIENDO...';
-                card.querySelector('.lock-icon').innerText = '🎬';
-                card.querySelector('.ep-desc').innerText = '¡Que disfrutes tu comida y el video!';
-                
-                // 3. Actualizamos el contador visual
-                document.getElementById('creditos').innerText = "PASE ACTIVO: 2/4";
-                document.getElementById('creditos').style.background = "#ff2d78";
-                document.getElementById('creditos').style.color = "white";
-            }
+        function openShop(name, serie) {
+            document.getElementById('shop-modal').style.display = 'block';
+            document.getElementById('modal-name').innerText = name + " - " + serie;
+        }
+        function closeShop() {
+            document.getElementById('shop-modal').style.display = 'none';
         }
     </script>
+
 </body>
-</html>
+                    </html>
