@@ -3,183 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaFlix | Streaming & Dining Marketplace</title>
+    <title>InstaFlix | Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5c2be2; /* Violeta tipo HBO/InstaFlix */
-            --accent: #00ffd5;
-            --bg: #000000;
-            --card-bg: #121212;
+            --primary: #5c2be2;
+            --bg: #050505;
+            --card-bg: #111;
+            --text: #ffffff;
         }
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            color: white;
-            overflow-x: hidden;
+            color: var(--text);
+            padding-bottom: 100px;
         }
 
         /* HEADER */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-            z-index: 1000;
-            box-sizing: border-box;
+            border-bottom: 1px solid #222;
         }
-        .brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; color: white; }
-        .brand span { color: var(--primary); }
-        .btn-suscribete { background: white; color: black; padding: 8px 16px; border-radius: 4px; font-weight: 700; text-decoration: none; font-size: 0.8rem; }
+        .brand { font-weight: 900; font-size: 1.8rem; color: var(--primary); }
+        .brand span { color: white; }
 
-        /* HERO BANNER */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(to top, var(--bg), transparent), url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1000');
-            background-size: cover;
-            background-position: center;
+        /* SECCIÓN MARKETPLACE (HOME) */
+        .container { padding: 20px 5%; }
+        .section-title { font-size: 1.4rem; margin-bottom: 25px; font-weight: 700; }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .brand-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            aspect-ratio: 1 / 1;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 0 5%;
-        }
-        .hero h2 { font-size: 3rem; margin: 0; line-height: 1; }
-        .hero p { max-width: 400px; color: #ccc; margin: 20px 0; }
-        .btn-play { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 4px; font-weight: 900; cursor: pointer; width: fit-content; }
-
-        /* SECCIONES DE COMERCIOS */
-        .section { padding: 40px 5%; }
-        .section-title { font-size: 1.2rem; margin-bottom: 20px; font-weight: 700; color: #eee; }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        .commerce-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s;
             cursor: pointer;
-            border: 1px solid #222;
-            position: relative;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-align: center;
+            padding: 10px;
         }
-        .commerce-card:hover { transform: scale(1.05); border-color: var(--primary); }
-        
-        .poster { height: 220px; background-size: cover; background-position: center; }
-        .card-info { padding: 10px; }
-        .card-info h4 { margin: 0; font-size: 0.9rem; }
-        .card-info span { font-size: 0.7rem; color: var(--primary); font-weight: 700; }
+        .brand-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .brand-logo { width: 70px; height: 70px; background: #333; border-radius: 50%; margin-bottom: 15px; display:flex; align-items:center; justify-content:center; font-size: 1.5rem; }
+        .brand-name { font-weight: 700; font-size: 0.9rem; }
+        .brand-genre { font-size: 0.7rem; color: #666; margin-top: 5px; }
 
-        /* MODAL DE COMPRA (Simulado) */
-        #shop-modal {
+        /* VISTA DEL COMERCIO (HIDDEN BY DEFAULT) */
+        #commerce-view {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            padding: 20px;
-            box-sizing: border-box;
+            background: var(--bg);
+            z-index: 1000;
             overflow-y: auto;
         }
-        .modal-content { max-width: 500px; margin: 50px auto; text-align: center; }
-        .box-option {
-            background: #222;
+
+        .back-btn { padding: 20px 5%; cursor: pointer; color: var(--primary); font-weight: 700; }
+        
+        .box-container { padding: 0 5%; }
+        .box-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            margin-bottom: 20px;
             padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            cursor: pointer;
+            border: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .box-option:hover { border-color: var(--accent); }
-        .box-option h3 { margin: 0; color: var(--accent); }
+        .box-info h3 { margin: 0; color: #fff; font-size: 1.2rem; }
+        .box-info p { margin: 10px 0; color: #888; font-size: 0.9rem; }
+        .box-price { font-size: 1.5rem; font-weight: 900; color: #00ffd5; }
+        .btn-comprar {
+            background: var(--primary);
+            color: white; border: none;
+            padding: 10px 20px; border-radius: 8px;
+            font-weight: 700; cursor: pointer;
+        }
+
+        .badge-serie {
+            background: rgba(92, 43, 226, 0.2);
+            color: var(--primary);
+            padding: 4px 8px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 900;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="brand">INSTA<span>FLIX</span></div>
-        <a href="#" class="btn-suscribete">PARA COMERCIOS</a>
+        <div style="font-size: 0.8rem; border: 1px solid #444; padding: 5px 10px; border-radius: 5px;">📍 Corrientes</div>
     </header>
 
-    <div class="hero">
-        <span>ESTRENO DESTACADO</span>
-        <h2>EL CÓDIGO 404</h2>
-        <p>Una conspiración que nace en la cocina. Mirá el tráiler exclusivo ahora.</p>
-        <button class="btn-play">▶ REPRODUCIR TRÁILER</button>
-    </div>
+    <div class="container" id="home-view">
+        <div class="section-title">Comercios con Estrenos</div>
+        
+        <div class="market-grid">
+            <div class="brand-card" onclick="verComercio('Burger Land', 'Terror en la Cocina', '4 Burgers + Papas + Bebida')">
+                <div class="brand-logo">🍔</div>
+                <div class="brand-name">Burger Land</div>
+                <div class="brand-genre">SUSPENSO</div>
+            </div>
 
-    <div class="section">
-        <div class="section-title">Burgers & Suspenso</div>
-        <div class="grid">
-            <div class="commerce-card" onclick="openShop('Burger King Pro', 'Terror en la Cocina')">
-                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=400');"></div>
-                <div class="card-info">
-                    <span>SERIE EXCLUSIVA</span>
-                    <h4>Burger King Pro</h4>
-                </div>
+            <div class="brand-card" onclick="verComercio('Pizza Noir', 'La Última Porción', '2 Pizzas Gigantes + 1 Litro')">
+                <div class="brand-logo">🍕</div>
+                <div class="brand-name">Pizza Noir</div>
+                <div class="brand-genre">MISTERIO</div>
             </div>
-            <div class="commerce-card" onclick="openShop('The Garage Gomería', 'Ruta Sangrienta')">
-                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=400');"></div>
-                <div class="card-info">
-                    <span>ACCIÓN</span>
-                    <h4>The Garage Gomería</h4>
-                </div>
+
+            <div class="brand-card" onclick="verComercio('Sushi Ghost', 'Venganza en el Roll', '30 Piezas Premium')">
+                <div class="brand-logo">🍣</div>
+                <div class="brand-name">Sushi Ghost</div>
+                <div class="brand-genre">ACCIÓN</div>
             </div>
-            <div class="commerce-card" onclick="openShop('Pizza Noir', 'La Última Porción')">
-                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400');"></div>
-                <div class="card-info">
-                    <span>MISTERIO</span>
-                    <h4>Pizza Noir</h4>
-                </div>
-            </div>
-            <div class="commerce-card" onclick="openShop('Coffee & Crime', 'Sin Cafeína')">
-                <div class="poster" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400');"></div>
-                <div class="card-info">
-                    <span>DRAMA</span>
-                    <h4>Coffee & Crime</h4>
-                </div>
+
+            <div class="brand-card" onclick="verComercio('The Garage Gomería', 'Ruta Sangrienta', 'Revisión + Alineación')">
+                <div class="brand-logo">🔧</div>
+                <div class="brand-name">The Garage</div>
+                <div class="brand-genre">POLICIAL</div>
             </div>
         </div>
     </div>
 
-    <div id="shop-modal">
-        <div class="modal-content">
-            <button onclick="closeShop()" style="background:none; color:white; border:none; float:right; font-size:2rem;">&times;</button>
-            <h2 id="modal-name">Nombre del Local</h2>
-            <p>Elegí tu Box para suscribirte y ver la serie:</p>
-            
-            <div class="box-option" onclick="alert('Pedido enviado al local! Acceso a Cap 1 habilitado.')">
-                <h3>BOX INDIVIDUAL</h3>
-                <p>1 Combo + Capítulo 1</p>
-                <span style="font-weight:900">$ 4.500</span>
+    <div id="commerce-view">
+        <div class="back-btn" onclick="cerrarComercio()">← Volver al Marketplace</div>
+        
+        <div class="container">
+            <h1 id="view-title" style="margin-bottom: 5px;">Nombre Local</h1>
+            <p id="view-serie" style="color: var(--primary); font-weight: 900; margin-bottom: 30px;">Serie: Nombre Serie</p>
+
+            <div class="section-title">Elegí tu Box Series</div>
+
+            <div class="box-card">
+                <div class="box-info">
+                    <span class="badge-serie">INCLUYE ACCESO A MINISERIE</span>
+                    <h3 id="view-combo">4 Burgers + Papas + Bebida</h3>
+                    <p>Comé mientras descubrís el misterio. 4 capítulos habilitados.</p>
+                    <div class="box-price">$12.500</div>
+                </div>
+                <button class="btn-comprar" onclick="realizarPedido()">COMPRAR BOX</button>
             </div>
 
-            <div class="box-option" onclick="alert('Pedido enviado! Temporada completa habilitada.')">
-                <h3>BOX FILM (4 Combos)</h3>
-                <p>4 Combos + Miniserie Completa</p>
-                <span style="font-weight:900; color:var(--accent)">$ 15.000 (OFERTA)</span>
+            <div class="box-card">
+                <div class="box-info">
+                    <span class="badge-serie">INCLUYE CAPÍTULO 1</span>
+                    <h3>Box Individual Premiere</h3>
+                    <p>1 Hamburguesa simple + Papas + Capítulo 1.</p>
+                    <div class="box-price">$4.800</div>
+                </div>
+                <button class="btn-comprar" onclick="realizarPedido()">COMPRAR BOX</button>
             </div>
         </div>
     </div>
 
     <script>
-        function openShop(name, serie) {
-            document.getElementById('shop-modal').style.display = 'block';
-            document.getElementById('modal-name').innerText = name + " - " + serie;
+        function verComercio(nombre, serie, combo) {
+            document.getElementById('view-title').innerText = nombre;
+            document.getElementById('view-serie').innerText = "SERIE EXCLUSIVA: " + serie;
+            document.getElementById('view-combo').innerText = combo;
+            document.getElementById('commerce-view').style.display = 'block';
+            window.scrollTo(0,0);
         }
-        function closeShop() {
-            document.getElementById('shop-modal').style.display = 'none';
+
+        function cerrarComercio() {
+            document.getElementById('commerce-view').style.display = 'none';
+        }
+
+        function realizarPedido() {
+            const local = document.getElementById('view-title').innerText;
+            const msj = `Hola ${local}! Quiero comprar el Box de InstaFlix para activar la serie.`;
+            window.open(`https://wa.me/549123456789?text=${encodeURIComponent(msj)}`);
         }
     </script>
-
 </body>
-                    </html>
+</html>
