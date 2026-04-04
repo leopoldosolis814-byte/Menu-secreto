@@ -4,30 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S2A Studio — Hamburguesería</title>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
-<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
-<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-<meta property="og:image:secure_url" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="600">
-<meta property="og:image:height" content="600">
-<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000000;
-    --bg2: #0e0e1a;
+    --bg2: #0a0a12;
     --fucsia: #ff2d78;
     --amarillo: #ffe600;
     --blanco: #ffffff;
     --gris: #666680;
-    --gris2: #222230;
+    --gris2: #1a1a2e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--blanco);
@@ -36,13 +25,12 @@
     padding-bottom: 80px;
   }
 
-  /* ── HEADER ── */
   header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(12px);
     padding: 16px 24px;
     display: flex;
     align-items: center;
@@ -50,349 +38,186 @@
     border-bottom: 1px solid rgba(255,45,120,0.2);
   }
 
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 3px;
-  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; }
   .logo em { color: var(--fucsia); font-style: normal; }
 
-  .rubro-tag {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--fucsia);
-  }
-
-  /* ── HERO ── */
   .hero {
-    position: relative;
-    padding: 72px 28px 64px;
+    padding: 60px 24px;
     text-align: center;
-    overflow: hidden;
-    background: radial-gradient(circle at top, rgba(255,45,120,0.1) 0%, transparent 70%);
-  }
-
-  .hero-eyebrow {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px;
-    letter-spacing: 8px;
-    color: var(--fucsia);
-    margin-bottom: 15px;
+    background: radial-gradient(circle at center, rgba(255,45,120,0.1) 0%, transparent 70%);
   }
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 58px;
-    line-height: 0.95;
-    margin-bottom: 20px;
+    font-size: 50px;
+    line-height: 1;
+    margin-bottom: 15px;
   }
   .hero-title span { color: var(--amarillo); }
 
-  .hero-line {
-    width: 50px;
-    height: 3px;
-    background: var(--fucsia);
-    margin: 0 auto 20px;
-    border-radius: 2px;
-    box-shadow: 0 0 15px var(--fucsia);
-  }
-
-  .hero-sub {
-    font-size: 13px;
-    color: var(--gris);
-    line-height: 1.7;
-  }
-
-  /* ── SECCIONES ── */
   .section { border-top: 1px solid rgba(255,255,255,0.05); }
 
   .section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 24px;
+    padding: 20px 24px;
     cursor: pointer;
   }
 
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 2px;
-  }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
   .section-title em { color: var(--fucsia); font-style: normal; }
 
-  .section-count {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--gris);
-  }
-  .section-count.has-active { color: var(--amarillo); font-weight: 900; }
-
-  .chevron {
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--gris2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--fucsia);
-    transition: transform 0.3s ease;
-  }
-  .section.open .chevron { transform: rotate(180deg); border-color: var(--fucsia); }
-
-  .section-body {
-    display: none;
-    padding: 0 16px 28px;
-    animation: fadeIn 0.3s ease;
-  }
-  .section.open .section-body { display: block; }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  /* ── GRID ── */
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px 24px; }
 
   .item {
     background: var(--bg2);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.05);
   }
-  .item.activa { border-color: rgba(255,45,120,0.4); }
+  .item.activa { border-color: rgba(255,45,120,0.4); box-shadow: 0 4px 20px rgba(255,45,120,0.1); }
 
-  .thumb-wrap {
-    position: relative;
-    aspect-ratio: 9/16;
-    background: #050505;
-  }
-
+  .thumb-wrap { position: relative; aspect-ratio: 9/16; background: #000; }
   .thumb { width: 100%; height: 100%; object-fit: cover; }
 
-  .thumb-ph {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #222;
-  }
-  .thumb-ph span { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 5px; }
-
-  .thumb-num {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: rgba(0,0,0,0.8);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 10px;
-    color: var(--gris);
-    padding: 2px 6px;
-    border-radius: 2px;
-  }
-
   .lock-layer {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    backdrop-filter: blur(2px);
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    backdrop-filter: blur(3px);
   }
-  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; color: var(--fucsia); letter-spacing: 2px; margin-top: 5px; }
 
   .item-foot { padding: 12px; }
-
-  .item-link {
-    font-size: 9px;
-    color: var(--amarillo);
-    margin-bottom: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 700;
-  }
+  
+  .link-label { font-size: 8px; color: var(--gris); text-transform: uppercase; margin-bottom: 4px; letter-spacing: 1px; }
 
   .btn-copy {
-    display: block;
     width: 100%;
-    background: transparent;
-    color: var(--gris);
+    background: var(--gris2);
+    color: var(--blanco);
+    border: 1px solid rgba(255,255,255,0.1);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px;
     padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--gris2);
+    border-radius: 6px;
     cursor: pointer;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-size: 11px;
   }
-  .btn-copy.copied { border-color: var(--fucsia); color: var(--fucsia); }
+  .btn-copy.copied { background: var(--fucsia); border-color: var(--fucsia); }
 
   .btn-dl {
-    display: block;
-    width: 100%;
+    display: block; width: 100%;
     background: var(--fucsia);
-    color: var(--blanco);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 4px;
-    text-decoration: none;
-  }
-
-  /* ── PASOS ── */
-  .step { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .step-n { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--fucsia); opacity: 0.6; }
-  .step-t { font-weight: 900; font-size: 13px; }
-  .step-d { font-size: 11px; color: var(--gris); }
-
-  /* ── WA ── */
-  .wa-wrap {
-    margin: 30px 24px;
-    padding: 30px;
-    background: var(--bg2);
-    border: 1px solid rgba(255,45,120,0.2);
-    border-radius: 12px;
-    text-align: center;
-  }
-  .btn-wa {
-    background: #25d366;
     color: #fff;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    padding: 12px 30px;
-    border-radius: 50px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
     text-decoration: none;
-    display: inline-block;
-    margin-top: 15px;
+    font-size: 14px;
   }
 
-  footer { text-align: center; padding: 40px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: #333; letter-spacing: 3px; }
+  .wa-wrap { margin: 20px 16px; padding: 25px; background: var(--bg2); border-radius: 15px; text-align: center; border: 1px solid #25d36633; }
+  .btn-wa { background: #25d366; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-family: 'Bebas Neue'; display: inline-block; margin-top: 10px; }
+
+  footer { text-align: center; padding: 30px; font-family: 'Bebas Neue'; color: #333; letter-spacing: 2px; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">STORY<em>2</em>ACTION</div>
-  <div class="rubro-tag">HAMBURGUESERÍA</div>
+  <div class="rubro-tag" style="font-family:'Bebas Neue'; color:var(--fucsia); font-size:12px;">HAMBURGUESERÍA</div>
 </header>
 
 <div class="hero">
-  <div class="hero-eyebrow">ACCESO EXCLUSIVO · PACK DEL MES</div>
-  <div class="hero-title">TU CONTENIDO<br><span>ESTÁ LISTO</span></div>
-  <div class="hero-line"></div>
-  <div class="hero-sub">Descargá, publicá y convertí cada historia en una venta.</div>
+  <div class="hero-title">PACK DEL MES<br><span>LISTO</span></div>
+  <p style="color:var(--gris); font-size:13px;">Contenido estratégico para vender más hoy.</p>
 </div>
 
 <div class="section" id="s-img">
   <div class="section-header" onclick="tog('s-img')">
-    <div class="section-left">
-      <div class="section-title">IMÁGENES <em>GANCHO</em></div>
-      <div class="section-count" id="cnt-img">TOCÁ PARA VER</div>
-    </div>
-    <div class="chevron">▼</div>
+    <div class="section-title">IMÁGENES <em>GANCHO</em></div>
+    <div id="cnt-img" style="font-size:10px; color:var(--gris)">TOCÁ PARA VER</div>
   </div>
-  <div class="section-body"><div class="content-grid" id="gImg"></div></div>
+  <div class="content-grid" id="gImg"></div>
 </div>
 
 <div class="section" id="s-vid">
   <div class="section-header" onclick="tog('s-vid')">
-    <div class="section-left">
-      <div class="section-title">VIDEOS <em>GANCHO</em></div>
-      <div class="section-count" id="cnt-vid">TOCÁ PARA VER</div>
-    </div>
-    <div class="chevron">▼</div>
+    <div class="section-title">VIDEOS <em>GANCHO</em></div>
+    <div id="cnt-vid" style="font-size:10px; color:var(--gris)">TOCÁ PARA VER</div>
   </div>
-  <div class="section-body"><div class="content-grid" id="gVid"></div></div>
-</div>
-
-<div class="section" id="s-pasos">
-  <div class="section-header" onclick="tog('s-pasos')">
-    <div class="section-left"><div class="section-title">CÓMO <em>PUBLICAR</em></div><div class="section-count">5 PASOS RÁPIDOS</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="steps">
-      <div class="step"><div class="step-n">1</div><div><div class="step-t">Descargá el archivo</div><div class="step-d">Tocá el botón y guardalo en tu celu.</div></div></div>
-      <div class="step"><div class="step-n">2</div><div><div class="step-t">Abrí Instagram</div><div class="step-d">Seleccioná el archivo en tus stories.</div></div></div>
-      <div class="step"><div class="step-n">3</div><div><div class="step-t">Agregá el enlace</div><div class="step-d">Usá el sticker de enlace y pegá el link copiado.</div></div></div>
-    </div>
-  </div>
+  <div class="content-grid" id="gVid"></div>
 </div>
 
 <div class="wa-wrap">
-  <div class="wa-title" style="font-family:'Bebas Neue'; font-size:24px;">¿TENÉS DUDAS?</div>
-  <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 WHATSAPP</a>
+  <div style="font-family:'Bebas Neue'; font-size:20px;">¿NECESITÁS AYUDA?</div>
+  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 HABLAR CON SOPORTE</a>
 </div>
 
-<footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
+<footer>STORY<em>2</em>ACTION · 2026</footer>
 
 <script>
+  // CONFIGURACIÓN DE ENLACES:
+  // Cambiá "tulocal.com/promo" por el link de WhatsApp o Menú de tu cliente.
   const IMGS = [
-    { id:1,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"tulocal.com/promo" },
-    { id:2,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"tulocal.com/promo" },
-    { id:3,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"tulocal.com/promo" },
-    { id:4,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"tulocal.com/promo" },
-    { id:5,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071451_przxv4.png", link:"tulocal.com/promo" },
-    { id:6,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071211_qm7jab.png", link:"tulocal.com/promo" },
-    { id:7,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263717/Gemini_Generated_Image_ogy5k5ogy5k5ogy5_aycznb.png", link:"tulocal.com/promo" },
-    { id:8,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Gemini_Generated_Image_ducsgqducsgqducs_es4g86.png", link:"tulocal.com/promo" },
-    { id:9,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Copilot_20260314_065249_x97xrh.png", link:"tulocal.com/promo" },
-    { id:10, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264237/Copilot_20260403_215554_do60bt.png", link:"tulocal.com/promo" },
-    { id:11, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264267/Gemini_Generated_Image_ducsgqducsgqducs_tshxtu.png", link:"tulocal.com/promo" },
-    { id:12, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264370/Copilot_20260314_081306_boln31.png", link:"tulocal.com/promo" },
+    { id:1,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"https://wa.me/tu-link-aqui" },
+    { id:2,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"https://wa.me/tu-link-aqui" },
+    { id:3,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"https://wa.me/tu-link-aqui" },
+    { id:4,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"https://wa.me/tu-link-aqui" },
+    { id:5,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071451_przxv4.png", link:"https://wa.me/tu-link-aqui" },
+    { id:6,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071211_qm7jab.png", link:"https://wa.me/tu-link-aqui" },
+    { id:7,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263717/Gemini_Generated_Image_ogy5k5ogy5k5ogy5_aycznb.png", link:"https://wa.me/tu-link-aqui" },
+    { id:8,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Gemini_Generated_Image_ducsgqducsgqducs_es4g86.png", link:"https://wa.me/tu-link-aqui" },
+    { id:9,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Copilot_20260314_065249_x97xrh.png", link:"https://wa.me/tu-link-aqui" },
+    { id:10, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264237/Copilot_20260403_215554_do60bt.png", link:"https://wa.me/tu-link-aqui" },
+    { id:11, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264267/Gemini_Generated_Image_ducsgqducsgqducs_tshxtu.png", link:"https://wa.me/tu-link-aqui" },
+    { id:12, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264370/Copilot_20260314_081306_boln31.png", link:"https://wa.me/tu-link-aqui" },
   ];
 
   const VIDS = [
-    { id:13, src:null, link:"tulocal.com/promo" },
-    { id:14, src:null, link:"tulocal.com/promo" },
-    { id:15, src:null, link:"tulocal.com/promo" },
-    { id:16, src:null, link:"tulocal.com/promo" },
+    { id:13, src:null, link:"https://wa.me/tu-link-aqui" },
+    { id:14, src:null, link:"https://wa.me/tu-link-aqui" },
+    { id:15, src:null, link:"https://wa.me/tu-link-aqui" },
+    { id:16, src:null, link:"https://wa.me/tu-link-aqui" },
   ];
 
-  const activas = new Set((new URLSearchParams(window.location.search).get('activas') || '').split(',').map(Number).filter(Boolean));
+  const activas = new Set((new URLSearchParams(window.location.search).get('activas') || '').split(',').map(Number));
 
   function makeItem(it, isVid) {
     const on = activas.has(it.id);
-    const num = isVid ? it.id - 12 : it.id;
-    const label = (isVid ? 'VID' : 'IMG') + ' ' + String(num).padStart(2,'0');
-    const media = it.src ? (isVid ? `<video class="thumb" src="${it.src}" muted playsinline></video>` : `<img class="thumb" src="${it.src}">`) : `<div class="thumb-ph"><span>PRÓXIMO</span></div>`;
-    const lock = !on ? `<div class="lock-layer"><div class="lock-label">NO INCLUIDO</div></div>` : '';
-    const btn = on && it.src ? `<a class="btn-dl" href="${it.src}?fl_attachment=true" download>DESCARGAR</a>` : '';
-    const copyBtn = `<button class="btn-copy" onclick="copyLink(this, '${it.link}')">📋 COPIAR ENLACE</button>`;
-
-    return `<div class="item${on?' activa':''}">
-      <div class="thumb-wrap">${media}<div class="thumb-num">${label}</div>${lock}</div>
-      <div class="item-foot"><div class="item-link">🔗 ${it.link}</div>${copyBtn}${btn}</div>
-    </div>`;
+    const label = (isVid ? 'VIDEO ' : 'IMAGE ') + it.id;
+    const media = it.src ? (isVid ? `<video class="thumb" src="${it.src}" muted></video>` : `<img class="thumb" src="${it.src}">`) : `<div style="height:100%; display:flex; align-items:center; justify-content:center; color:#222; font-family:'Bebas Neue'">PRÓXIMAMENTE</div>`;
+    
+    return `
+      <div class="item ${on ? 'activa' : ''}">
+        <div class="thumb-wrap">
+          ${media}
+          ${!on ? '<div class="lock-layer"><span style="font-size:24px">🔒</span><span style="font-family:\'Bebas Neue\'; color:var(--fucsia); font-size:10px; margin-top:5px;">BLOQUEADO</span></div>' : ''}
+        </div>
+        <div class="item-foot">
+          ${on ? `<div class="link-label">Link para Sticker:</div><button class="btn-copy" onclick="copyLink(this, '${it.link}')">🔗 COPIAR ENLACE</button><a href="${it.src}" download class="btn-dl">DESCARGAR</a>` : `<div style="text-align:center; color:var(--gris); font-size:10px;">No disponible</div>`}
+        </div>
+      </div>`;
   }
 
   function render() {
-    const gI = document.getElementById('gImg');
-    const gV = document.getElementById('gVid');
-    let cI = 0, cV = 0;
-    IMGS.forEach(i => { if(activas.has(i.id)) cI++; gI.innerHTML += makeItem(i, false); });
-    VIDS.forEach(v => { if(activas.has(v.id)) cV++; gV.innerHTML += makeItem(v, true); });
-    if(cI > 0){ document.getElementById('cnt-img').textContent = cI + ' ACTIVAS · VER'; document.getElementById('cnt-img').classList.add('has-active'); }
-    if(cV > 0){ document.getElementById('cnt-vid').textContent = cV + ' ACTIVOS · VER'; document.getElementById('cnt-vid').classList.add('has-active'); }
+    IMGS.forEach(i => document.getElementById('gImg').innerHTML += makeItem(i, false));
+    VIDS.forEach(v => document.getElementById('gVid').innerHTML += makeItem(v, true));
   }
 
   function copyLink(btn, link) {
     navigator.clipboard.writeText(link).then(() => {
+      const old = btn.textContent;
       btn.textContent = '✅ COPIADO';
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = '📋 COPIAR ENLACE'; btn.classList.remove('copied'); }, 2000);
+      setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 2000);
     });
   }
 
-  function tog(id) { document.getElementById(id).classList.toggle('open'); }
+  function tog(id) { const el = document.getElementById(id); el.style.display = el.style.display === 'none' ? 'block' : 'none'; }
   render();
 </script>
 </body>
