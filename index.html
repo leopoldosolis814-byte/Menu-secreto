@@ -228,13 +228,16 @@
     const label = (isVid ? 'VID' : 'IMG') + ' ' + String(num).padStart(2,'0');
     const media = it.src ? (isVid ? `<video class="thumb" src="${it.src}" muted playsinline></video>` : `<img class="thumb" src="${it.src}" loading="lazy">`) : `<div class="thumb-ph">🖼<span>PRÓXIMO</span></div>`;
 
+    // CORRECCIÓN PARA DESCARGA: Agrega fl_attachment a la URL de Cloudinary
+    const dlLink = it.src ? it.src.replace('/upload/', '/upload/fl_attachment/') : '#';
+
     return `<div class="item${on?' activa':''}">
       <div class="thumb-wrap">${media}<div class="thumb-num">${label}</div>${!on?'<div class="lock-layer"><div class="lock-label">🔒 NO INCLUIDO</div></div>':''}</div>
       <div class="item-foot">
         <div class="item-link">🔗 ${it.link}</div>
         <div style="font-size:9px;letter-spacing:2px;color:var(--gris);margin-bottom:5px;text-transform:uppercase">Pegá este link en el sticker</div>
         <button class="btn-copy" onclick="copyLink(this, '${it.link}')">🔗 ENLACE DE TU LANDING</button>
-        ${on && it.src ? `<a class="btn-dl" href="${it.src}" download>DESCARGAR</a>` : ''}
+        ${on && it.src ? `<a class="btn-dl" href="${dlLink}" download>DESCARGAR</a>` : ''}
       </div>
     </div>`;
   }
@@ -262,4 +265,4 @@
   render();
 </script>
 </body>
-                                                        </html>
+</html>
