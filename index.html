@@ -1,250 +1,345 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSTAFLIX | Streaming & Dining Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #5c2be2; /* Violeta Premium */
-            --bg: #000000;
-            --card-bg: #121212;
-            --text: #ffffff;
-            --hbo-blue: #0012d2;
-            --cyan: #00ffd5;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu pack del mes — Story2Action</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f6;
+    --gris-borde: #e2e2e8;
+    --negro: #111111;
+    --fucsia: #ff2d78;
+    --amarillo: #ffe600;
+    --texto: #222222;
+    --texto-suave: #888899;
+  }
 
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            padding-bottom: 100px;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* HEADER PREMIUM */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            box-sizing: border-box;
-            border-bottom: 1px solid #222;
-        }
-        .brand { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; color: white; }
-        .brand span { color: var(--primary); font-weight: 100; }
-        .location { font-size: 0.8rem; border: 1px solid #444; padding: 5px 15px; border-radius: 20px; color: #aaa; }
+  body {
+    background: var(--gris-claro);
+    color: var(--texto);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
 
-        /* EL BLOQUE CENTRAL (RESTRICCIÓN DE ANCHO) */
-        .main-content {
-            margin-top: 80px; /* Espacio para el header */
-            max-width: 800px; /* ANCHO MÁXIMO DEL BLOQUE CENTRAL */
-            margin-left: auto; /* Centrado automático izquierdo */
-            margin-right: auto; /* Centrado automático derecho */
-            padding: 20px; /* Pequeño padding interno */
-            box-sizing: border-box;
-        }
+  header {
+    background: var(--negro);
+    padding: 22px 24px 18px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--fucsia);
+  }
 
-        /* BARRA DE CATEGORÍAS (CENTRADAS) */
-        .categories-bar {
-            padding: 15px 0;
-            display: flex;
-            gap: 15px;
-            justify-content: center; /* Centrar los ítems de categoría */
-            border-bottom: 1px solid #222;
-            margin-bottom: 30px;
-        }
-        .category-item {
-            background: #1a1a1a;
-            color: #ccc;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-        .category-item:hover { border-color: var(--primary); color: white; }
-        .category-item.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: var(--blanco);
+  }
 
-        /* LISTA DE COMERCIOS VERTICAL (BARRAS GRANDES) */
-        .section-title { font-size: 1.2rem; margin-bottom: 25px; font-weight: 400; color: #eee; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+  .logo span { color: var(--fucsia); }
 
-        .commerce-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 25px; /* Espacio entre barras */
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid #222;
-            display: flex; /* Para alinear imagen e info */
-            align-items: center;
-            text-decoration: none;
-            color: white;
-        }
-        .commerce-card:hover { transform: translateY(-5px); border-color: var(--primary); background: #1a1a1a; }
-        
-        .commerce-poster {
-            width: 250px; /* Ancho de la imagen grande en la barra */
-            height: 180px; /* Alto de la imagen */
-            background-size: cover;
-            background-position: center;
-            border-right: 1px solid #222;
-        }
+  .hero {
+    background: var(--negro);
+    padding: 36px 24px 40px;
+    text-align: center;
+  }
 
-        .commerce-info {
-            padding: 20px 30px;
-            flex: 1; /* Ocupa el espacio restante */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .commerce-info span.tag { font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .commerce-info h4 { margin: 10px 0; font-size: 1.3rem; font-weight: 900; }
-        .commerce-info p.genre { margin: 0; font-size: 0.8rem; color: #888; font-weight: 300; }
-        .commerce-meta { margin-top: 15px; font-size: 0.8rem; color: #666; display: flex; gap: 15px; }
-        .rating { color: var(--cyan); font-weight: 900; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
 
-        /* VISTA DETALLE COMERCIO (MARKETPLACE STYLE) */
-        #commerce-view {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            z-index: 2000;
-            overflow-y: auto;
-        }
-        .back-btn { padding: 20px 5%; cursor: pointer; color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .detail-content { max-width: 800px; margin: 0 auto; padding: 20px; }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1.0;
+    color: var(--blanco);
+  }
 
-        .commerce-header {
-            height: 30vh;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .commerce-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, #000 20%, transparent); border-radius: 8px; }
-        .commerce-header h1 { margin: 0; font-size: 2.5rem; position: relative; z-index: 10; font-weight: 900; }
-        
-        .box-card {
-            background: #111;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            padding: 20px;
-            border: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s;
-        }
-        .box-card:hover { border-color: var(--cyan); background: #1a1a1a; }
-        .box-info h3 { margin: 0; color: #fff; font-size: 1.1rem; }
-        .box-info p { margin: 5px 0 0 0; color: #888; font-size: 0.8rem; }
-        .btn-add { background: var(--cyan); color: black; border: none; padding: 8px 18px; border-radius: 4px; font-weight: 900; cursor: pointer; font-size: 0.7rem; text-transform: uppercase; }
-    </style>
+  .hero-title span { color: var(--amarillo); }
+
+  /* ESTILOS DE CARPETAS */
+  .card {
+    background: var(--blanco);
+    border-radius: 20px;
+    margin: 16px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .folder-header {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .folder-header:active { background: #fafafa; }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--negro);
+  }
+
+  .card-title .accent { color: var(--fucsia); }
+  
+  .card-sub {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-top: 4px;
+  }
+
+  .folder-icon {
+    font-size: 18px;
+    color: var(--fucsia);
+    transition: transform 0.3s ease;
+  }
+
+  .folder-content {
+    display: none;
+    padding: 0 20px 24px;
+    border-top: 1px dashed var(--gris-borde);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .card.is-open .folder-content { display: block; }
+  .card.is-open .folder-icon { transform: rotate(180deg); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* GRID CONTENIDO */
+  .images-grid, .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .item-card {
+    background: var(--gris-claro);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--gris-borde);
+  }
+
+  .item-thumb, .video-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    display: block;
+  }
+
+  .item-placeholder {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: #e9e9ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--texto-suave);
+    font-size: 10px;
+  }
+
+  .item-info { padding: 10px; }
+  .item-numero { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--fucsia); margin-bottom: 4px; }
+  .item-enlace { font-size: 10px; color: var(--texto-suave); margin-bottom: 8px; word-break: break-all; }
+
+  .btn-download {
+    display: block;
+    width: 100%;
+    background: var(--fucsia);
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  .btn-locked {
+    display: block;
+    width: 100%;
+    background: #d1d1d6;
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  /* OTROS */
+  .badge-count {
+    background: var(--amarillo);
+    color: var(--negro);
+    font-size: 11px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; padding: 20px; }
+  .step { display: flex; gap: 12px; padding: 12px; background: var(--gris-claro); border-radius: 12px; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--fucsia); }
+  .step-title { font-weight: 900; font-size: 13px; }
+  .step-desc { font-size: 11px; color: var(--texto-suave); }
+
+  footer { text-align: center; padding: 20px; font-size: 12px; color: var(--texto-suave); }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="brand">INSTA<span>FLIX</span></div>
-        <div class="location">📍 Corrientes</div>
-    </header>
+<header>
+  <div class="logo">Story<span>2</span>Action</div>
+</header>
 
-    <div class="main-content">
-        
-        <div class="categories-bar">
-            <div class="category-item active">Todo</div>
-            <div class="category-item">Burgers</div>
-            <div class="category-item">Pizzas</div>
-            <div class="category-item">Sushi</div>
-        </div>
+<div class="hero">
+  <div class="hero-badge">ACCESO EXCLUSIVO</div>
+  <div class="hero-title">Tus <span>historias</span><br>están listas</div>
+</div>
 
-        <div class="section-title">Estrenos en tu Mesa</div>
-        
-        <div id="home-view">
-            <a href="#" class="commerce-card" onclick="verComercio('Burger Noir', 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=400')">
-                <div class="commerce-poster" style="background-image: url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=400');"></div>
-                <div class="commerce-info">
-                    <span class="tag">SERIE EXCLUSIVA</span>
-                    <h4>Burger Noir</h4>
-                    <p class="genre">SUSPENSO • "CÓDIGO 404"</p>
-                    <div class="commerce-meta">
-                        <span class="rating">⭐ 4.9</span>
-                        <span>25-40 min</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="commerce-card" onclick="verComercio('Pizza Noir', 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=400')">
-                <div class="commerce-poster" style="background-image: url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=400');"></div>
-                <div class="commerce-info">
-                    <span class="tag">MISTERIO</span>
-                    <h4>Pizza Noir</h4>
-                    <p class="genre">COMEDIA NEGRA • "LA ÚLTIMA CENA"</p>
-                    <div class="commerce-meta">
-                        <span class="rating">⭐ 4.7</span>
-                        <span>15-30 min</span>
-                    </div>
-                </div>
-            </a>
-        </div>
+<div class="card" id="card-images">
+  <div class="folder-header" onclick="toggleFolder('card-images')">
+    <div>
+      <div class="card-title">📂 Carpeta <span class="accent">Imágenes</span> <span class="badge-count" id="count-img">0</span></div>
+      <div class="card-sub">Tocá para ver tus diseños</div>
     </div>
+    <div class="folder-icon">▼</div>
+  </div>
+  <div class="folder-content">
+    <div class="images-grid" id="imagesGrid"></div>
+  </div>
+</div>
 
-    <div id="commerce-view">
-        <div class="back-btn" onclick="cerrarComercio()">← Volver al Marketplace</div>
-        
-        <div class="detail-content">
-            <div class="commerce-header" id="view-header">
-                <h1 id="view-title">Nombre Local</h1>
-            </div>
-
-            <div class="menu-section">
-                <div class="section-title" style="color: #666; font-size: 1rem; text-align: left;">Box Series</div>
-
-                <div class="box-card">
-                    <div class="box-info">
-                        <h3>BOX FILM (Temporada Completa)</h3>
-                        <p>4 Combos + Acceso total a los 4 capítulos de la miniserie.</p>
-                    </div>
-                    <button class="btn-add">AGREGAR</button>
-                </div>
-
-                <div class="box-card">
-                    <div class="box-info">
-                        <h3>Box Premiere (Individual)</h3>
-                        <p>1 Combo + Capítulo 1 habilitado.</p>
-                    </div>
-                    <button class="btn-add">AGREGAR</button>
-                </div>
-            </div>
-        </div>
+<div class="card" id="card-videos">
+  <div class="folder-header" onclick="toggleFolder('card-videos')">
+    <div>
+      <div class="card-title">🎬 Carpeta <span class="accent">Videos</span> <span class="badge-count" id="count-vid">0</span></div>
+      <div class="card-sub">Ganchos visuales de alto impacto</div>
     </div>
+    <div class="folder-icon">▼</div>
+  </div>
+  <div class="folder-content">
+    <div class="videos-grid" id="videosGrid"></div>
+  </div>
+</div>
 
-    <script>
-        function verComercio(nombre, img) {
-            document.getElementById('view-title').innerText = nombre;
-            document.getElementById('view-header').style.backgroundImage = `url('${img}')`;
-            document.getElementById('commerce-view').style.display = 'block';
-            window.scrollTo(0,0);
-        }
+<div class="card">
+  <div style="padding: 20px 20px 0;"><div class="card-title">✅ ¿Cómo publicar?</div></div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><div class="step-title">Descargá</div><div class="step-desc">Guardá el archivo en tu celular.</div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><div class="step-title">Subí a Instagram</div><div class="step-desc">Usá el sticker de enlace 🔗 con el link de abajo.</div></div>
+    </div>
+  </div>
+</div>
 
-        function cerrarComercio() {
-            document.getElementById('commerce-view').style.display = 'none';
-        }
-    </script>
+<footer>Story2Action · 2026</footer>
+
+<script>
+  // ── CONFIGURACIÓN DE CONTENIDO ──
+  const IMAGENES = [
+    { id: 1, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125183/Copilot_20260314_081306_e5nxdg.png", enlace: "tulocal.com/promo" },
+    { id: 2, src: "https://res.cloudinary.com/ds2udm1nc/image/upload/v1775125211/Gemini_Generated_Image_uovwjduovwjduovw_hrdx31.png", enlace: "tulocal.com/promo" },
+    { id: 3, src: null, enlace: "tulocal.com/promo" },
+    { id: 4, src: null, enlace: "tulocal.com/promo" }
+  ];
+
+  const VIDEOS = [
+    { id: 13, src: "https://res.cloudinary.com/ds2udm1nc/video/upload/v1775179566/XRecorder_20260402_02_3_msikcz.mp4", enlace: "tulocal.com/promo" },
+    { id: 14, src: null, enlace: "tulocal.com/promo" }
+  ];
+
+  // ── LÓGICA DE ACTIVACIÓN ──
+  const params = new URLSearchParams(window.location.search);
+  const activas = params.get('activas') ? params.get('activas').split(',').map(Number) : [];
+
+  // ── RENDERIZADO ──
+  function render() {
+    const imgGrid = document.getElementById('imagesGrid');
+    const vidGrid = document.getElementById('videosGrid');
+    
+    let countImg = 0;
+    let countVid = 0;
+
+    IMAGENES.forEach(img => {
+      const isActiva = activas.includes(img.id);
+      if(isActiva) countImg++;
+      
+      const thumb = img.src ? `<img class="item-thumb" src="${img.src}" loading="lazy">` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
+      const btn = isActiva ? `<a class="btn-download" href="${img.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
+      
+      imgGrid.innerHTML += `
+        <div class="item-card">
+          ${thumb}
+          <div class="item-info">
+            <div class="item-numero">IMAGEN ${img.id}</div>
+            <div class="item-enlace">${img.enlace}</div>
+            ${btn}
+          </div>
+        </div>`;
+    });
+
+    VIDEOS.forEach(vid => {
+      const isActiva = activas.includes(vid.id);
+      if(isActiva) countVid++;
+
+      const thumb = vid.src ? `<video class="video-thumb" src="${vid.src}" muted playsinline></video>` : `<div class="item-placeholder">PRÓXIMAMENTE</div>`;
+      const btn = isActiva ? `<a class="btn-download" href="${vid.src}" download>DESCARGAR</a>` : `<div class="btn-locked">BLOQUEADO</div>`;
+
+      vidGrid.innerHTML += `
+        <div class="item-card">
+          ${thumb}
+          <div class="item-info">
+            <div class="item-numero">VIDEO ${vid.id - 12}</div>
+            <div class="item-enlace">${vid.enlace}</div>
+            ${btn}
+          </div>
+        </div>`;
+    });
+
+    document.getElementById('count-img').innerText = countImg;
+    document.getElementById('count-vid').innerText = countVid;
+  }
+
+  // ── INTERACCIÓN ──
+  function toggleFolder(id) {
+    document.getElementById(id).classList.toggle('is-open');
+  }
+
+  render();
+</script>
+
 </body>
 </html>
