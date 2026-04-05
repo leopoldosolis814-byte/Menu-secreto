@@ -4,114 +4,117 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S2A Studio — Hamburguesería</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
+<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
+<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --bg: #07070f;
-    --bg2: #0e0e1a;
-    --fucsia: #ff2d78;
-    --amarillo: #ffe600;
-    --blanco: #ffffff;
-    --gris: #666680;
-    --gris2: #333345;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--blanco); font-family: 'Nunito', sans-serif; padding-bottom: 80px; }
-  header { position: sticky; top: 0; z-index: 100; background: rgba(7,7,15,0.95); backdrop-filter: blur(16px); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,45,120,0.15); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; }
-  .logo em { color: var(--fucsia); font-style: normal; }
-  .hero { padding: 60px 28px; text-align: center; }
-  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: 50px; line-height: 0.95; margin-bottom: 15px; }
-  .hero-title span { color: var(--amarillo); }
-  .section { border-top: 1px solid rgba(255,255,255,0.04); }
-  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
-  .section-title em { color: var(--fucsia); font-style: normal; }
-  .chevron { width: 28px; height: 28px; border: 1px solid var(--gris2); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-  .section.open .chevron { transform: rotate(180deg); border-color: var(--fucsia); }
-  .section-body { display: none; padding: 0 16px 20px; }
-  .section.open .section-body { display: block; }
-  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .item { background: var(--bg2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-  .item.activa { border-color: rgba(255,45,120,0.4); }
-  .thumb-wrap { position: relative; aspect-ratio: 9/16; background: #000; }
-  .thumb { width: 100%; height: 100%; object-fit: cover; }
-  .thumb-num { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.8); font-family: 'Bebas Neue', sans-serif; font-size: 10px; padding: 3px 7px; border-radius: 3px; color: #fff; }
-  .lock-layer { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
-  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 10px; color: var(--fucsia); letter-spacing: 1px; }
-  .item-foot { padding: 10px; }
-  .btn-copy { display: block; width: 100%; background: transparent; color: var(--gris); font-family: 'Bebas Neue', sans-serif; font-size: 12px; padding: 8px; border-radius: 6px; border: 1px solid var(--gris2); cursor: pointer; margin-bottom: 6px; }
-  .btn-dl { display: block; width: 100%; background: var(--fucsia); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 13px; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; }
-  footer { text-align: center; padding: 40px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: #333; letter-spacing: 2px; }
+:root {
+--bg:#07070f;--bg2:#0e0e1a;--fucsia:#ff2d78;--amarillo:#ffe600;--blanco:#fff;--gris:#666680;--gris2:#333345;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--blanco);font-family:'Nunito',sans-serif;display:none}
+header{position:sticky;top:0;background:rgba(7,7,15,.95);padding:16px 24px;display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,45,120,.15)}
+.logo{font-family:'Bebas Neue';font-size:26px;letter-spacing:4px}
+.logo em{color:var(--fucsia)}
+.rubro-tag{font-family:'Bebas Neue';font-size:11px;letter-spacing:4px;color:var(--fucsia)}
+.hero{text-align:center;padding:60px 20px}
+.hero-title{font-family:'Bebas Neue';font-size:52px}
+.hero-title span{color:var(--amarillo)}
+.section{border-top:1px solid rgba(255,255,255,.05)}
+.section-header{padding:20px;display:flex;justify-content:space-between;cursor:pointer}
+.section-body{display:none;padding:10px}
+.section.open .section-body{display:block}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{background:var(--bg2);border-radius:10px;overflow:hidden}
+.thumb-wrap{aspect-ratio:9/16}
+.thumb{width:100%;height:100%;object-fit:cover}
+.item-foot{padding:10px}
+.btn-dl{display:block;background:var(--fucsia);padding:10px;text-align:center;color:#fff;text-decoration:none;border-radius:6px;margin-top:6px}
+.btn-copy{width:100%;margin-top:6px}
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">STORY<em>2</em>ACTION</div>
+<div class="logo">STORY<em>2</em>ACTION</div>
+<div class="rubro-tag">HAMBURGUESERÍA</div>
 </header>
 
 <div class="hero">
-  <div class="hero-title">TU CONTENIDO<br><span>ESTÁ LISTO</span></div>
-  <p style="color:var(--gris); font-size:13px;">Descargá y publicá en segundos.</p>
+<div class="hero-title">TU CONTENIDO<br><span>ESTÁ LISTO</span></div>
 </div>
 
 <div class="section" id="s-img">
-  <div class="section-header" onclick="tog('s-img')">
-    <div class="section-title">IMÁGENES <em>PACK</em></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body"><div class="content-grid" id="gImg"></div></div>
+<div class="section-header" onclick="tog('s-img')">
+<div>IMÁGENES</div><div>▼</div>
+</div>
+<div class="section-body"><div class="content-grid" id="gImg"></div></div>
 </div>
 
-<footer>STORY2ACTION STUDIO 2026</footer>
+<div class="section" id="s-vid">
+<div class="section-header" onclick="tog('s-vid')">
+<div>VIDEOS</div><div>▼</div>
+</div>
+<div class="section-body"><div class="content-grid" id="gVid"></div></div>
+</div>
 
 <script>
-  const IMGS = [
-    { id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"tulocal.com/promo" },
-    { id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"tulocal.com/promo" },
-    { id:3, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"tulocal.com/promo" },
-    { id:4, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"tulocal.com/promo" }
-  ];
+const PASSWORD="1234";
+const BASE_LINK=new URLSearchParams(location.search).get('link')||"tulocal.com/promo";
 
-  const activas = new Set((new URLSearchParams(window.location.search).get('activas') || '').split(',').map(Number));
+function checkAccess(){
+const saved=localStorage.getItem("s2a_access");
+if(saved===PASSWORD){document.body.style.display="block";return true;}
+const pass=prompt("Ingresá tu contraseña");
+if(pass===PASSWORD){localStorage.setItem("s2a_access",pass);document.body.style.display="block";return true;}
+document.body.innerHTML="<h2 style='text-align:center;margin-top:50%'>Acceso denegado</h2>";return false;
+}
 
-  function makeItem(it) {
-    const on = activas.has(it.id);
-    const label = 'IMG ' + String(it.id).padStart(2,'0');
-    
-    // TRUCO FINAL: Forzamos la descarga vía URL de Cloudinary agregando fl_attachment
-    const downloadUrl = it.src.replace('/upload/', '/upload/fl_attachment/');
+const IMGS=[
+{ id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:BASE_LINK },
+{ id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:BASE_LINK }
+];
 
-    return `
-      <div class="item ${on ? 'activa' : ''}">
-        <div class="thumb-wrap">
-          <img class="thumb" src="${it.src}" loading="lazy">
-          <div class="thumb-num">${label}</div>
-          ${!on ? '<div class="lock-layer"><div class="lock-label">BLOQUEADO</div></div>' : ''}
-        </div>
-        <div class="item-foot">
-          <button class="btn-copy" onclick="copyLink(this, '${it.link}')">🔗 COPIAR LINK</button>
-          ${on ? `<a href="${downloadUrl}" download="S2A-Pack.png" class="btn-dl">⬇ DESCARGAR</a>` : ''}
-        </div>
-      </div>`;
-  }
+const VIDS=[
+{ id:3, src:null, link:BASE_LINK }
+];
 
-  function render() {
-    const gI = document.getElementById('gImg');
-    IMGS.forEach(i => gI.innerHTML += makeItem(i));
-  }
+const activas=new Set((new URLSearchParams(location.search).get('activas')||"").split(",").map(Number));
 
-  function copyLink(btn, link) {
-    navigator.clipboard.writeText(link).then(() => {
-      btn.innerText = '✅ COPIADO';
-      setTimeout(() => btn.innerText = '🔗 COPIAR LINK', 2000);
-    });
-  }
+function makeItem(it,isVid){
+const on=activas.has(it.id);
+const media=it.src
+? (isVid?`<video class="thumb" src="${it.src}" controls></video>`:`<img class="thumb" src="${it.src}">`)
+:`<div style="display:flex;align-items:center;justify-content:center;height:100%">PRÓXIMO</div>`;
 
-  function tog(id) { document.getElementById(id).classList.toggle('open'); }
-  
-  render();
+const btn=on&&it.src?`<a class="btn-dl" href="${it.src.replace('/upload/','/upload/fl_attachment/')}" download>⬇ DESCARGAR</a>`:"";
+
+return `<div class="item">
+<div class="thumb-wrap">${media}</div>
+<div class="item-foot">
+<button class="btn-copy" onclick="navigator.clipboard.writeText('${it.link}')">COPIAR LINK</button>
+${btn}
+</div>
+</div>`;
+}
+
+function render(){
+const gI=document.getElementById("gImg");
+const gV=document.getElementById("gVid");
+IMGS.forEach(i=>gI.innerHTML+=makeItem(i,false));
+VIDS.forEach(v=>gV.innerHTML+=makeItem(v,true));
+}
+
+function tog(id){document.getElementById(id).classList.toggle("open");}
+
+if(checkAccess()) render();
 </script>
+
 </body>
 </html>
