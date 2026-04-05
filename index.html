@@ -166,12 +166,12 @@
 
 <footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
 
-<div id="flow-bubble" class="flow-bubble">
-  <div class="flow-step" id="fs-dl">⬜ Imagen lista</div>
-  <div class="flow-step" id="fs-link">⬜ Enlace copiado</div>
-  <div class="flow-divider"></div>
-  <div class="flow-static">📲 Guardá la foto → Abrí IG → Pegá 🔗</div>
-  <div class="flow-close" onclick="closeFlow()">✕</div>
+<div id="flow-bubble" style="position:fixed; bottom:20px; left:10px; right:10px; background:rgba(14,14,26,0.98); border:1px solid #ff2d78; border-radius:12px; padding:12px 14px 24px; z-index:9999; display:none; box-shadow:0 4px 20px rgba(255,45,120,0.2);">
+  <div id="fs-dl" style="font-size:12px; color:#666680; margin:4px 0;">⬜ Imagen lista</div>
+  <div id="fs-link" style="font-size:12px; color:#666680; margin:4px 0;">⬜ Enlace copiado</div>
+  <div style="height:1px; background:rgba(255,255,255,0.1); margin:6px 0;"></div>
+  <div style="font-size:11px; color:#ffe600; line-height:1.3;">📲 Guardá la foto → Abrí IG → Pegá 🔗</div>
+  <div onclick="document.getElementById('flow-bubble').style.display='none'" style="position:absolute; top:8px; right:10px; color:#666680; font-size:16px; cursor:pointer;">✕</div>
 </div>
 <script>
   const IMGS = [
