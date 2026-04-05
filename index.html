@@ -3,95 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S2A - Tus Historias</title>
+    <title>S2A - Panel de Contenido</title>
     <style>
-        :root { --pink: #ff0055; --dark: #0a0a0a; --gray: #1a1a1a; }
-        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; }
-        .header { margin-bottom: 30px; }
-        .header h1 { font-size: 24px; margin: 0; letter-spacing: 2px; }
-        .header span { color: var(--pink); }
+        :root { --pink: #ff0055; --dark: #050505; --card: #121212; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 15px; }
         
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 500px; margin: 0 auto; }
-        .card { background: var(--gray); border-radius: 12px; overflow: hidden; position: relative; border: 1px solid #333; }
-        .card img { width: 100%; display: block; filter: brightness(0.5); }
-        .card.active img { filter: brightness(1); }
+        /* Header */
+        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #222; margin-bottom: 20px; }
+        .logo { font-weight: 800; font-size: 22px; letter-spacing: 2px; }
+        .logo span { color: var(--pink); }
+        #local-tag { color: var(--pink); font-size: 11px; margin-top: 5px; text-transform: uppercase; font-weight: bold; }
+
+        /* Acordeones */
+        .accordion { background: var(--card); border: 1px solid #222; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+        .acc-header { padding: 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        .acc-header span { color: var(--pink); margin-left: 5px; }
+        .acc-content { display: none; padding: 15px; background: #0a0a0a; border-top: 1px solid #222; }
+        .acc-content.show { display: block; }
+
+        /* Grid de Imágenes */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .item-card { background: #1a1a1a; border-radius: 8px; overflow: hidden; position: relative; }
+        .item-card img { width: 100%; display: block; opacity: 0.3; filter: blur(2px); }
+        .active .item-card img { opacity: 1; filter: none; }
         
-        /* Candado y Mensaje */
-        .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); }
-        .lock-text { color: var(--pink); font-size: 10px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
+        .lock-msg { position: absolute; top: 40%; width: 100%; text-align: center; color: var(--pink); font-size: 10px; font-weight: bold; }
+        .active .lock-msg { display: none; }
 
         /* Botones */
-        .btn-group { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
-        .btn { background: #222; color: #eee; text-decoration: none; font-size: 11px; padding: 8px; border-radius: 6px; border: 1px solid #444; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .btn { display: block; background: #222; color: white; text-align: center; padding: 10px; border-radius: 5px; text-decoration: none; font-size: 11px; margin-top: 8px; border: 1px solid #333; }
         .btn-link { color: #ffeb3b; border-color: #ffeb3b; }
-        
-        .active .lock-overlay { display: none; }
+        .btn-support { background: var(--pink); border: none; font-weight: bold; padding: 15px; margin-top: 20px; font-size: 14px; }
+
+        /* Tutorial */
+        .step { margin-bottom: 15px; font-size: 13px; color: #ccc; }
+        .step b { color: white; display: block; margin-bottom: 3px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>STORY<span>2</span>ACTION</h1>
-        <p id="local-name" style="color:var(--pink); text-transform: uppercase; font-size: 12px; margin-top: 5px;">Cargando...</p>
+        <div class="logo">STORY<span>2</span>ACTION</div>
+        <div id="local-tag">ACCESO RESTRINGIDO</div>
     </div>
 
-    <div class="grid" id="main-grid">
-        <div class="card" id="card1">
-            <img src="https://picsum.photos/400/700?random=1" id="img1">
-            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
-            <div class="btn-group">
-                <a href="#" class="btn" id="dl1">⬇️ DESCARGAR IMAGEN</a>
-                <a href="#" class="btn btn-link" id="ln1">🔗 ENLACE DE TU LANDING</a>
-            </div>
-        </div>
-        <div class="card" id="card2">
-            <img src="https://picsum.photos/400/700?random=2" id="img2">
-            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
-            <div class="btn-group">
-                <a href="#" class="btn" id="dl2">⬇️ DESCARGAR IMAGEN</a>
-                <a href="#" class="btn btn-link" id="ln2">🔗 ENLACE DE TU LANDING</a>
-            </div>
-        </div>
-        <div class="card" id="card3">
-            <img src="https://picsum.photos/400/700?random=3" id="img3">
-            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
-            <div class="btn-group">
-                <a href="#" class="btn" id="dl3">⬇️ DESCARGAR IMAGEN</a>
-                <a href="#" class="btn btn-link" id="ln3">🔗 ENLACE DE TU LANDING</a>
-            </div>
-        </div>
-        <div class="card" id="card4">
-            <img src="https://picsum.photos/400/700?random=4" id="img4">
-            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
-            <div class="btn-group">
-                <a href="#" class="btn" id="dl4">⬇️ DESCARGAR IMAGEN</a>
-                <a href="#" class="btn btn-link" id="ln4">🔗 ENLACE DE TU LANDING</a>
+    <div class="accordion">
+        <div class="acc-header" onclick="toggleAcc('imgs')">Imágenes <span>Gancho</span> ▽</div>
+        <div id="imgs" class="acc-content">
+            <div class="grid" id="image-container">
+                <div class="item-card">
+                    <img src="https://picsum.photos/400/700?1">
+                    <div class="lock-msg">🔒 NO INCLUIDO</div>
+                    <a href="#" class="btn">⬇️ DESCARGAR</a>
+                    <a href="#" class="btn btn-link">🔗 ENLACE STICKER</a>
+                </div>
+                <div class="item-card">
+                    <img src="https://picsum.photos/400/700?2">
+                    <div class="lock-msg">🔒 NO INCLUIDO</div>
+                    <a href="#" class="btn">⬇️ DESCARGAR</a>
+                    <a href="#" class="btn btn-link">🔗 ENLACE STICKER</a>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="accordion">
+        <div class="acc-header" onclick="toggleAcc('vids')">Videos <span>Gancho</span> ▽</div>
+        <div id="vids" class="acc-content">
+            <p style="font-size:12px; color:#888;">No hay videos disponibles en este pack.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="acc-header" onclick="toggleAcc('tuto')">Cómo <span>Publicar</span> ▽</div>
+        <div id="tuto" class="acc-content">
+            <div class="step"><b>1. Descarga</b> Toca el botón descargar de la imagen que más te guste.</div>
+            <div class="step"><b>2. Instagram</b> Subí la imagen a tus historias.</div>
+            <div class="step"><b>3. Sticker</b> Copia el "Enlace de tu Landing" y pegalo en el sticker de enlace.</div>
+            <div class="step"><b>4. ¡Listo!</b> Publicá y empezá a recibir pedidos.</div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/TU_NUMERO" class="btn btn-support">🆘 ¿NECESITAS AYUDA? CONTACTAR SOPORTE</a>
 
     <script>
-        // LEER EL LINK INTELIGENTE
+        // Función para abrir/cerrar secciones
+        function toggleAcc(id) {
+            document.getElementById(id).classList.toggle('show');
+        }
+
+        // Leer el Link Inteligente
         const params = new URLSearchParams(window.location.search);
         const local = params.get('n');
-        const idCliente = params.get('id');
-        const promoLink = "https://tulocal.com/promo"; // Aquí iría tu link por defecto o dinámico
 
         if (local) {
-            document.getElementById('local-name').innerText = local;
-            
-            // DESBLOQUEAR TODO
-            for(let i=1; i<=4; i++) {
-                document.getElementById('card' + i).classList.add('active');
-                
-                // Configurar descarga (aquí pondrías el link real de la imagen en el futuro)
-                document.getElementById('dl' + i).onclick = () => alert('Iniciando descarga de Historia ' + i);
-                
-                // Configurar enlace de landing
-                document.getElementById('ln' + i).href = promoLink;
-            }
-        } else {
-            document.getElementById('local-name').innerText = "Acceso Denegado";
+            document.getElementById('local-tag').innerText = "PACK ACTIVO: " + local;
+            // Desbloquear contenido
+            const cards = document.querySelectorAll('.item-card');
+            cards.forEach(card => card.classList.add('active'));
         }
     </script>
 </body>
