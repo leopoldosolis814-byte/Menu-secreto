@@ -226,14 +226,31 @@
   }
 
   function masterPublish(btn, img, link, text) {
-    showFlow();
-    tickStep('fs-dl');
-    window.open(img, '_blank');
-    setTimeout(() => { navigator.clipboard.writeText(link).then(() => tickStep('fs-link')); }, 400);
-    const orig = btn.textContent;
-    btn.textContent = '✅ LISTO';
-    btn.style.opacity = '0.7';
-    setTimeout(() => { btn.textContent = orig; btn.style.opacity = '1'; }, 2500);
+  // 1. Abrir imagen
+  window.open(img, '_blank');
+  
+  // 2. Crear input temporal para copiar (método viejo pero infalible)
+  const tempInput = document.createElement('input');
+  tempInput.value = link;
+  tempInput.style.position = 'fixed';
+  tempInput.style.top = '-9999px';
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  
+  try {
+    document.execCommand('copy'); // Esto funciona en TODO
+    btn.textContent = '✅ LINK COPIADO - Pegalo en IG';
+    btn.style.background = '#25d366'; // Verde WhatsApp
+  } catch(err) {
+    btn.textContent = '📋 ' + link; // Muestra el link si no copia
+  }
+  
+  document.body.removeChild(tempInput);
+  
+  setTimeout(() => { 
+    btn.textContent = '⚡ PREPARAR STORY'; 
+    btn.style.background = ''; 
+  }, 3000);
   }
 
   function copyStickerText(btn, text) {
