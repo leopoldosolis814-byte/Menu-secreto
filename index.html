@@ -3,85 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S2A Studio — Dashboard Activo</title>
+<title>S2A Studio — Hamburguesería</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #07070f; --bg2: #0e0e1a; --fucsia: #ff2d78; --amarillo: #ffe600; --blanco: #ffffff; --gris: #666680; --gris2: #333345; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #07070f; --bg2: #0e0e1a; --fucsia: #ff2d78; --amarillo: #ffe600;
+    --blanco: #ffffff; --gris: #666680; --gris2: #333345;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body { background: var(--bg); color: var(--blanco); font-family: 'Nunito', sans-serif; min-height: 100vh; padding-bottom: 80px; }
 
-  /* HEADER & HERO */
+  /* ── HEADER ── */
   header { position: sticky; top: 0; z-index: 100; background: rgba(7,7,15,0.95); backdrop-filter: blur(16px); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,45,120,0.15); }
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; color: var(--blanco); }
   .logo em { color: var(--fucsia); font-style: normal; }
-  .hero { position: relative; padding: 60px 28px; text-align: center; }
-  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: 58px; line-height: 0.95; margin-bottom: 10px; }
-  .hero-title span { color: var(--amarillo); }
-  .hero-line { width: 60px; height: 2px; background: var(--fucsia); margin: 20px auto; }
+  .rubro-tag { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--fucsia); }
 
-  /* SECCIONES ACORDEÓN */
+  /* ── HERO ── */
+  .hero { position: relative; padding: 72px 28px 64px; text-align: center; overflow: hidden; }
+  .hero-glow { position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,45,120,0.08) 0%, transparent 65%); pointer-events: none; }
+  .hero-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 8px; color: var(--fucsia); margin-bottom: 20px; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: 58px; line-height: 0.95; color: var(--blanco); letter-spacing: 1px; margin-bottom: 20px; }
+  .hero-title span { color: var(--amarillo); display: block; margin-top: 5px; }
+  .hero-line { width: 60px; height: 2px; background: var(--fucsia); margin: 0 auto 20px; border-radius: 1px; box-shadow: 0 0 12px rgba(255,45,120,0.5); }
+  .hero-sub { font-size: 13px; color: var(--gris); line-height: 1.7; letter-spacing: 0.3px; max-width: 280px; margin: 0 auto; }
+
+  /* ── SECCIONES ── */
   .section { border-top: 1px solid rgba(255,255,255,0.04); }
-  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px; cursor: pointer; }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; }
-  .chevron { transition: 0.3s; color: var(--fucsia); }
-  .section.open .chevron { transform: rotate(180deg); }
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px; cursor: pointer; transition: background 0.3s; }
+  .section-header:active { background: rgba(255,255,255,0.02); }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--blanco); }
+  .section-title em { color: var(--fucsia); font-style: normal; }
+  .chevron { width: 28px; height: 28px; border: 1px solid var(--gris2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--fucsia); transition: transform 0.3s ease; font-size: 12px; }
+  .section.open .chevron { transform: rotate(180deg); border-color: var(--fucsia); }
   .section-body { display: none; padding: 0 16px 28px; }
   .section.open .section-body { display: block; }
 
-  /* GRID Y CARDS */
-  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .item { background: var(--bg2); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-  .item.activa { border-color: rgba(255,45,120,0.4); }
-  .thumb-wrap { position: relative; aspect-ratio: 9/16; background: #000; overflow: hidden; }
-  .thumb { width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: blur(4px); transition: 0.3s; }
+  /* ── GRID ── */
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .item { background: var(--bg2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s, border-color 0.2s; }
+  .item.activa { border-color: rgba(255,45,120,0.3); }
+  .thumb-wrap { position: relative; width: 100%; aspect-ratio: 9/16; background: #0a0a14; overflow: hidden; }
+  .thumb { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.3; filter: blur(4px); transition: 0.4s; }
   .item.activa .thumb { opacity: 1; filter: none; }
-  .lock-layer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 10px; color: var(--fucsia); letter-spacing: 2px; }
+  .thumb-num { position: absolute; top: 8px; left: 8px; background: rgba(7,7,15,0.8); font-family: 'Bebas Neue', sans-serif; font-size: 10px; color: var(--gris); padding: 3px 7px; border-radius: 3px; z-index: 2; }
+  .lock-layer { position: absolute; inset: 0; background: rgba(7,7,15,0.75); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; backdrop-filter: blur(2px); z-index: 1; }
+  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 4px; color: var(--fucsia); }
 
-  /* BOTONES MÁGICOS */
-  .item-foot { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-  .btn-prep { background: var(--fucsia); color: white; font-family: 'Bebas Neue'; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; letter-spacing: 1px; }
-  .btn-ig { display: none; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; font-family: 'Bebas Neue'; text-align: center; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 14px; }
-  .btn-cal { background: transparent; color: var(--amarillo); border: 1px solid var(--amarillo); font-family: 'Bebas Neue'; padding: 6px; border-radius: 6px; font-size: 11px; cursor: pointer; opacity: 0.7; }
+  /* ── FOOTER ITEM (BOTONES) ── */
+  .item-foot { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .btn-prep { display: block; width: 100%; background: var(--fucsia); color: var(--blanco); font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; text-align: center; padding: 10px; border-radius: 6px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(255,45,120,0.2); }
+  .btn-ig { display: none; width: 100%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; font-family: 'Bebas Neue', sans-serif; text-align: center; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 13px; letter-spacing: 1px; }
+  .btn-cal { background: transparent; color: var(--amarillo); font-family: 'Bebas Neue', sans-serif; font-size: 10px; padding: 6px; border: 1px solid var(--amarillo); border-radius: 4px; cursor: pointer; opacity: 0.8; letter-spacing: 1px; }
+
+  /* ── PASOS ── */
+  .step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .step-n { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--fucsia); opacity: 0.5; line-height: 1; }
+  .step-t { font-weight: 900; font-size: 13px; color: var(--blanco); margin-bottom: 2px; }
+  .step-d { font-size: 11px; color: var(--gris); line-height: 1.5; }
+
+  /* ── SOPORTE ── */
+  .wa-wrap { margin: 24px; padding: 32px 24px; border: 1px solid rgba(255,45,120,0.15); border-radius: 16px; text-align: center; background: var(--bg2); }
+  .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: white; font-family: 'Bebas Neue', sans-serif; font-size: 18px; padding: 12px 28px; border-radius: 100px; text-decoration: none; }
+
+  footer { text-align: center; padding: 40px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: #2a2a3a; }
 </style>
 </head>
 <body>
 
-<header><div class="logo">STORY<em>2</em>ACTION</div></header>
+<header>
+  <div class="logo">STORY<em>2</em>ACTION</div>
+  <div class="rubro-tag">HAMBURGUESERÍA</div>
+</header>
 
 <div class="hero">
-  <div class="hero-title">TU CONTENIDO<br><span id="nombre-local">DE MARZO</span></div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">ACCESO EXCLUSIVO · PACK DEL MES</div>
+  <div class="hero-title">TU CONTENIDO<br><span id="nombre-local">ESTÁ LISTO</span></div>
   <div class="hero-line"></div>
-  <p style="font-size:12px; color:var(--gris);">Copiá, agendá y publicá sin descargar nada.</p>
+  <div class="hero-sub">Descargá, agendá y publicá sin ocupar espacio en tu galería.</div>
 </div>
 
-<div class="section open" id="s-img">
-  <div class="section-header" onclick="tog('s-img')"><div class="section-title">IMÁGENES <em>GANCHO</em></div><div class="chevron">▼</div></div>
+<div class="section" id="s-img">
+  <div class="section-header" onclick="tog('s-img')">
+    <div class="section-title">IMÁGENES <em>GANCHO</em></div>
+    <div class="chevron">▼</div>
+  </div>
   <div class="section-body"><div class="content-grid" id="gImg"></div></div>
 </div>
 
+<div class="section" id="s-vid">
+  <div class="section-header" onclick="tog('s-vid')">
+    <div class="section-title">VIDEOS <em>GANCHO</em></div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="section-body"><div class="content-grid" id="gVid"></div></div>
+</div>
+
 <div class="section" id="s-pasos">
-  <div class="section-header" onclick="tog('s-pasos')"><div class="section-title">CÓMO <em>PUBLICAR</em></div><div class="chevron">▼</div></div>
-  <div class="section-body" style="font-size:13px; color:var(--gris); line-height:1.6;">
-    <p>1. Tocá <strong>PREPARAR</strong> para copiar la foto y el link.<br>
-    2. Tocá <strong>ABRIR INSTAGRAM</strong>.<br>
-    3. Mantené apretado en la historia y dale a <strong>PEGAR</strong>.</p>
+  <div class="section-header" onclick="tog('s-pasos')">
+    <div class="section-title">CÓMO <em>PUBLICAR</em></div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="step"><div class="step-n">1</div><div><div class="step-t">Preparar Contenido</div><div class="step-d">Tocá en el botón rosa para copiar la foto y el enlace del sticker automáticamente.</div></div></div>
+    <div class="step"><div class="step-n">2</div><div><div class="step-t">Abrir Instagram</div><div class="step-d">Usá el botón de degradado para ir directo a la cámara de historias.</div></div></div>
+    <div class="step"><div class="step-n">3</div><div><div class="step-t">Pegar y Publicar</div><div class="step-d">Mantené apretado en la pantalla de IG para pegar la imagen y el enlace.</div></div></div>
   </div>
 </div>
 
-<div style="text-align:center; margin-top:30px;">
-  <a href="https://wa.me/TUNUMERO" style="color:var(--fucsia); text-decoration:none; font-family:'Bebas Neue'; letter-spacing:2px;">🆘 ¿NECESITÁS AYUDA?</a>
+<div class="wa-wrap">
+  <div class="wa-title" style="font-family:'Bebas Neue'; font-size:24px; margin-bottom:15px; letter-spacing:2px;">¿TENÉS DUDAS?</div>
+  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 CONTACTAR SOPORTE</a>
 </div>
 
-<footer>STORY<em>2</em>ACTION · 2026</footer>
+<footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
 
 <script>
-  // CONFIGURACIÓN DE IMÁGENES (Mantené tus IDs y Links)
+  // BASE DE DATOS COMPLETA (200+ líneas sumando todo)
   const IMGS = [
-    { id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"pepin.com/oferta1", frase:"¡No te lo pierdas! 🔥" },
-    { id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"pepin.com/oferta2", frase:"¡Mirá esta promo! 🍔" },
-    { id:3, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"pepin.com/oferta3", frase:"¡Vení hoy mismo! 🍕" }
-    // Podés seguir agregando hasta la 12...
+    { id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"pepin.com/link1", frase:"¡No te lo pierdas! 🔥" },
+    { id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"pepin.com/link2", frase:"¡Mirá esta promo! 🍔" },
+    { id:3, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"pepin.com/link3", frase:"¡Vení hoy! 🍕" },
+    { id:4, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"pepin.com/link4", frase:"¡Es hoy! 🍟" },
+    { id:5, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071451_przxv4.png", link:"pepin.com/link5", frase:"¡Riquísimo! ✨" },
+    { id:6, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071211_qm7jab.png", link:"pepin.com/link6", frase:"¡Promo activa! 🚀" },
+    { id:7, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263717/Gemini_Generated_Image_ogy5k5ogy5k5ogy5_aycznb.png", link:"pepin.com/link7", frase:"¡Vení por la tuya! 🍔" },
+    { id:8, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Gemini_Generated_Image_ducsgqducsgqducs_es4g86.png", link:"pepin.com/link8", frase:"¡Imperdible! 🥓" },
+    { id:9, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Copilot_20260314_065249_x97xrh.png", link:"pepin.com/link9", frase:"¡Te esperamos! 🥤" },
+    { id:10, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264237/Copilot_20260403_215554_do60bt.png", link:"pepin.com/link10", frase:"¡Solo por hoy! ⚡" },
+    { id:11, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264267/Gemini_Generated_Image_ducsgqducsgqducs_tshxtu.png", link:"pepin.com/link11", frase:"¡Calidad total! ⭐" },
+    { id:12, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264370/Copilot_20260314_081306_boln31.png", link:"pepin.com/link12", frase:"¡Pedí ahora! 📲" }
+  ];
+
+  const VIDS = [
+    { id:13, src:null, link:"vid.com/1" }, { id:14, src:null, link:"vid.com/2" },
+    { id:15, src:null, link:"vid.com/3" }, { id:16, src:null, link:"vid.com/4" }
   ];
 
   const params = new URLSearchParams(window.location.search);
@@ -90,43 +147,36 @@
 
   async function prepararTodo(id, url, link, frase) {
     try {
-      // 1. COPIAR LINK
       await navigator.clipboard.writeText(link);
-      
-      // 2. COPIAR IMAGEN (Navegadores modernos)
       const data = await fetch(url);
       const blob = await data.blob();
       await navigator.clipboard.write([ new ClipboardItem({ [blob.type]: blob }) ]);
-
-      // 3. MOSTRAR SIGUIENTE PASO
       document.getElementById(`ig-${id}`).style.display = 'block';
-      alert("✅ ¡LISTO!\n\n1. Foto copiada.\n2. Link del sticker copiado.\n\nFrase para el sticker:\n\"" + frase + "\"");
-    } catch (err) {
-      alert("Tu celular no permite copiado automático. Por favor, descargá la imagen manualmente.");
-    }
+      alert("✅ ¡COPIADO!\nFoto y Link listos.\n\nFrase sugerida: " + frase);
+    } catch (e) { alert("Error al copiar. Usá descargar."); }
   }
 
   function agendar(frase, link) {
-    const titulo = encodeURIComponent("🚀 Publicar Historia: " + frase);
-    const desc = encodeURIComponent("Link para el sticker de Instagram: " + link);
-    const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${titulo}&details=${desc}`;
+    const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=Publicar+Historia+S2A&details=Link:+${link}`;
     window.open(url, '_blank');
   }
 
-  function makeItem(it) {
+  function makeItem(it, isVid) {
     const on = activas.has(it.id);
+    const label = (isVid ? 'VID' : 'IMG') + ' ' + String(it.id).padStart(2,'0');
     return `
       <div class="item ${on ? 'activa' : ''}">
         <div class="thumb-wrap">
           <img class="thumb" src="${it.src}">
+          <div class="thumb-num">${label}</div>
           ${!on ? '<div class="lock-layer"><div class="lock-label">🔒 NO INCLUIDO</div></div>' : ''}
         </div>
         <div class="item-foot">
           ${on ? `
-            <button class="btn-prep" onclick="prepararTodo(${it.id}, '${it.src}', '${it.link}', '${it.frase}')">⚡ 1. PREPARAR</button>
-            <a href="https://www.instagram.com/reels/create/" target="_blank" class="btn-ig" id="ig-${it.id}">📸 2. ABRIR INSTAGRAM</a>
-            <button class="btn-cal" onclick="agendar('${it.frase}', '${it.link}')">📅 AGENDAR PARA DESPUÉS</button>` 
-          : '<div style="text-align:center; font-size:10px; color:#333;">BLOQUEADO</div>'}
+            <button class="btn-prep" onclick="prepararTodo(${it.id}, '${it.src}', '${it.link}', '${it.frase}')">⚡ PREPARAR</button>
+            <a href="https://www.instagram.com/reels/create/" target="_blank" class="btn-ig" id="ig-${it.id}">📸 ABRIR INSTAGRAM</a>
+            <button class="btn-cal" onclick="agendar('${it.frase}', '${it.link}')">📅 AGENDAR</button>
+          ` : '<div style="text-align:center; font-size:10px; color:#333;">BLOQUEADO</div>'}
         </div>
       </div>`;
   }
@@ -134,7 +184,9 @@
   function render() {
     if(localName) document.getElementById('nombre-local').innerText = localName.toUpperCase();
     const gI = document.getElementById('gImg');
-    IMGS.forEach(i => gI.innerHTML += makeItem(i));
+    const gV = document.getElementById('gVid');
+    IMGS.forEach(i => gI.innerHTML += makeItem(i, false));
+    VIDS.forEach(v => gV.innerHTML += makeItem(v, true));
   }
 
   function tog(id) { document.getElementById(id).classList.toggle('open'); }
