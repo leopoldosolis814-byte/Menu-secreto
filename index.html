@@ -15,249 +15,102 @@
     --gris: #666680;
     --gris2: #333345;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--blanco);
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-    padding-bottom: 80px;
-  }
-
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(7,7,15,0.95);
-    backdrop-filter: blur(16px);
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255,45,120,0.15);
-  }
-
-  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; color: var(--blanco); }
+  body { background: var(--bg); color: var(--blanco); font-family: 'Nunito', sans-serif; padding-bottom: 80px; }
+  header { position: sticky; top: 0; z-index: 100; background: rgba(7,7,15,0.95); backdrop-filter: blur(16px); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,45,120,0.15); }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 4px; }
   .logo em { color: var(--fucsia); font-style: normal; }
-  .rubro-tag { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--fucsia); }
-
-  .hero { position: relative; padding: 72px 28px 64px; text-align: center; overflow: hidden; }
-  .hero-glow { position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,45,120,0.08) 0%, transparent 65%); pointer-events: none; }
-  .hero-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 8px; color: var(--fucsia); margin-bottom: 20px; }
-  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: 58px; line-height: 0.95; color: var(--blanco); letter-spacing: 1px; margin-bottom: 20px; }
+  .hero { padding: 60px 28px; text-align: center; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: 50px; line-height: 0.95; margin-bottom: 15px; }
   .hero-title span { color: var(--amarillo); }
-  .hero-line { width: 60px; height: 2px; background: var(--fucsia); margin: 0 auto 20px; border-radius: 1px; box-shadow: 0 0 12px rgba(255,45,120,0.5); }
-  .hero-sub { font-size: 13px; color: var(--gris); line-height: 1.7; letter-spacing: 0.3px; }
-
   .section { border-top: 1px solid rgba(255,255,255,0.04); }
-  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px; cursor: pointer; user-select: none; transition: background 0.2s; }
-  .section-header:active { background: rgba(255,255,255,0.02); }
-  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; color: var(--blanco); }
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
   .section-title em { color: var(--fucsia); font-style: normal; }
-  .section-count { font-size: 10px; letter-spacing: 3px; color: var(--gris); text-transform: uppercase; }
-  .section-count.has-active { color: var(--amarillo); }
-  .chevron { width: 28px; height: 28px; border: 1px solid var(--gris2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--fucsia); transition: transform 0.3s; }
+  .chevron { width: 28px; height: 28px; border: 1px solid var(--gris2); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
   .section.open .chevron { transform: rotate(180deg); border-color: var(--fucsia); }
-  .section-body { display: none; padding: 0 16px 28px; animation: fadeIn 0.25s ease; }
+  .section-body { display: none; padding: 0 16px 20px; }
   .section.open .section-body { display: block; }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-
   .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .item { background: var(--bg2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-  .item.activa { border-color: rgba(255,45,120,0.3); }
-  .thumb-wrap { position: relative; width: 100%; aspect-ratio: 9/16; overflow: hidden; background: #0a0a14; }
-  .thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .thumb-num { position: absolute; top: 8px; left: 8px; background: rgba(7,7,15,0.8); font-family: 'Bebas Neue', sans-serif; font-size: 10px; padding: 3px 7px; border-radius: 3px; z-index: 2; color: var(--gris); }
-  .lock-layer { position: absolute; inset: 0; background: rgba(7,7,15,0.75); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; backdrop-filter: blur(2px); z-index: 1; }
-  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; color: var(--fucsia); letter-spacing: 2px; }
-  
+  .item.activa { border-color: rgba(255,45,120,0.4); }
+  .thumb-wrap { position: relative; aspect-ratio: 9/16; background: #000; }
+  .thumb { width: 100%; height: 100%; object-fit: cover; }
+  .thumb-num { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.8); font-family: 'Bebas Neue', sans-serif; font-size: 10px; padding: 3px 7px; border-radius: 3px; color: #fff; }
+  .lock-layer { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
+  .lock-label { font-family: 'Bebas Neue', sans-serif; font-size: 10px; color: var(--fucsia); letter-spacing: 1px; }
   .item-foot { padding: 10px; }
-  .btn-copy { display: block; width: 100%; background: transparent; color: var(--gris); font-family: 'Bebas Neue', sans-serif; font-size: 12px; padding: 8px; border-radius: 6px; border: 1px solid var(--gris2); cursor: pointer; margin-bottom: 6px; transition: 0.2s; }
-  .btn-copy.copied { border-color: var(--fucsia); color: var(--fucsia); }
-  .btn-dl { display: block; width: 100%; background: var(--fucsia); color: var(--blanco); font-family: 'Bebas Neue', sans-serif; font-size: 13px; text-align: center; padding: 10px; border-radius: 6px; border: none; cursor: pointer; text-decoration: none; }
-  .btn-dl:active { transform: scale(0.98); opacity: 0.9; }
-
-  .steps { display: flex; flex-direction: column; gap: 1px; }
-  .step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-  .step-n { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--fucsia); opacity: 0.5; }
-  .step-t { font-weight: 900; font-size: 13px; margin-bottom: 2px; }
-  .step-d { font-size: 11px; color: var(--gris); line-height: 1.5; }
-
-  .wa-wrap { margin: 24px; padding: 32px 24px; border: 1px solid rgba(255,45,120,0.15); border-radius: 16px; text-align: center; background: var(--bg2); }
-  .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25d366; color: var(--blanco); font-family: 'Bebas Neue', sans-serif; font-size: 18px; padding: 14px 32px; border-radius: 100px; text-decoration: none; }
-
-  footer { text-align: center; padding: 40px 20px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: #2a2a3a; }
+  .btn-copy { display: block; width: 100%; background: transparent; color: var(--gris); font-family: 'Bebas Neue', sans-serif; font-size: 12px; padding: 8px; border-radius: 6px; border: 1px solid var(--gris2); cursor: pointer; margin-bottom: 6px; }
+  .btn-dl { display: block; width: 100%; background: var(--fucsia); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 13px; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; }
+  footer { text-align: center; padding: 40px; font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: #333; letter-spacing: 2px; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">STORY<em>2</em>ACTION</div>
-  <div class="rubro-tag">HAMBURGUESERÍA</div>
 </header>
 
 <div class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-eyebrow">ACCESO EXCLUSIVO · PACK DEL MES</div>
   <div class="hero-title">TU CONTENIDO<br><span>ESTÁ LISTO</span></div>
-  <div class="hero-line"></div>
-  <div class="hero-sub">Descargá, publicá y convertí<br>cada historia en una venta.</div>
+  <p style="color:var(--gris); font-size:13px;">Descargá y publicá en segundos.</p>
 </div>
 
 <div class="section" id="s-img">
   <div class="section-header" onclick="tog('s-img')">
-    <div class="section-left">
-      <div class="section-title">IMÁGENES <em>GANCHO</em></div>
-      <div class="section-count" id="cnt-img">TOCÁ PARA VER</div>
-    </div>
+    <div class="section-title">IMÁGENES <em>PACK</em></div>
     <div class="chevron">▼</div>
   </div>
   <div class="section-body"><div class="content-grid" id="gImg"></div></div>
 </div>
 
-<div class="section" id="s-vid">
-  <div class="section-header" onclick="tog('s-vid')">
-    <div class="section-left">
-      <div class="section-title">VIDEOS <em>GANCHO</em></div>
-      <div class="section-count" id="cnt-vid">TOCÁ PARA VER</div>
-    </div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body"><div class="content-grid" id="gVid"></div></div>
-</div>
-
-<div class="section" id="s-pasos">
-  <div class="section-header" onclick="tog('s-pasos')">
-    <div class="section-left">
-      <div class="section-title">CÓMO <em>PUBLICAR</em></div>
-      <div class="section-count">5 PASOS · MENOS DE 2 MIN</div>
-    </div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="steps">
-      <div class="step"><div class="step-n">1</div><div><div class="step-t">Descargá el archivo</div><div class="step-d">Usa el botón fucsia. Se guardará directo en tu galería.</div></div></div>
-      <div class="step"><div class="step-n">2</div><div><div class="step-t">Abrí Instagram</div><div class="step-d">Crea una historia y selecciona la imagen descargada.</div></div></div>
-      <div class="step"><div class="step-n">3</div><div><div class="step-t">Copia tu link</div><div class="step-d">Toca "Copiar Enlace" para llevarte tu URL personalizada.</div></div></div>
-      <div class="step"><div class="step-n">4</div><div><div class="step-t">Pega el Sticker</div><div class="step-d">Busca el sticker de Enlace en IG y pega tu link.</div></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="wa-wrap">
-  <div class="wa-title">¿TENÉS DUDAS?</div>
-  <a class="btn-wa" href="https://wa.me/TUNUMERO" target="_blank">💬 WHATSAPP</a>
-</div>
-
-<footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
+<footer>STORY2ACTION STUDIO 2026</footer>
 
 <script>
   const IMGS = [
     { id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"tulocal.com/promo" },
     { id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"tulocal.com/promo" },
     { id:3, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"tulocal.com/promo" },
-    { id:4, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"tulocal.com/promo" },
-    { id:5, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071451_przxv4.png", link:"tulocal.com/promo" },
-    { id:6, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071211_qm7jab.png", link:"tulocal.com/promo" },
-    { id:7, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263717/Gemini_Generated_Image_ogy5k5ogy5k5ogy5_aycznb.png", link:"tulocal.com/promo" },
-    { id:8, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Gemini_Generated_Image_ducsgqducsgqducs_es4g86.png", link:"tulocal.com/promo" },
-    { id:9, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Copilot_20260314_065249_x97xrh.png", link:"tulocal.com/promo" },
-    { id:10, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264237/Copilot_20260403_215554_do60bt.png", link:"tulocal.com/promo" },
-    { id:11, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264267/Gemini_Generated_Image_ducsgqducsgqducs_tshxtu.png", link:"tulocal.com/promo" },
-    { id:12, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264370/Copilot_20260314_081306_boln31.png", link:"tulocal.com/promo" }
+    { id:4, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"tulocal.com/promo" }
   ];
 
-  const VIDS = [
-    { id:13, src:null, link:"tulocal.com/promo" },
-    { id:14, src:null, link:"tulocal.com/promo" },
-    { id:15, src:null, link:"tulocal.com/promo" },
-    { id:16, src:null, link:"tulocal.com/promo" }
-  ];
+  const activas = new Set((new URLSearchParams(window.location.search).get('activas') || '').split(',').map(Number));
 
-  const activas = new Set(
-    (new URLSearchParams(window.location.search).get('activas') || '')
-      .split(',').map(Number).filter(Boolean)
-  );
-
-  // FUNCIÓN MAESTRA: Descarga forzada vía Blob
-  async function descargar(url, nombre) {
-    try {
-      const resp = await fetch(url);
-      const blob = await resp.blob();
-      const urlBlob = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = urlBlob;
-      a.download = nombre;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(urlBlob);
-      document.body.removeChild(a);
-    } catch (e) {
-      window.open(url, '_blank');
-    }
-  }
-
-  function makeItem(it, isVid) {
+  function makeItem(it) {
     const on = activas.has(it.id);
-    const num = isVid ? it.id - 12 : it.id;
-    const label = (isVid ? 'VID' : 'IMG') + ' ' + String(num).padStart(2,'0');
+    const label = 'IMG ' + String(it.id).padStart(2,'0');
+    
+    // TRUCO FINAL: Forzamos la descarga vía URL de Cloudinary agregando fl_attachment
+    const downloadUrl = it.src.replace('/upload/', '/upload/fl_attachment/');
 
-    const media = it.src
-      ? (isVid
-          ? `<video class="thumb" src="${it.src}" muted playsinline preload="metadata"></video>`
-          : `<img class="thumb" src="${it.src}" loading="lazy" alt="${label}">`)
-      : `<div class="thumb-ph"><span>PRÓXIMO</span></div>`;
-
-    const lock = !on ? `<div class="lock-layer"><div class="lock-label">NO INCLUIDO</div></div>` : '';
-    const btnDl = on && it.src 
-      ? `<button class="btn-dl" onclick="descargar('${it.src}', 'S2A-${label}.jpg')">⬇ GUARDAR</button>` 
-      : '';
-
-    return `<div class="item${on?' activa':''}">
-      <div class="thumb-wrap">${media}<div class="thumb-num">${label}</div>${lock}</div>
-      <div class="item-foot">
-        <button class="btn-copy" onclick="copyLink(this, '${it.link}')">🔗 COPIAR ENLACE</button>
-        ${btnDl}
-      </div>
-    </div>`;
+    return `
+      <div class="item ${on ? 'activa' : ''}">
+        <div class="thumb-wrap">
+          <img class="thumb" src="${it.src}" loading="lazy">
+          <div class="thumb-num">${label}</div>
+          ${!on ? '<div class="lock-layer"><div class="lock-label">BLOQUEADO</div></div>' : ''}
+        </div>
+        <div class="item-foot">
+          <button class="btn-copy" onclick="copyLink(this, '${it.link}')">🔗 COPIAR LINK</button>
+          ${on ? `<a href="${downloadUrl}" download="S2A-Pack.png" class="btn-dl">⬇ DESCARGAR</a>` : ''}
+        </div>
+      </div>`;
   }
 
   function render() {
     const gI = document.getElementById('gImg');
-    const gV = document.getElementById('gVid');
-    let cI = 0, cV = 0;
-
-    IMGS.forEach(i => { if(activas.has(i.id)) cI++; gI.innerHTML += makeItem(i, false); });
-    VIDS.forEach(v => { if(activas.has(v.id)) cV++; gV.innerHTML += makeItem(v, true); });
-
-    if(cI > 0){ 
-        const ci = document.getElementById('cnt-img');
-        ci.textContent = cI + ' ACTIVAS · TOCÁ PARA VER'; 
-        ci.classList.add('has-active'); 
-    }
-    if(cV > 0){ 
-        const cv = document.getElementById('cnt-vid');
-        cv.textContent = cV + ' ACTIVOS · TOCÁ PARA VER'; 
-        cv.classList.add('has-active'); 
-    }
+    IMGS.forEach(i => gI.innerHTML += makeItem(i));
   }
 
   function copyLink(btn, link) {
     navigator.clipboard.writeText(link).then(() => {
-      const old = btn.textContent;
-      btn.textContent = '✅ COPIADO';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 2000);
+      btn.innerText = '✅ COPIADO';
+      setTimeout(() => btn.innerText = '🔗 COPIAR LINK', 2000);
     });
   }
 
   function tog(id) { document.getElementById(id).classList.toggle('open'); }
-
+  
   render();
 </script>
 </body>
