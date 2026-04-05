@@ -1,230 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S2A Studio — Hamburguesería</title>
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tu pack del mes está listo y activo 🔥">
-<meta property="og:description" content="Empezá a publicar hoy y aprovechá cada historia al máximo.">
-<meta property="og:image" content="https://res.cloudinary.com/ds2udm1nc/image/upload/c_scale,f_jpg,q_auto,w_600/v1775214668/Copilot_20260403_080908_c6txoy.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#07070f;--bg2:#0e0e1a;--fucsia:#ff2d78;--amarillo:#ffe600;--blanco:#ffffff;--gris:#666680;--gris2:#333345}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--blanco);font-family:'Nunito',sans-serif;min-height:100vh;padding-bottom:80px}
-header{position:sticky;top:0;z-index:100;background:rgba(7,7,15,0.95);backdrop-filter:blur(16px);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,45,120,0.15)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--blanco)}.logo em{color:var(--fucsia);font-style:normal}
-.rubro-tag{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:var(--fucsia)}
-.hero{position:relative;padding:72px 28px 64px;text-align:center}.hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,45,120,0.08)0%,transparent 65%);pointer-events:none}
-.hero-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:8px;color:var(--fucsia);margin-bottom:20px}.hero-title{font-family:'Bebas Neue',sans-serif;font-size:58px;line-height:0.95;letter-spacing:1px;margin-bottom:20px}.hero-title span{color:var(--amarillo)}
-.hero-line{width:60px;height:2px;background:var(--fucsia);margin:0 auto 20px;box-shadow:0 0 12px rgba(255,45,120,0.5)}.hero-sub{font-size:13px;color:var(--gris);line-height:1.7}
-.section{border-top:1px solid rgba(255,255,255,0.04)}.section-header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;cursor:pointer}.section-left{display:flex;flex-direction:column;gap:3px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px}.section-title em{color:var(--fucsia);font-style:normal}
-.section-count{font-size:10px;letter-spacing:3px;color:var(--gris);text-transform:uppercase}.section-count.has-active{color:var(--amarillo)}
-.chevron{width:28px;height:28px;border:1px solid var(--gris2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--fucsia);transition:0.3s}.section.open .chevron{transform:rotate(180deg);border-color:var(--fucsia)}
-.section-body{display:none;padding:0 16px 28px;animation:fadeIn 0.25s ease}.section.open .section-body{display:block}@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.item{background:var(--bg2);border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)}.item.activa{border-color:rgba(255,45,120,0.3)}
-.thumb-wrap{position:relative;aspect-ratio:9/16;background:#0a0a14;overflow:hidden}.thumb{width:100%;height:100%;object-fit:cover}.thumb-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--gris2)}
-.thumb-num{position:absolute;top:8px;left:8px;background:rgba(7,7,15,0.8);font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--gris);padding:3px 7px;border-radius:3px}
-.lock-layer{position:absolute;inset:0;background:rgba(7,7,15,0.75);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;backdrop-filter:blur(2px)}.lock-label{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--fucsia)}
-.item-foot{padding:10px}.item-link{font-size:10px;letter-spacing:1px;color:var(--amarillo);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;font-weight:900}
-.btn-copy{display:block;width:100%;background:transparent;color:var(--gris);font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;padding:7px;border-radius:6px;border:1px solid var(--gris2);cursor:pointer;margin-bottom:6px}.btn-copy.copied{border-color:var(--fucsia);color:var(--fucsia)}
-.btn-share{display:block;width:100%;background:var(--fucsia);color:var(--blanco);font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;text-align:center;padding:9px;border-radius:6px;border:none;cursor:pointer;margin-top:4px}.btn-share:active{opacity:0.85}
-.step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04)}.step-n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--fucsia);opacity:0.5}.step-t{font-weight:900;font-size:13px;margin-bottom:2px}.step-d{font-size:11px;color:var(--gris);line-height:1.5}
-.flujo-note{font-size:11px;color:var(--gris);line-height:1.6;margin-bottom:16px;padding-left:12px;border-left:2px solid var(--fucsia)}.flujo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.flujo-card{background:var(--bg2);border-radius:10px;padding:16px 10px;text-align:center;border:1px solid rgba(255,255,255,0.04)}.flujo-dia{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--amarillo)}
-.wa-wrap{margin:24px 24px 0;padding:32px 24px;border:1px solid rgba(255,45,120,0.15);border-radius:16px;text-align:center;background:var(--bg2)}.btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:white;font-family:'Bebas Neue',sans-serif;font-size:18px;padding:14px 32px;border-radius:100px;text-decoration:none}
-footer{text-align:center;padding:40px 20px 20px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:4px;color:#2a2a3a}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.stat-card{background:var(--bg2);border-radius:10px;padding:14px 8px;text-align:center;border:1px solid rgba(255,255,255,0.04)}.stat-num{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--amarillo);line-height:1}.stat-label{font-size:9px;letter-spacing:2px;color:var(--gris);text-transform:uppercase;margin-top:4px}
-.cal-wrap{padding:0 4px}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:18px}.cal-day{min-height:48px;background:var(--bg2);border-radius:8px;border:1px dashed var(--gris2);display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:9px;color:var(--gris);cursor:pointer;transition:0.2s}.cal-day.selected{border-color:var(--fucsia);background:rgba(255,45,120,0.1);color:var(--blanco)}.cal-day .cal-tag{font-family:'Bebas Neue';font-size:10px;color:var(--amarillo);margin-top:2px;letter-spacing:1px}
-.cal-pool-title{font-family:'Bebas Neue';font-size:13px;letter-spacing:3px;color:var(--gris);margin-bottom:10px;text-transform:uppercase}.cal-pool{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.pool-item{min-width:56px;aspect-ratio:9/16;border-radius:6px;border:1px solid var(--gris2);background:var(--bg2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:9px;color:var(--gris);transition:0.2s}.pool-item.active{border-color:var(--amarillo);color:var(--amarillo)}
-.btn-export{display:block;width:100%;background:transparent;color:var(--gris);font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;padding:10px;border-radius:6px;border:1px solid var(--gris2);cursor:pointer;margin-top:16px;text-align:center}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--bg2);color:var(--blanco);padding:10px 16px;border-radius:8px;border:1px solid var(--fucsia);font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;z-index:999;opacity:0;transition:0.3s;pointer-events:none;white-space:nowrap}.toast.show{opacity:1;bottom:32px}
-#sys-status{position:fixed;top:0;left:0;right:0;background:#ff4444;color:white;text-align:center;font-size:10px;padding:6px;z-index:200;font-weight:900;letter-spacing:1px}#sys-status.ok{background:#25d366}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2A - Tus Historias</title>
+    <style>
+        :root { --pink: #ff0055; --dark: #0a0a0a; --gray: #1a1a1a; }
+        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        .header { margin-bottom: 30px; }
+        .header h1 { font-size: 24px; margin: 0; letter-spacing: 2px; }
+        .header span { color: var(--pink); }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 500px; margin: 0 auto; }
+        .card { background: var(--gray); border-radius: 12px; overflow: hidden; position: relative; border: 1px solid #333; }
+        .card img { width: 100%; display: block; filter: brightness(0.5); }
+        .card.active img { filter: brightness(1); }
+        
+        /* Candado y Mensaje */
+        .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); }
+        .lock-text { color: var(--pink); font-size: 10px; font-weight: bold; margin-top: 5px; text-transform: uppercase; }
+
+        /* Botones */
+        .btn-group { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .btn { background: #222; color: #eee; text-decoration: none; font-size: 11px; padding: 8px; border-radius: 6px; border: 1px solid #444; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .btn-link { color: #ffeb3b; border-color: #ffeb3b; }
+        
+        .active .lock-overlay { display: none; }
+    </style>
 </head>
 <body>
-<div id="sys-status">⏳ CARGANDO SISTEMA...</div>
-<header>
-  <div class="logo">STORY<em>2</em>ACTION</div>
-  <div class="rubro-tag">HAMBURGUESERÍA</div>
-</header>
-<div class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-eyebrow">ACCESO EXCLUSIVO · PACK DEL MES</div>
-  <div class="hero-title">TU CONTENIDO<br><span>ESTÁ LISTO</span></div>
-  <div class="hero-line"></div>
-  <div class="hero-sub">Descargá, publicá y convertí<br>cada historia en una venta.</div>
-</div>
 
-<div class="section" id="s-img">
-  <div class="section-header" onclick="window.tog('s-img')">
-    <div class="section-left"><div class="section-title">IMÁGENES <em>GANCHO</em></div><div class="section-count" id="cnt-img">TOCÁ PARA VER</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body"><div class="content-grid" id="gImg"></div></div>
-</div>
-
-<div class="section" id="s-vid">
-  <div class="section-header" onclick="window.tog('s-vid')">
-    <div class="section-left"><div class="section-title">VIDEOS <em>GANCHO</em></div><div class="section-count" id="cnt-vid">TOCÁ PARA VER</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body"><div class="content-grid" id="gVid"></div></div>
-</div>
-
-<div class="section" id="s-pasos">
-  <div class="section-header" onclick="window.tog('s-pasos')">
-    <div class="section-left"><div class="section-title">CÓMO <em>PUBLICAR</em></div><div class="section-count">4 PASOS · MENOS DE 2 MIN</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="step"><div class="step-n">1</div><div><div class="step-t">Tocá "Preparar Historia"</div><div class="step-d">El sistema abrirá Instagram automáticamente.</div></div></div>
-    <div class="step"><div class="step-n">2</div><div><div class="step-t">Agregá el enlace</div><div class="step-d">El link de tu promo ya está copiado. Solo tocá "Link" en IG.</div></div></div>
-    <div class="step"><div class="step-n">3</div><div><div class="step-t">Escribí el texto del sticker</div><div class="step-d">Ej: "Ver oferta 👆" o "Pedí ahora 👆"</div></div></div>
-    <div class="step"><div class="step-n">4</div><div><div class="step-t">¡Publicá!</div><div class="step-d">Tu historia ya está al aire.</div></div></div>
-  </div>
-</div>
-
-<div class="section" id="s-flujo">
-  <div class="section-header" onclick="window.tog('s-flujo')">
-    <div class="section-left"><div class="section-title">EJEMPLO DE <em>USO</em></div><div class="section-count">SUGERENCIA · VOS DECIDÍS</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="flujo-note">Tu contenido es tuyo por <strong>30 días</strong>. Publicalo cuando quieras.</div>
-    <div class="flujo-grid">
-      <div class="flujo-card"><div class="flujo-dia">LUNES</div></div><div class="flujo-card"><div class="flujo-dia">MIÉRCOLES</div></div><div class="flujo-card"><div class="flujo-dia">VIERNES</div></div><div class="flujo-card"><div class="flujo-dia">SÁBADO</div></div>
+    <div class="header">
+        <h1>STORY<span>2</span>ACTION</h1>
+        <p id="local-name" style="color:var(--pink); text-transform: uppercase; font-size: 12px; margin-top: 5px;">Cargando...</p>
     </div>
-  </div>
-</div>
 
-<div class="section" id="s-stats">
-  <div class="section-header" onclick="window.tog('s-stats')">
-    <div class="section-left"><div class="section-title">📊 RENDIMIENTO</div><div class="section-count">MÉTRICAS DE TU PACK</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="stats-grid" id="stats-grid">
-      <div class="stat-card"><div class="stat-num" id="stat-clics">0</div><div class="stat-label">Clics en link</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-preps">0</div><div class="stat-label">Preparados</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-top">-</div><div class="stat-label">Top hoy</div></div>
+    <div class="grid" id="main-grid">
+        <div class="card" id="card1">
+            <img src="https://picsum.photos/400/700?random=1" id="img1">
+            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
+            <div class="btn-group">
+                <a href="#" class="btn" id="dl1">⬇️ DESCARGAR IMAGEN</a>
+                <a href="#" class="btn btn-link" id="ln1">🔗 ENLACE DE TU LANDING</a>
+            </div>
+        </div>
+        <div class="card" id="card2">
+            <img src="https://picsum.photos/400/700?random=2" id="img2">
+            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
+            <div class="btn-group">
+                <a href="#" class="btn" id="dl2">⬇️ DESCARGAR IMAGEN</a>
+                <a href="#" class="btn btn-link" id="ln2">🔗 ENLACE DE TU LANDING</a>
+            </div>
+        </div>
+        <div class="card" id="card3">
+            <img src="https://picsum.photos/400/700?random=3" id="img3">
+            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
+            <div class="btn-group">
+                <a href="#" class="btn" id="dl3">⬇️ DESCARGAR IMAGEN</a>
+                <a href="#" class="btn btn-link" id="ln3">🔗 ENLACE DE TU LANDING</a>
+            </div>
+        </div>
+        <div class="card" id="card4">
+            <img src="https://picsum.photos/400/700?random=4" id="img4">
+            <div class="lock-overlay"><span style="font-size:20px;">🔒</span><span class="lock-text">No Incluido</span></div>
+            <div class="btn-group">
+                <a href="#" class="btn" id="dl4">⬇️ DESCARGAR IMAGEN</a>
+                <a href="#" class="btn btn-link" id="ln4">🔗 ENLACE DE TU LANDING</a>
+            </div>
+        </div>
     </div>
-    <div class="flujo-note">Datos guardados en tu navegador para que veas qué funciona mejor.</div>
-  </div>
-</div>
 
-<div class="section" id="s-cal">
-  <div class="section-header" onclick="window.tog('s-cal')">
-    <div class="section-left"><div class="section-title">📅 CALENDARIO</div><div class="section-count">TOCÁ PARA ASIGNAR</div></div>
-    <div class="chevron">▼</div>
-  </div>
-  <div class="section-body">
-    <div class="cal-wrap">
-      <div class="cal-grid" id="cal-grid"></div>
-      <div class="cal-pool-title">Contenido disponible</div>
-      <div class="cal-pool" id="cal-pool"></div>
-      <button class="btn-export" id="btn-export">📲 EXPORTAR A MI AGENDA</button>
-    </div>
-  </div>
-</div>
+    <script>
+        // LEER EL LINK INTELIGENTE
+        const params = new URLSearchParams(window.location.search);
+        const local = params.get('n');
+        const idCliente = params.get('id');
+        const promoLink = "https://tulocal.com/promo"; // Aquí iría tu link por defecto o dinámico
 
-<div class="wa-wrap">
-  <div style="font-family:'Bebas Neue'; font-size:24px; margin-bottom:6px;">¿TENÉS DUDAS?</div>
-  <div style="color:var(--gris); font-size:12px; margin-bottom:20px;">Escribinos y te respondemos al toque</div>
-  <a class="btn-wa" href="https://wa.me/TUNUMERO">💬 WHATSAPP</a>
-</div>
-<footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
-<div class="toast" id="toast"></div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var status = document.getElementById('sys-status');
-  status.textContent = '✅ SISTEMA ACTIVO Y LISTO';
-  status.classList.add('ok');
-  setTimeout(function(){ status.style.display = 'none'; }, 1500);
-
-  var IMGS = [
-    {id:1, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"tulocal.com/promo"},
-    {id:2, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_ehiim7ehiim7ehii_i5crwt.png", link:"tulocal.com/promo"},
-    {id:3, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263237/Gemini_Generated_Image_sbvguqsbvguqsbvg_vjubkz.png", link:"tulocal.com/promo"},
-    {id:4, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263238/Copilot_20260315_233635_sbtrat.png", link:"tulocal.com/promo"},
-    {id:5, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071451_przxv4.png", link:"tulocal.com/promo"},
-    {id:6, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263716/Copilot_20260314_071211_qm7jab.png", link:"tulocal.com/promo"},
-    {id:7, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263717/Gemini_Generated_Image_ogy5k5ogy5k5ogy5_aycznb.png", link:"tulocal.com/promo"},
-    {id:8, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Gemini_Generated_Image_ducsgqducsgqducs_es4g86.png", link:"tulocal.com/promo"},
-    {id:9, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263718/Copilot_20260314_065249_x97xrh.png", link:"tulocal.com/promo"},
-    {id:10, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264237/Copilot_20260403_215554_do60bt.png", link:"tulocal.com/promo"},
-    {id:11, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264267/Gemini_Generated_Image_ducsgqducsgqducs_tshxtu.png", link:"tulocal.com/promo"},
-    {id:12, src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775264370/Copilot_20260314_081306_boln31.png", link:"tulocal.com/promo"}
-  ];
-  var VIDS = [{id:13,src:null,link:"tulocal.com/promo"},{id:14,src:null,link:"tulocal.com/promo"},{id:15,src:null,link:"tulocal.com/promo"},{id:16,src:null,link:"tulocal.com/promo"}];
-
-  var activas = new Set((new URLSearchParams(window.location.search).get('activas')||'').split(',').map(Number).filter(Boolean));
-  var selectedCalId = null;
-  var schedule = JSON.parse(localStorage.getItem('s2a_schedule') || '{}');
-
-  function showToast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2500); }
-  function trackEvent(type, id) { try { var data = JSON.parse(localStorage.getItem('s2a_stats') || '{}'); data[type] = (data[type]||0) + 1; data.lastTop = (id <= 12 ? 'IMG ' : 'VID ') + id; localStorage.setItem('s2a_stats', JSON.stringify(data)); renderStats(); } catch(e){} }
-  function renderStats() { try { var data = JSON.parse(localStorage.getItem('s2a_stats') || '{}'); document.getElementById('stat-clics').textContent = data.click_link || 0; document.getElementById('stat-preps').textContent = data.prep || 0; document.getElementById('stat-top').textContent = data.lastTop || '-'; } catch(e){} }
-
-  function renderCalendar() {
-    try {
-      var grid = document.getElementById('cal-grid'), pool = document.getElementById('cal-pool');
-      if(!grid || !pool) return; grid.innerHTML = ''; pool.innerHTML = '';
-      ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'].forEach(function(d) {
-        var dayEl = document.createElement('div');
-        dayEl.className = 'cal-day' + (schedule[d] ? ' selected' : '');
-        dayEl.innerHTML = '<div>' + d + '</div>' + (schedule[d] ? '<div class="cal-tag">' + schedule[d] + '</div>' : '');
-        dayEl.onclick = function() { assignToDay(d); }; grid.appendChild(dayEl);
-      });
-      [...IMGS, ...VIDS].filter(function(it) { return activas.has(it.id); }).forEach(function(it) {
-        var p = document.createElement('div'); p.className = 'pool-item'; p.textContent = (it.id<=12?'IMG':'VID') + ' ' + it.id;
-        p.onclick = function() { selectedCalId = (it.id<=12?'IMG':'VID') + ' ' + it.id; showToast('📌 ' + selectedCalId + ' seleccionado. Elegí un día.'); };
-        pool.appendChild(p);
-      });
-    } catch(e) { console.error(e); }
-  }
-  function assignToDay(dia) {
-    if (!selectedCalId) { showToast('⚠️ Primero tocá una foto/video de abajo'); return; }
-    schedule[dia] = selectedCalId; localStorage.setItem('s2a_schedule', JSON.stringify(schedule)); selectedCalId = null; renderCalendar(); showToast('✅ Asignado a ' + dia);
-  }
-
-  function makeItem(it, isVid) {
-    var on = activas.has(it.id), num = isVid ? it.id - 12 : it.id, label = (isVid ? 'VID' : 'IMG') + ' ' + String(num).padStart(2,'0');
-    var media = it.src ? (isVid ? '<video class="thumb" src="'+it.src+'" muted playsinline></video>' : '<img class="thumb" src="'+it.src+'" loading="lazy">') : '<div class="thumb-ph">🖼<span>PRÓXIMO</span></div>';
-    var div = document.createElement('div'); div.className = 'item' + (on ? ' activa' : '');
-    div.innerHTML = `<div class="thumb-wrap">${media}<div class="thumb-num">${label}</div>${!on?'<div class="lock-layer"><div class="lock-label">🔒 NO INCLUIDO</div></div>':''}</div><div class="item-foot"><div class="item-link">🔗 ${it.link}</div><div style="font-size:9px;letter-spacing:2px;color:var(--gris);margin-bottom:5px;text-transform:uppercase">Pegá este link en el sticker</div><button class="btn-copy" data-action="copy" data-link="${it.link}" data-id="${it.id}">🔗 ENLACE DE TU LANDING</button>${on && it.src ? `<button class="btn-share" data-action="prep" data-src="${it.src}" data-link="${it.link}" data-id="${it.id}">📱 PREPARAR HISTORIA</button>` : ''}</div>`;
-    return div;
-  }
-
-  function render() {
-    var gI = document.getElementById('gImg'), gV = document.getElementById('gVid'), cI=0, cV=0;
-    IMGS.forEach(function(i) { if(activas.has(i.id)) cI++; gI.appendChild(makeItem(i, false)); });
-    VIDS.forEach(function(v) { if(activas.has(v.id)) cV++; gV.appendChild(makeItem(v, true)); });
-    if(cI>0){ document.getElementById('cnt-img').textContent = cI+' ACTIVAS · TOCÁ PARA VER'; document.getElementById('cnt-img').classList.add('has-active'); }
-    if(cV>0){ document.getElementById('cnt-vid').textContent = cV+' ACTIVOS · TOCÁ PARA VER'; document.getElementById('cnt-vid').classList.add('has-active'); }
-    renderStats(); renderCalendar();
-  }
-
-  document.addEventListener('click', function(e) {
-    var target = e.target.closest('[data-action]'); if (!target) return;
-    var action = target.dataset.action, link = target.dataset.link, id = parseInt(target.dataset.id), src = target.dataset.src || null;
-    if (action === 'copy') {
-      navigator.clipboard.writeText(link).then(function() { trackEvent('click_link', id); target.textContent = '✅ ¡COPIADO!'; target.classList.add('copied'); setTimeout(function() { target.textContent = '🔗 ENLACE DE TU LANDING'; target.classList.remove('copied'); }, 2000); }).catch(function() { showToast('⚠️ Copiá el link manualmente'); });
-    } else if (action === 'prep') {
-      navigator.clipboard.writeText(link).then(function() { trackEvent('prep', id); showToast('✅ Link copiado. Abriendo Instagram...'); setTimeout(function() { window.location.href = 'instagram://stories/camera'; }, 600); }).catch(function() { showToast('⚠️ Copiá el link manualmente y abrí IG'); });
-    }
-  });
-
-  document.getElementById('btn-export').addEventListener('click', function() {
-    var txt = Object.entries(schedule).map(function(entry){ return entry[0] + ': ' + entry[1]; }).join('\n');
-    if(Object.keys(schedule).length === 0) { showToast('⚠️ El calendario está vacío'); return; }
-    navigator.clipboard.writeText(txt).then(function(){showToast('📋 Plan copiado. Pegalo en tus notas.');}).catch(function(){showToast('❌ No se pudo copiar');});
-  });
-
-  window.tog = function(id) { var el = document.getElementById(id); if(el) el.classList.toggle('open'); };
-  render();
-});
-</script>
+        if (local) {
+            document.getElementById('local-name').innerText = local;
+            
+            // DESBLOQUEAR TODO
+            for(let i=1; i<=4; i++) {
+                document.getElementById('card' + i).classList.add('active');
+                
+                // Configurar descarga (aquí pondrías el link real de la imagen en el futuro)
+                document.getElementById('dl' + i).onclick = () => alert('Iniciando descarga de Historia ' + i);
+                
+                // Configurar enlace de landing
+                document.getElementById('ln' + i).href = promoLink;
+            }
+        } else {
+            document.getElementById('local-name').innerText = "Acceso Denegado";
+        }
+    </script>
 </body>
 </html>
