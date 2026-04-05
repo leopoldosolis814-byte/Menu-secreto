@@ -14,12 +14,10 @@
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html { scroll-behavior:smooth; }
   body { background:var(--bg); color:var(--blanco); font-family:'Nunito',sans-serif; min-height:100vh; padding-bottom:90px; }
-  
   header { position:sticky; top:0; z-index:100; background:rgba(7,7,15,0.95); backdrop-filter:blur(16px); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,45,120,0.15); }
   .logo { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:4px; color:var(--blanco); }
   .logo em { color:var(--fucsia); font-style:normal; }
   .rubro-tag { font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:4px; color:var(--fucsia); }
-  
   .hero { position:relative; padding:72px 28px 64px; text-align:center; overflow:hidden; }
   .hero-glow { position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:400px; height:400px; background:radial-gradient(circle,rgba(255,45,120,0.08) 0%,transparent 65%); pointer-events:none; }
   .hero-eyebrow { font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:8px; color:var(--fucsia); margin-bottom:20px; }
@@ -27,7 +25,6 @@
   .hero-title span { color:var(--amarillo); }
   .hero-line { width:60px; height:2px; background:var(--fucsia); margin:0 auto 20px; border-radius:1px; box-shadow:0 0 12px rgba(255,45,120,0.5); }
   .hero-sub { font-size:13px; color:var(--gris); line-height:1.7; letter-spacing:0.3px; }
-  
   .section { margin:0; border-top:1px solid rgba(255,255,255,0.04); }
   .section-header { display:flex; align-items:center; justify-content:space-between; padding:22px 24px; cursor:pointer; user-select:none; transition:background 0.2s; }
   .section-header:active { background:rgba(255,255,255,0.02); }
@@ -41,7 +38,6 @@
   .section-body { display:none; padding:0 16px 28px; animation:fadeIn 0.25s ease; }
   .section.open .section-body { display:block; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
-  
   .content-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px; }
   .item { background:var(--bg2); border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.05); transition:border-color 0.2s ease; }
   .item.activa { border-color:rgba(255,45,120,0.3); }
@@ -55,27 +51,23 @@
   .lock-label { font-family:'Bebas Neue',sans-serif; font-size:9px; letter-spacing:4px; color:var(--fucsia); }
   .item-foot { padding:10px; }
   .item-link { font-size:10px; letter-spacing:1px; color:var(--amarillo); margin-bottom:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:900; }
-  
   .btn-master { display:block; width:100%; background:var(--fucsia); color:var(--blanco); font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; text-align:center; padding:10px; border-radius:8px; text-decoration:none; margin-bottom:6px; transition:opacity 0.2s; cursor:pointer; border:none; }
   .btn-master:active { opacity:0.85; }
   .btn-ig { display:block; width:100%; background:linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color:var(--blanco); font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:2px; text-align:center; padding:8px; border-radius:6px; text-decoration:none; margin-bottom:6px; transition:opacity 0.2s; }
   .btn-ig:active { opacity:0.9; }
   .btn-sticker { display:block; width:100%; background:transparent; color:var(--gris); font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:2px; text-align:center; padding:6px; border-radius:6px; border:1px solid var(--gris2); cursor:pointer; margin-bottom:4px; transition:all 0.2s; }
   .btn-sticker.copied { border-color:var(--fucsia); color:var(--fucsia); }
-  
   .steps { display:flex; flex-direction:column; gap:1px; }
   .step { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
   .step:last-child { border-bottom:none; }
   .step-n { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--fucsia); line-height:1; min-width:20px; opacity:0.5; }
   .step-t { font-weight:900; font-size:13px; margin-bottom:2px; }
   .step-d { font-size:11px; color:var(--gris); line-height:1.5; }
-  
   .flujo-note { font-size:11px; color:var(--gris); line-height:1.6; margin-bottom:16px; padding-left:12px; border-left:2px solid var(--fucsia); }
   .flujo-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   .flujo-card { background:var(--bg2); border-radius:10px; padding:16px 10px; text-align:center; border:1px solid rgba(255,255,255,0.04); }
   .flujo-dia { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; color:var(--amarillo); margin-bottom:4px; }
   .flujo-item { font-size:10px; color:var(--gris); letter-spacing:1px; }
-  
   .reminder-wrap { margin:24px 24px 0; padding:20px; border:1px solid rgba(255,255,255,0.08); border-radius:14px; text-align:center; background:var(--bg2); }
   .reminder-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; color:var(--blanco); margin-bottom:12px; }
   .reminder-input { width:100%; padding:10px; background:#0a0a12; color:var(--blanco); border:1px solid var(--gris2); border-radius:8px; font-family:'Nunito',sans-serif; margin-bottom:12px; outline:none; }
@@ -83,16 +75,12 @@
   .btn-confirm { background:transparent; color:var(--gris); font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px; padding:10px 20px; border-radius:8px; border:1px solid var(--gris2); cursor:pointer; transition:all 0.2s; }
   .btn-confirm:hover { border-color:var(--fucsia); color:var(--fucsia); }
   .btn-confirm.success { background:var(--fucsia); color:var(--blanco); border-color:var(--fucsia); pointer-events:none; }
-  
   .wa-wrap { margin:24px 24px 0; padding:32px 24px; border:1px solid rgba(255,45,120,0.15); border-radius:16px; text-align:center; background:var(--bg2); }
   .wa-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:3px; color:var(--blanco); margin-bottom:6px; }
   .wa-sub { font-size:12px; color:var(--gris); margin-bottom:20px; }
   .btn-wa { display:inline-flex; align-items:center; gap:10px; background:#25d366; color:var(--blanco); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px 32px; border-radius:100px; text-decoration:none; }
-  
   footer { text-align:center; padding:40px 20px 20px; font-family:'Bebas Neue',sans-serif; font-size:11px; letter-spacing:4px; color:#2a2a3a; }
   footer em { color:var(--fucsia); font-style:normal; }
-  
-  /* BURBUJA */
   .flow-bubble { position:fixed; bottom:24px; left:16px; right:16px; background:var(--bg2); border:1px solid var(--fucsia); border-radius:14px; padding:14px 16px 30px; z-index:9999; transform:translateY(140%); transition:transform 0.3s cubic-bezier(0.4,0,0.2,1); box-shadow:0 8px 24px rgba(0,0,0,0.5); display:none; }
   .flow-bubble.show { display:block; transform:translateY(0); }
   .flow-step { font-size:12px; color:var(--gris); margin:4px 0; transition:all 0.2s; }
@@ -116,7 +104,6 @@
   <div class="hero-line"></div>
   <div class="hero-sub">Descargá, publicá y convertí<br>cada historia en una venta.</div>
 </div>
-
 <div class="section" id="s-img">
   <div class="section-header" onclick="tog('s-img')">
     <div class="section-left"><div class="section-title">IMÁGENES <em>GANCHO</em></div><div class="section-count" id="cnt-img">TOCÁ PARA VER</div></div>
@@ -179,7 +166,6 @@
 
 <footer>STORY<em>2</em>ACTION · STUDIO · 2026</footer>
 
-<!-- BURBUJA DE PROGRESO -->
 <div id="flow-bubble" class="flow-bubble">
   <div class="flow-step" id="fs-dl">⬜ Imagen lista</div>
   <div class="flow-step" id="fs-link">⬜ Enlace copiado</div>
@@ -187,7 +173,6 @@
   <div class="flow-static">📲 Guardá la foto → Abrí IG → Pegá 🔗</div>
   <div class="flow-close" onclick="closeFlow()">✕</div>
 </div>
-
 <script>
   const IMGS = [
     { id:1,  src:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1775263235/Gemini_Generated_Image_bruchsbruchsbruc_etzmgj.png", link:"tulocal.com/promo" },
@@ -243,16 +228,8 @@
   function masterPublish(btn, img, link, text) {
     showFlow();
     tickStep('fs-dl');
-    
-    // Abrir imagen (en móvil es lo más confiable)
     window.open(img, '_blank');
-    
-    // Copiar link
-    setTimeout(() => {
-      navigator.clipboard.writeText(link).then(() => tickStep('fs-link'));
-    }, 400);
-    
-    // Feedback botón
+    setTimeout(() => { navigator.clipboard.writeText(link).then(() => tickStep('fs-link')); }, 400);
     const orig = btn.textContent;
     btn.textContent = '✅ LISTO';
     btn.style.opacity = '0.7';
@@ -280,32 +257,23 @@
   function crearRecordatorio() {
     const input = document.getElementById('fecha-agenda');
     const btn = document.getElementById('confirmar-agenda');
-  function tog(id) { document.getElementById(id).classList.toggle('open'); }
+    if(!input.value) return alert('Elegí una fecha y hora primero.');
+    const d = new Date(input.value);
+    const url = window.location.href.split('?')[0];
+    const pad = n => String(n).padStart(2,'0');
+    const dt = `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
+    const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//S2A//ES\r\nBEGIN:VEVENT\r\nDTSTART:${dt}\r\nSUMMARY:🔥 Publicá tu Story de HAMBURGUESERÍA\r\nDESCRIPTION:Entrá aquí y tocá ⚡ PREPARAR STORY\\n${url}\r\nURL:${url}\r\nBEGIN:VALARM\r\nTRIGGER:-PT15M\r\nACTION:DISPLAY\r\nDESCRIPTION:Es hora de publicar\r\nEND:VALARM\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+    const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'recordatorio-story-s2a.ics';
+    a.click();
+    btn.textContent = '✅ Evento creado. ¡Listo!';
+    btn.classList.add('success');
+    setTimeout(()=>{ btn.textContent = '✅ CREAR EVENTO'; btn.classList.remove('success'); }, 3000);
+  }
 
-function crearRecordatorio() {
-  const input = document.getElementById('fecha-agenda');
-  const btn = document.getElementById('confirmar-agenda');
-  if(!input.value) return alert('Elegí una fecha y hora primero.');
-  
-  const d = new Date(input.value);
-  const url = window.location.href.split('?')[0];
-  const pad = n => String(n).padStart(2,'0');
-  const dt = `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
-  
-  const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//S2A//ES\r\nBEGIN:VEVENT\r\nDTSTART:${dt}\r\nSUMMARY:🔥 Publicá tu Story de HAMBURGUESERÍA\r\nDESCRIPTION:Entrá aquí y tocá ⚡ PREPARAR STORY\\n${url}\r\nURL:${url}\r\nBEGIN:VALARM\r\nTRIGGER:-PT15M\r\nACTION:DISPLAY\r\nDESCRIPTION:Es hora de publicar\r\nEND:VALARM\r\nEND:VEVENT\r\nEND:VCALENDAR`;
-  
-  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'recordatorio-story-s2a.ics';
-  a.click();
-  
-  btn.textContent = '✅ Evento creado. ¡Listo!';
-  btn.classList.add('success');
-  setTimeout(()=>{ btn.textContent = '✅ CREAR EVENTO'; btn.classList.remove('success'); }, 3000);
-}
-
-render();
+  render();
 </script>
 </body>
 </html>
