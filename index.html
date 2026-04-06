@@ -31,13 +31,20 @@
     <script>
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1SnFLoKk-MRx6NT5yFAAkVoT7tXtYvvk8WiLj3IJSAAA/gviz/tq?tqx=out:csv';
 
-        // Aquí puse los links de tus fotos que me pasaste antes
+        // TUS 12 FOTOS BASE DE CLOUDINARY
         const IMGS_BASE = [
             {id:1, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/1_oax6lo.jpg"},
             {id:2, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/2_v6n5p5.jpg"},
             {id:3, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/3_d9q9z5.jpg"},
-            {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"}
-            // Podés seguir agregando hasta la 12 siguiendo el mismo formato
+            {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"},
+            {id:5, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/5_l6m9n1.jpg"},
+            {id:6, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/6_p2q5r8.jpg"},
+            {id:7, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/7_x4v2z9.jpg"},
+            {id:8, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/8_m1n3b7.jpg"},
+            {id:9, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/9_k5j2h8.jpg"},
+            {id:10, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/10_z1x9c4.jpg"},
+            {id:11, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/11_r3t6y2.jpg"},
+            {id:12, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/12_w8v4k1.jpg"}
         ];
 
         async function init() {
@@ -48,27 +55,35 @@
             try {
                 const res = await fetch(SHEET_URL);
                 const text = await res.text();
+                // Limpiamos comillas dobles que pone Google
                 const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1')));
                 
-                // La fila 2 del Sheets es el index [1] si id=1
+                // Buscamos los datos del cliente (ID 1 = Fila 2)
                 const client = rows[rowIndex];
 
-                document.getElementById('cliente-nombre').innerText = "Pack " + client[1];
-                const activas = client[10].split(',').map(n => n.trim());
-                const logoClienteUrl = client[13]; // Columna N (Logo para marca de agua)
-                const linkSticker = client[9];   // Columna J (Link de la Landing 1)
-                const frase = client[12];        // Columna M (Frase para copiar)
+                if (!client) {
+                   document.getElementById('loading').innerText = "ID de cliente no encontrado.";
+                   return;
+                }
 
-                // Sacamos el ID del logo de Cloudinary para aplicarlo sobre la foto
-                const logoId = logoClienteUrl.split('/').pop().split('.')[0];
+                document.getElementById('cliente-nombre').innerText = "Pack " + (client[1] || "Historias");
+                
+                // Leemos datos clave del Excel
+                const activasStr = client[10] || ""; // Columna K (fotos_activas)
+                const activas = activasStr.split(',').map(n => n.trim());
+                const logoClienteUrl = client[13] || ""; // Columna N (logo_cliente_wm)
+                const linkSticker = client[9] || "";   // Columna J (link_landing_1)
 
                 const grid = document.getElementById('grid');
+                
                 IMGS_BASE.forEach(img => {
                     const isActive = activas.includes(img.id.toString());
                     let finalImg = img.url;
 
-                    if(isActive) {
-                        // Magia de Cloudinary: pone el logo del cliente (logoId) sobre tu foto base
+                    // Si está activa y hay un logo configurado, aplicamos marca de agua
+                    if(isActive && logoClienteUrl.includes('cloudinary.com')) {
+                        const logoId = logoClienteUrl.split('/').pop().split('.')[0];
+                        // Estampamos el logo en la parte inferior de la foto
                         finalImg = img.url.replace('/upload/', `/upload/l_${logoId},w_250,g_south,y_100,o_80/`);
                     }
 
@@ -88,22 +103,29 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
 
-            } catch (e) { console.error(e); }
+            } catch (e) { 
+                console.error(e); 
+                document.getElementById('loading').innerText = "Error cargando planilla. Revisar permisos.";
+            }
         }
 
         function preparar(imgUrl, link) {
-            // 1. Descargar la imagen con marca de agua
+            // 1. Descargamos la imagen
             const a = document.createElement('a');
             a.href = imgUrl;
-            a.download = "story_pack.jpg";
+            a.download = "historia_editada.jpg";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
 
-            // 2. Copiar el link al portapapeles automáticamente
-            navigator.clipboard.writeText(link).then(() => {
-                alert("✅ FOTO DESCARGADA\n✅ LINK COPIADO\n\nYa podés subirla a Instagram y pegar el link en el sticker.");
-            });
+            // 2. Copiamos el link al portapapeles
+            if (link) {
+                navigator.clipboard.writeText(link).then(() => {
+                    alert("✅ FOTO DESCARGADA\n✅ LINK COPIADO\n\nSubí la foto a Instagram y pegá el link en el Sticker.");
+                });
+            } else {
+                alert("✅ FOTO DESCARGADA\n\n(No se encontró link de la Landing 1 en el Excel)");
+            }
         }
 
         init();
