@@ -45,16 +45,27 @@
             try {
                 const res = await fetch(SHEET_URL);
                 const text = await res.text();
-                const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1')));
+                // Limpieza profunda de los datos del Excel
+                const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim()));
+                
+                const headers = rows[0];
                 const client = rows[rowIndex];
 
-                if (!client) return;
+                // Buscamos las columnas por nombre, no por número
+                const colActivas = headers.indexOf('fotos_activas');
+                const colNombre = headers.indexOf('nombre_cliente');
+                const colLink = headers.indexOf('link_landing_1');
 
-                document.getElementById('cliente-nombre').innerText = "Pack " + client[1];
+                if (!client || colActivas === -1) {
+                    document.getElementById('loading').innerText = "Error: Columna 'fotos_activas' no encontrada.";
+                    return;
+                }
+
+                document.getElementById('cliente-nombre').innerText = "Pack " + client[colNombre];
                 
-                const activasStr = client[10] || ""; 
-                const activas = activasStr.split(',').map(n => n.trim());
-                const linkSticker = client[9] || "";
+                const activasStr = client[colActivas] || ""; 
+                const activas = activasStr.split('|').join(',').split(',').map(n => n.trim());
+                const linkSticker = client[colLink] || "";
 
                 const grid = document.getElementById('grid');
                 
