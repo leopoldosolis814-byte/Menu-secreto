@@ -14,13 +14,15 @@
         .thumb { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; opacity: 0.3; }
         .card.active .thumb { opacity: 1; }
         .lock { position: absolute; top: 35%; left: 0; width: 100%; text-align: center; font-size: 30px; }
-        .btn-preparar { background: #e91e8c; color: white; border: none; padding: 12px; border-radius: 8px; width: 90%; margin: 10px auto 5px; font-weight: 800; font-size: 11px; cursor: pointer; }
+        .btn-preparar { background: #e91e8c; color: white; border: none; padding: 12px; border-radius: 8px; width: 90%; margin: 10px auto 5px; font-weight: 800; font-size: 11px; cursor: pointer; display: block; }
         .btn-lock { background: #333; color: #666; cursor: not-allowed; }
         #loading { padding: 50px; font-weight: bold; color: #e91e8c; }
+        #error-msg { padding: 20px; color: #ff4444; font-size: 13px; display: none; }
     </style>
 </head>
 <body>
     <div id="loading">Cargando tu pack...</div>
+    <div id="error-msg"></div>
     <div id="main-content" style="display:none;">
         <h1 id="cliente-nombre">Tus Historias</h1>
         <p>Toca en "Preparar Story" para bajar la foto</p>
@@ -37,69 +39,107 @@
             {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"}
         ];
 
+        function showError(msg) {
+            document.getElementById('loading').style.display = 'none';
+            const err = document.getElementById('error-msg');
+            err.innerText = msg;
+            err.style.display = 'block';
+        }
+
+        function normalizeHeader(h) {
+            return h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_').trim();
+        }
+
         async function init() {
             const params = new URLSearchParams(window.location.search);
-            const id = params.get('id') || '1'; 
+            const id = params.get('id') || '1';
             const rowIndex = parseInt(id);
 
             try {
                 const res = await fetch(SHEET_URL);
+                if (!res.ok) throw new Error("No se pudo cargar el Sheet.");
                 const text = await res.text();
-                // Limpieza profunda de los datos del Excel
-                const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim()));
-                
-                const headers = rows[0];
+
+                const rows = text.split('\n').map(row =>
+                    row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim())
+                );
+
+                const headers = rows[0].map(normalizeHeader);
                 const client = rows[rowIndex];
 
-                // Buscamos las columnas por nombre, no por número
-                const colActivas = headers.indexOf('fotos_activas');
-                const colNombre = headers.indexOf('nombre_cliente');
-                const colLink = headers.indexOf('link_landing_1');
+                console.log("HEADERS:", headers);
+                console.log("ROW " + rowIndex + ":", client);
 
-                if (!client || colActivas === -1) {
-                    document.getElementById('loading').innerText = "Error: Columna 'fotos_activas' no encontrada.";
+                if (!client) {
+                    showError("Error: no se encontró la fila " + rowIndex + ".");
                     return;
                 }
 
-                document.getElementById('cliente-nombre').innerText = "Pack " + client[colNombre];
-                
-                const activasStr = client[colActivas] || ""; 
-                const activas = activasStr.split('|').join(',').split(',').map(n => n.trim());
-                const linkSticker = client[colLink] || "";
+                const colNombre = headers.indexOf('nombre_cliente');
+                const colActivas = headers.indexOf('fotos_activas');
+                const colLink = headers.indexOf('link_landing_1');
+
+                if (colActivas === -1) {
+                    showError("Error: columna 'fotos_activas' no encontrada. Headers: " + headers.join(' | '));
+                    return;
+                }
+
+                const nombre = colNombre !== -1 ? client[colNombre] : "Cliente";
+                document.getElementById('cliente-nombre').innerText = "Pack " + nombre;
+
+                const activasStr = colActivas !== -1 ? (client[colActivas] || "") : "";
+                const activas = activasStr.split(/[|,]/).map(n => n.trim()).filter(Boolean);
+                const linkSticker = colLink !== -1 ? (client[colLink] || "") : "";
 
                 const grid = document.getElementById('grid');
-                
+
                 IMGS_BASE.forEach(img => {
                     const isActive = activas.includes(img.id.toString());
-                    grid.innerHTML += `
-                        <div class="card ${isActive ? 'active' : ''}">
-                            ${!isActive ? '<div class="lock">🔒</div>' : ''}
-                            <img src="${img.url}" class="thumb">
-                            <button class="btn-preparar ${!isActive ? 'btn-lock' : ''}" 
-                                    onclick="preparar('${img.url}', '${linkSticker}')" 
-                                    ${!isActive ? 'disabled' : ''}>
-                                ${isActive ? 'Preparar Story' : 'Bloqueado'}
-                            </button>
-                        </div>
+                    const card = document.createElement('div');
+                    card.className = 'card' + (isActive ? ' active' : '');
+                    card.innerHTML = `
+                        ${!isActive ? '<div class="lock">🔒</div>' : ''}
+                        <img src="${img.url}" class="thumb" loading="lazy">
+                        <button class="btn-preparar ${!isActive ? 'btn-lock' : ''}"
+                                ${!isActive ? 'disabled' : ''}
+                                data-url="${img.url}"
+                                data-link="${linkSticker}">
+                            ${isActive ? 'Preparar Story' : 'Bloqueado'}
+                        </button>
                     `;
+                    if (isActive) {
+                        card.querySelector('button').addEventListener('click', () => preparar(img.url, linkSticker));
+                    }
+                    grid.appendChild(card);
                 });
 
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
 
-            } catch (e) { console.error(e); }
+            } catch (e) {
+                console.error(e);
+                showError("Error al cargar: " + e.message);
+            }
         }
 
         function preparar(imgUrl, link) {
             const a = document.createElement('a');
             a.href = imgUrl;
-            a.download = "foto.jpg";
+            a.download = "story.jpg";
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
             if (link) {
-                navigator.clipboard.writeText(link);
-                alert("✅ Foto bajada y link copiado.");
+                navigator.clipboard.writeText(link).then(() => {
+                    alert("✅ Foto bajada y link copiado.");
+                }).catch(() => {
+                    alert("✅ Foto bajada. Link: " + link);
+                });
+            } else {
+                alert("✅ Foto lista para bajar.");
             }
         }
+
         init();
     </script>
 </body>
