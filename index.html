@@ -28,71 +28,53 @@
         <p>Toca en "Preparar Story" para bajar la foto</p>
         <div id="grid" class="grid"></div>
     </div>
-
     <script>
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1SnFLoKk-MRx6NT5yFAAkVoT7tXtYvvk8WiLj3IJSAAA/gviz/tq?tqx=out:csv';
-
         const IMGS_BASE = [
             {id:1, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/1_oax6lo.jpg"},
             {id:2, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/2_v6n5p5.jpg"},
             {id:3, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/3_d9q9z5.jpg"},
             {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"}
         ];
-
         function showError(msg) {
             document.getElementById('loading').style.display = 'none';
             const err = document.getElementById('error-msg');
             err.innerText = msg;
             err.style.display = 'block';
         }
-
         function normalizeHeader(h) {
             return h.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_').trim();
         }
-
         async function init() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id') || '1';
             const rowIndex = parseInt(id);
-
             try {
                 const res = await fetch(SHEET_URL);
                 if (!res.ok) throw new Error("No se pudo cargar el Sheet.");
                 const text = await res.text();
-
                 const rows = text.split('\n').map(row =>
                     row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim())
                 );
-
                 const headers = rows[0].map(normalizeHeader);
                 const client = rows[rowIndex];
-
-                console.log("HEADERS:", headers);
-                console.log("ROW " + rowIndex + ":", client);
-
                 if (!client) {
                     showError("Error: no se encontró la fila " + rowIndex + ".");
                     return;
                 }
-
-                const colNombre = headers.indexOf('nombre_cliente');
+                const colNombre = headers.indexOf('id_cliente');
                 const colActivas = headers.indexOf('fotos_activas');
-                const colLink = headers.indexOf('link_landing_1');
-
+                const colLink = headers.indexOf('url_sticker_ig');
                 if (colActivas === -1) {
-                    showError("Error: columna 'fotos_activas' no encontrada. Headers: " + headers.join(' | '));
+                    showError("Columnas encontradas: " + headers.join(' | '));
                     return;
                 }
-
                 const nombre = colNombre !== -1 ? client[colNombre] : "Cliente";
                 document.getElementById('cliente-nombre').innerText = "Pack " + nombre;
-
                 const activasStr = colActivas !== -1 ? (client[colActivas] || "") : "";
                 const activas = activasStr.split(/[|,]/).map(n => n.trim()).filter(Boolean);
                 const linkSticker = colLink !== -1 ? (client[colLink] || "") : "";
-
                 const grid = document.getElementById('grid');
-
                 IMGS_BASE.forEach(img => {
                     const isActive = activas.includes(img.id.toString());
                     const card = document.createElement('div');
@@ -100,10 +82,7 @@
                     card.innerHTML = `
                         ${!isActive ? '<div class="lock">🔒</div>' : ''}
                         <img src="${img.url}" class="thumb" loading="lazy">
-                        <button class="btn-preparar ${!isActive ? 'btn-lock' : ''}"
-                                ${!isActive ? 'disabled' : ''}
-                                data-url="${img.url}"
-                                data-link="${linkSticker}">
+                        <button class="btn-preparar ${!isActive ? 'btn-lock' : ''}" ${!isActive ? 'disabled' : ''}>
                             ${isActive ? 'Preparar Story' : 'Bloqueado'}
                         </button>
                     `;
@@ -112,16 +91,12 @@
                     }
                     grid.appendChild(card);
                 });
-
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-
             } catch (e) {
-                console.error(e);
                 showError("Error al cargar: " + e.message);
             }
         }
-
         function preparar(imgUrl, link) {
             const a = document.createElement('a');
             a.href = imgUrl;
@@ -139,7 +114,6 @@
                 alert("✅ Foto lista para bajar.");
             }
         }
-
         init();
     </script>
 </body>
