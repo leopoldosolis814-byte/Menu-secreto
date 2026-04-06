@@ -3,48 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Descarga - Pack Pro</title>
+    <title>Panel de Descarga</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; font-family: 'Segoe UI', sans-serif; color: white; padding: 20px; text-align: center; }
+        body { background: #000; font-family: sans-serif; color: white; padding: 20px; text-align: center; }
         h1 { font-size: 24px; margin-bottom: 5px; color: #FFD600; }
         p { font-size: 14px; color: #888; margin-bottom: 20px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 500px; margin: 0 auto; }
         .card { background: #111; border-radius: 12px; overflow: hidden; border: 1px solid #222; position: relative; padding-bottom: 10px; }
-        .thumb { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; opacity: 0.4; }
+        .thumb { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; opacity: 0.3; }
         .card.active .thumb { opacity: 1; }
-        .lock { position: absolute; top: 35%; left: 0; width: 100%; text-align: center; font-size: 30px; z-index: 5; }
-        .btn-preparar { background: #e91e8c; color: white; border: none; padding: 12px; border-radius: 8px; width: 90%; margin: 10px auto 5px; font-weight: 800; font-size: 11px; cursor: pointer; text-transform: uppercase; }
+        .lock { position: absolute; top: 35%; left: 0; width: 100%; text-align: center; font-size: 30px; }
+        .btn-preparar { background: #e91e8c; color: white; border: none; padding: 12px; border-radius: 8px; width: 90%; margin: 10px auto 5px; font-weight: 800; font-size: 11px; cursor: pointer; }
         .btn-lock { background: #333; color: #666; cursor: not-allowed; }
         #loading { padding: 50px; font-weight: bold; color: #e91e8c; }
     </style>
 </head>
 <body>
-    <div id="loading">Cargando tu pack personalizado...</div>
-    
+    <div id="loading">Cargando tu pack...</div>
     <div id="main-content" style="display:none;">
         <h1 id="cliente-nombre">Tus Historias</h1>
-        <p>Toca en "Preparar Story" para bajar la foto y copiar el link</p>
+        <p>Toca en "Preparar Story" para bajar la foto</p>
         <div id="grid" class="grid"></div>
     </div>
 
     <script>
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1SnFLoKk-MRx6NT5yFAAkVoT7tXtYvvk8WiLj3IJSAAA/gviz/tq?tqx=out:csv';
 
-        // TUS 12 FOTOS BASE DE CLOUDINARY
         const IMGS_BASE = [
             {id:1, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/1_oax6lo.jpg"},
             {id:2, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/2_v6n5p5.jpg"},
             {id:3, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/3_d9q9z5.jpg"},
-            {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"},
-            {id:5, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/5_l6m9n1.jpg"},
-            {id:6, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/6_p2q5r8.jpg"},
-            {id:7, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/7_x4v2z9.jpg"},
-            {id:8, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/8_m1n3b7.jpg"},
-            {id:9, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/9_k5j2h8.jpg"},
-            {id:10, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/10_z1x9c4.jpg"},
-            {id:11, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/11_r3t6y2.jpg"},
-            {id:12, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/12_w8v4k1.jpg"}
+            {id:4, url:"https://res.cloudinary.com/ds2udm1nc/image/upload/v1741124458/4_u8m8m5.jpg"}
         ];
 
         async function init() {
@@ -55,44 +45,27 @@
             try {
                 const res = await fetch(SHEET_URL);
                 const text = await res.text();
-                // Limpiamos comillas dobles que pone Google
                 const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1')));
-                
-                // Buscamos los datos del cliente (ID 1 = Fila 2)
                 const client = rows[rowIndex];
 
-                if (!client) {
-                   document.getElementById('loading').innerText = "ID de cliente no encontrado.";
-                   return;
-                }
+                if (!client) return;
 
-                document.getElementById('cliente-nombre').innerText = "Pack " + (client[1] || "Historias");
+                document.getElementById('cliente-nombre').innerText = "Pack " + client[1];
                 
-                // Leemos datos clave del Excel
-                const activasStr = client[10] || ""; // Columna K (fotos_activas)
+                const activasStr = client[10] || ""; 
                 const activas = activasStr.split(',').map(n => n.trim());
-                const logoClienteUrl = client[13] || ""; // Columna N (logo_cliente_wm)
-                const linkSticker = client[9] || "";   // Columna J (link_landing_1)
+                const linkSticker = client[9] || "";
 
                 const grid = document.getElementById('grid');
                 
                 IMGS_BASE.forEach(img => {
                     const isActive = activas.includes(img.id.toString());
-                    let finalImg = img.url;
-
-                    // Si está activa y hay un logo configurado, aplicamos marca de agua
-                    if(isActive && logoClienteUrl.includes('cloudinary.com')) {
-                        const logoId = logoClienteUrl.split('/').pop().split('.')[0];
-                        // Estampamos el logo en la parte inferior de la foto
-                        finalImg = img.url.replace('/upload/', `/upload/l_${logoId},w_250,g_south,y_100,o_80/`);
-                    }
-
                     grid.innerHTML += `
                         <div class="card ${isActive ? 'active' : ''}">
                             ${!isActive ? '<div class="lock">🔒</div>' : ''}
-                            <img src="${finalImg}" class="thumb">
+                            <img src="${img.url}" class="thumb">
                             <button class="btn-preparar ${!isActive ? 'btn-lock' : ''}" 
-                                    onclick="preparar('${finalImg}', '${linkSticker}')" 
+                                    onclick="preparar('${img.url}', '${linkSticker}')" 
                                     ${!isActive ? 'disabled' : ''}>
                                 ${isActive ? 'Preparar Story' : 'Bloqueado'}
                             </button>
@@ -103,31 +76,19 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
 
-            } catch (e) { 
-                console.error(e); 
-                document.getElementById('loading').innerText = "Error cargando planilla. Revisar permisos.";
-            }
+            } catch (e) { console.error(e); }
         }
 
         function preparar(imgUrl, link) {
-            // 1. Descargamos la imagen
             const a = document.createElement('a');
             a.href = imgUrl;
-            a.download = "historia_editada.jpg";
-            document.body.appendChild(a);
+            a.download = "foto.jpg";
             a.click();
-            document.body.removeChild(a);
-
-            // 2. Copiamos el link al portapapeles
             if (link) {
-                navigator.clipboard.writeText(link).then(() => {
-                    alert("✅ FOTO DESCARGADA\n✅ LINK COPIADO\n\nSubí la foto a Instagram y pegá el link en el Sticker.");
-                });
-            } else {
-                alert("✅ FOTO DESCARGADA\n\n(No se encontró link de la Landing 1 en el Excel)");
+                navigator.clipboard.writeText(link);
+                alert("✅ Foto bajada y link copiado.");
             }
         }
-
         init();
     </script>
 </body>
